@@ -6,7 +6,7 @@
 #    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/02/06 15:42:45 by hbutt            ###   ########.fr        #
+#    Updated: 2025/02/06 16:21:51 by hbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,16 @@ LIBFT_PATH	= libft/
 LIBFT_NAME	= libft.a
 LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
 
+# MinilibX
+MLX_PATH	= minilibx-linux/
+MLX_NAME	= libmlx_Linux.a
+MLX			= $(MLX_PATH)$(MLX_NAME)
+MLX_FLAGS	= -L$(MLX_PATH) -lmlx -lXext -lX11
+
 # Sources
 SRC_PATH = ./src/
 SRC		= main.c \
-		
+		  
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects
@@ -45,9 +51,10 @@ OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))
 # Includes
 INC			= -I ./includes/\
 			  -I ./libft/\
+			  -I $(MLX_PATH)
 
 # Main rule
-all: $(OBJ_PATH) $(MLX) $(LIBFT) $(NAME)
+all: $(OBJ_PATH) $(LIBFT) $(MLX) $(NAME)
 	@echo "$(GREEN)✔ Build complete!$(RESET)"
 
 # Objects directory rule
@@ -62,7 +69,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 # Project file rule
 $(NAME): $(OBJS)
 	@echo "$(YELLOW)🔧 Linking $(NAME)...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(INC) $(LIBFT) 
+	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(INC) $(LIBFT) $(MLX_FLAGS)
 	@echo "$(GREEN)✔ Executable ready!$(RESET)"
 
 # Libft rule
@@ -70,19 +77,26 @@ $(LIBFT):
 	@echo "$(MAGENTA)📦 Building libft...$(RESET)"
 	@make -sC $(LIBFT_PATH)
 
+# MinilibX rule
+$(MLX):
+	@echo "$(MAGENTA)📦 Building MinilibX...$(RESET)"
+	@make -sC $(MLX_PATH) 2>/dev/null 1>/dev/null
+
 # Clean up build files rule
 clean:
 	@echo "$(RED)🧹 Cleaning object files...$(RESET)"
 	@rm -rf $(OBJ_PATH)
 	@make -sC $(LIBFT_PATH) clean
+	@make -sC $(MLX_PATH) clean
 
 # Remove program executable
 fclean: clean
 	@echo "$(RED)🗑️ Removing executable...$(RESET)"
 	@rm -f $(NAME)
 	@make -sC $(LIBFT_PATH) fclean
+	@make -sC $(MLX_PATH) clean
 
 # Clean + remove executable
 re: fclean all
 
-.PHONY: all re clean fclean 
+.PHONY: all re clean fclean
