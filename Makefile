@@ -6,7 +6,7 @@
 #    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/02/06 16:21:51 by hbutt            ###   ########.fr        #
+#    Updated: 2025/02/06 16:50:31 by hbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,14 +87,14 @@ clean:
 	@echo "$(RED)🧹 Cleaning object files...$(RESET)"
 	@rm -rf $(OBJ_PATH)
 	@make -sC $(LIBFT_PATH) clean
-	@make -sC $(MLX_PATH) clean
+	@make -sC $(MLX_PATH) clean 2>/dev/null 1>/dev/null
 
 # Remove program executable
 fclean: clean
 	@echo "$(RED)🗑️ Removing executable...$(RESET)"
 	@rm -f $(NAME)
 	@make -sC $(LIBFT_PATH) fclean
-	@make -sC $(MLX_PATH) clean
+	@make -sC $(MLX_PATH) clean 2>/dev/null 1>/dev/null
 
 # Clean + remove executable
 re: fclean all
