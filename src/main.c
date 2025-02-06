@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/02/06 15:39:58 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/02/06 15:45:34 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(int ac, char **av)
 {
     ac = 2;
-    if (ac == 1)
+    if (ac == 2)
         av[0] = "salut";
-    printf("Hello World\n");
+    printf("Hello World %s\n", av[0]);
 }

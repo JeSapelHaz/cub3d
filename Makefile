@@ -6,7 +6,7 @@
 #    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/02/06 15:14:22 by hbutt            ###   ########.fr        #
+#    Updated: 2025/02/06 15:42:45 by hbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
 
 # Sources
 SRC_PATH = ./src/
-SRC		= main.c
+SRC		= main.c \
+		
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects
