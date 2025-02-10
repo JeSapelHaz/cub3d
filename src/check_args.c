@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/02/10 17:46:51 by hbutt            ###   ########.fr       */
+/*   Created: 2025/02/10 16:23:53 by hbutt             #+#    #+#             */
+/*   Updated: 2025/02/10 17:47:37 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(int ac, char **av)
+/* Check if the args are valid */
+int	check_args(int ac, char **av)
 {
-	if (check_args(ac, av) != 0)
+	if (ac < 2)
+	{
+		printf("Error : Pas de map, tu veux pas jouer chef ?\n");
 		return (1);
-	printf("Arguments are valid!\n");
+	}
+	else if (ac > 2)
+	{
+		printf("Error : Le seul argument valable est la map\n");
+		return (1);
+	}
+	if (ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".cub", 4))
+	{
+		printf("Error : Map invalide chef\n");
+		return (1);
+	}
 	return (0);
 }
