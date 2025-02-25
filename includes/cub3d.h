@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/02/25 12:56:19 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/02/25 13:13:13 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
-#include <math.h>
+# include <math.h>
 # include <stdarg.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -40,7 +40,7 @@ typedef struct s_mapinfo
 	char		*ceiling;
 	int			pos_x;
 	int			pos_y;
-	char **file;
+	char		**file;
 
 }				t_mapinfo;
 
