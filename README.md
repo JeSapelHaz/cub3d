@@ -14,7 +14,7 @@ Cub3D is a project developed as part of the 42 school curriculum. It is a simple
 ### Build
 Clone the repository and compile the project:
 ```bash
-git clone <repository-url>
+git clone https://github.com/JeSapelHaz/cub3d.git
 cd cub3d
 make
 ```
@@ -39,17 +39,19 @@ Maps are described in `.cub` files. The format includes:
 
 Example:
 
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-WE ./textures/west.xpm
-EA ./textures/east.xpm
+NO ./path_to_the_north_texture
+SO ./path_to_the_south_texture
+WE ./path_to_the_west_texture
+EA ./path_to_the_east_texture
+
 F 220,100,0
 C 225,30,0
-111111
-100001
-100001
-111111
 
+        1111111111111111111111111
+        1000000000110000000000001
+        1011000001110000000000001
+        1001000000000000000000001
+        1111111111111111111111111
 
 ## Contributors
 - hbutt
