@@ -6,12 +6,16 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:01:39 by hbutt             #+#    #+#             */
-/*   Updated: 2024/04/16 14:04:32 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/02/25 13:08:04 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -54,6 +58,11 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+
+char	*get_next_line(int fd);
+int		ft_no_nl_next(char *str);
+char	*ft_strjoin_gnl(char *str1, char *str2);
+char	*ft_free_all(char **str1);
 
 /* Partie 3 : bonus */
 

@@ -6,7 +6,7 @@
 #    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/02/10 16:31:15 by hbutt            ###   ########.fr        #
+#    Updated: 2025/02/25 11:34:26 by hbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,9 @@ MLX_FLAGS	= -L$(MLX_PATH) -lmlx -lXext -lX11
 SRC_PATH = ./src/
 SRC		= main.c \
 		check_args.c \
+		parsing.c \
+		utils.c \
+		init_data.c
 		  
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 

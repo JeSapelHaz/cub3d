@@ -6,31 +6,57 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/02/12 14:30:50 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/02/25 12:56:19 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../minilibx-linux/mlx.h"
 # include "libft.h"
+# include <errno.h>
+# include <fcntl.h>
+# include <limits.h>
+#include <math.h>
+# include <stdarg.h>
+# include <stdbool.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <string.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <unistd.h>
 
 typedef struct s_mapinfo
 {
-	int		width;
-	int		height;
-	char	*north;
-	char	*south;
-	char	*east;
-	char	*west;
-	int		pos_x;
-	int		pos_y;
-    
-}			t_mapinfo;
+	int			map_width;
+	int			map_height;
+	char		*north_path;
+	char		*south_path;
+	char		*east_path;
+	char		*west_path;
+	char		*floor;
+	char		*ceiling;
+	int			pos_x;
+	int			pos_y;
+	char **file;
+
+}				t_mapinfo;
+
+typedef struct s_data
+{
+	void		*mlx;
+	void		*window;
+	void		*win_height;
+	void		*win_width;
+	t_mapinfo	mapinfo;
+}				t_data;
 
 /* CHECK ARGS */
-int			check_args(int ac, char **av);
+int				check_args(int ac, char **av);
+
+/* INIT */
+void			init_data(t_data *data);
 
 #endif
