@@ -32,7 +32,6 @@ Run the program with a valid map file:
 
 ## Map Configuration
 Maps are described in `.cub` files. The format includes:
-- **Resolution**: `R <width> <height>`
 - **Textures**: `NO`, `SO`, `WE`, `EA` for walls
 - **Colors**: `F` (floor), `C` (ceiling)
 - **Map**: Defined with `1` for walls and `0` for empty space
