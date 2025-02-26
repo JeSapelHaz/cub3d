@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/02/26 15:18:50 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/02/26 15:27:10 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,8 @@ int				parse_data(char *path, t_data *data);
 
 /* DEBUG */
 void			print_file(t_data data);
+
+/* FREE */
+void	free_data(t_data *data);
 
 #endif

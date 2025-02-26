@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/02/26 15:18:49 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/02/26 15:28:30 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	main(int ac, char **av)
 	init_data(&data);
 	parse_data(av[1], &data);
 	print_file(data);
-	//free_data,mlx, window, images etc
+	free_data(&data);
 	return (0);
 }
