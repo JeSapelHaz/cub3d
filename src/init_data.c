@@ -6,30 +6,30 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:25:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/02/25 12:01:01 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/02/26 15:48:08 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void init_mapinfo(t_mapinfo *mapinfo)
+static void	init_mapinfo(t_mapinfo *mapinfo)
 {
-    mapinfo->ceiling = 0;
-    mapinfo->floor = 0;
-    mapinfo->east_path = 0;
-    mapinfo->north_path = 0;
-    mapinfo->west_path = 0;
-    mapinfo->south_path = 0;
-    mapinfo->map_height = 0;
-    mapinfo->map_width = 0;
-    mapinfo->file = NULL;
+	mapinfo->ceiling = 0;
+	mapinfo->floor = 0;
+	mapinfo->east_path = 0;
+	mapinfo->north_path = 0;
+	mapinfo->west_path = 0;
+	mapinfo->south_path = 0;
+	mapinfo->map_height = 0;
+	mapinfo->map_width = 0;
+	mapinfo->file = NULL;
 }
 
-void init_data(t_data *data)
+void	init_data(t_data *data)
 {
-    data->mlx = NULL;
-    data->window = NULL;
-    data->win_height = 0;
-    data->win_width = 0;
-    init_mapinfo(&data->mapinfo);
+	data->mlx = NULL;
+	data->window = NULL;
+	data->win_height = 0;
+	data->win_width = 0;
+	init_mapinfo(&data->mapinfo);
 }

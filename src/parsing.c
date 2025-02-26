@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:03:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/02/26 15:17:56 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/02/26 15:49:04 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,15 @@ static int	get_line_count(char *path)
 	return (line_count);
 }
 
-int	parse_data(char *path, t_data *data)
+static void	fill_file(char *path, t_data *data)
 {
-	int line_count = get_line_count(path);
-	char *line;
-	int fd;
-	int row = 0;
-	int column = 0;
-	data->mapinfo.file = ft_calloc(line_count + 1, sizeof(char *));
-	if (!data->mapinfo.file)
-		return (1);
-	int i;
+	int		fd;
+	int		i;
+	int		column;
+	int		row;
+	char	*line;
+
+	row = 0;
 	fd = open(path, O_RDONLY);
 	line = get_next_line(fd);
 	while (line != NULL)
@@ -54,11 +52,7 @@ int	parse_data(char *path, t_data *data)
 		i = 0;
 		data->mapinfo.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
 		while (line[i])
-		{
-			data->mapinfo.file[row][column] = line[i];
-			i++;
-			column++;
-		}
+			data->mapinfo.file[row][column++] = line[i++];
 		data->mapinfo.file[row][column] = '\0';
 		row++;
 		free(line);
@@ -66,5 +60,16 @@ int	parse_data(char *path, t_data *data)
 	}
 	data->mapinfo.file[row] = NULL;
 	close(fd);
+}
+
+int	parse_data(char *path, t_data *data)
+{
+	int	line_count;
+
+	line_count = get_line_count(path);
+	data->mapinfo.file = ft_calloc(line_count + 1, sizeof(char *));
+	if (!data->mapinfo.file)
+		return (1);
+	fill_file(path, data);
 	return (0);
 }
