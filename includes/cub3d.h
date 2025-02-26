@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/02/25 13:13:13 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:18:50 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,11 @@ int				check_args(int ac, char **av);
 
 /* INIT */
 void			init_data(t_data *data);
+
+/* PARSING */
+int				parse_data(char *path, t_data *data);
+
+/* DEBUG */
+void			print_file(t_data data);
 
 #endif
