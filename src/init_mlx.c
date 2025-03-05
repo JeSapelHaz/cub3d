@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:17:33 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/05 16:43:00 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/05 16:49:29 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_mlx(t_data *data)
 	int j;
 	int img_height = 64;
 	void *img_wall;
-	img_wall = mlx_xpm_file_to_image(data->mlx, data->mapinfo.south_path, &img_height, &img_height);
+	img_wall = mlx_xpm_file_to_image(data->mlx, data->mapinfo.east_path, &img_height, &img_height);
 	if (!img_wall)
 	{
 		perror("Error loading wall image");
