@@ -20,8 +20,8 @@ int	main(int ac, char **av)
 		return (1);
 	init_data(&data);
 	parse_data(av[1], &data);
-	take_info_file(&data);
-	print_file(data);
+	take_info_file(data.mapinfo.file, &data);
+	// print_file(data);
 	free_data(&data);
 	return (0);
 }

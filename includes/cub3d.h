@@ -61,6 +61,7 @@ void			init_data(t_data *data);
 
 /* PARSING */
 int				parse_data(char *path, t_data *data);
+void take_info_file(char **file, t_data *data);
 
 /* DEBUG */
 void			print_file(t_data data);

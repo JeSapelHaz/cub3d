@@ -12,21 +12,43 @@
 
 #include "../includes/cub3d.h"
 
-static int get_limit(char **file)
+void take_info_file(char **file, t_data *data)
 {
     int i;
     
-    while(file[i])
+    i = 0;
+    while (file[i])
     {
-        
-    }
-}
-
-void take_info_file(t_data *data)
-{
-    int i;
-    int limit_no_to_exceed;
-    
-    limit_no_to_exceed = get_limit(data->mapinfo.file);
-    while(data->mapinfo.file[i] && i < limit_no_to_exceed)
+        if (file[i][0] == 'N' && file[i][1] == 'O')
+        {
+            data->mapinfo.north_path = ft_strdup(&file[i][3]);
+            // printf("ici c'est la path de la texture nord %s", data->mapinfo.north_path);
+        }
+        if (file[i][0] == 'S' && file[i][1] == 'O')
+        {
+            data->mapinfo.south_path = ft_strdup(&file[i][3]);
+            // printf("ici c'est la path de la texture south %s", data->mapinfo.south_path);
+        }
+        if (file[i][0] == 'W' && file[i][1] == 'E')
+        {
+            data->mapinfo.west_path = ft_strdup(&file[i][3]);
+            // printf("ici c'est la path de la texture west %s", data->mapinfo.west_path);
+        }
+        if (file[i][0] == 'E' && file[i][1] == 'A')
+        {
+            data->mapinfo.east_path = ft_strdup(&file[i][3]);
+            // printf("ici c'est la path de la texture east %s", data->mapinfo.east_path);
+        }
+        if (file[i][0] == 'C')
+        {
+            data->mapinfo.ceiling = ft_strdup(&file[i][2]);
+            // printf("ici c'est le RGB du ciel %s", data->mapinfo.ceiling);
+        }
+        if (file[i][0] == 'F')
+        {
+            data->mapinfo.floor = ft_strdup(&file[i][2]);
+            // printf("ici c'est le RGB du sol %s", data->mapinfo.floor);
+        }
+        i++;
+    } 
 }

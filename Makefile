@@ -44,7 +44,8 @@ SRC		= main.c \
 		parsing.c \
 		utils.c \
 		init_data.c \
-		debug.c
+		debug.c \
+		take_info_file.c
 		  
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 

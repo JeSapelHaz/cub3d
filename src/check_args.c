@@ -32,3 +32,4 @@ int	check_args(int ac, char **av)
 	}
 	return (0);
 }
+
