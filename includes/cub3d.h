@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/05 16:13:47 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/05 16:21:44 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ void			init_data(t_data *data);
 int				parse_data(char *path, t_data *data);
 void			take_info_file(char **file, t_data *data);
 int				check_data(t_data data);
+
+/* INIT MLX */
+void			init_mlx(t_data *data);
 
 /* DEBUG */
 void			print_file(t_data data);
