@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/05 16:11:58 by hbutt            ###   ########.fr       */
+/*   Created: 2025/03/05 16:12:56 by hbutt             #+#    #+#             */
+/*   Updated: 2025/03/05 16:13:23 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(int ac, char **av)
+char	*ft_strndup(const char *s, size_t n)
 {
-	t_data	data;
+	char			*res;
+	unsigned int	i;
 
-	if (check_args(ac, av) != 0)
-		return (1);
-	init_data(&data);
-	parse_data(av[1], &data);
-	take_info_file(data.mapinfo.file, &data);
-	if (check_data(data))
-		return 1;
-	// print_file(data);
-	print_paths(data);
-	// print_map(data);
-	free_data(&data);
-	return (0);
+	i = 0;
+	res = malloc(sizeof(char) * (n + 1));
+	if (res == NULL)
+		return (NULL);
+	while (i < n)
+	{
+		res[i] = s[i];
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
 }

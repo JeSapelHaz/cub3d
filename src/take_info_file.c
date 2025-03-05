@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/05 13:54:08 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/05 16:13:20 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,36 +39,40 @@ void	take_info_file(char **file, t_data *data)
 	{
 		if (file[i][0] == 'N' && file[i][1] == 'O')
 		{
-			data->mapinfo.north_path = ft_strdup(&file[i][3]);
+			data->mapinfo.north_path = ft_strndup(&file[i][3], ft_strlen(file[i])- 4);
 			nbr_paths++;
 		}
 		if (file[i][0] == 'S' && file[i][1] == 'O')
 		{
-			data->mapinfo.south_path = ft_strdup(&file[i][3]);
+			data->mapinfo.south_path = ft_strndup(&file[i][3], ft_strlen(file[i])- 4);
 			nbr_paths++;
 		}
 		if (file[i][0] == 'W' && file[i][1] == 'E')
 		{
-			data->mapinfo.west_path = ft_strdup(&file[i][3]);
+			data->mapinfo.west_path = ft_strndup(&file[i][3], ft_strlen(file[i])- 4);
 			nbr_paths++;
 		}
 		if (file[i][0] == 'E' && file[i][1] == 'A')
 		{
-			data->mapinfo.east_path = ft_strdup(&file[i][3]);
+			data->mapinfo.east_path = ft_strndup(&file[i][3], ft_strlen(file[i])- 4);
 			nbr_paths++;
 		}
 		if (file[i][0] == 'C')
 		{
-			data->mapinfo.ceiling = ft_strdup(&file[i][2]);
+			data->mapinfo.ceiling = ft_strndup(&file[i][2], ft_strlen(file[i])- 3);
 			nbr_paths++;
 		}
 		if (file[i][0] == 'F')
 		{
-			data->mapinfo.floor = ft_strdup(&file[i][2]);
+			data->mapinfo.floor = ft_strndup(&file[i][2], ft_strlen(file[i])- 3);
 			nbr_paths++;
 		}
 		i++;
 	}
+    if (nbr_paths != 6)
+    {
+        printf("error dans les paths mon pote\n");
+    }
 	while (file[i] && no_line(file[i]) == 0)
 		i++;
 	while (file[i] && no_line(file[i]) == 1)

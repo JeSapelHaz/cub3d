@@ -6,7 +6,7 @@
 #    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/02/26 15:04:26 by hbutt            ###   ########.fr        #
+#    Updated: 2025/03/05 16:14:15 by hbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,9 @@ SRC		= main.c \
 		utils.c \
 		init_data.c \
 		debug.c \
-		take_info_file.c
+		take_info_file.c \
+		check_data.c \
+		utils_functions.c
 		  
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
