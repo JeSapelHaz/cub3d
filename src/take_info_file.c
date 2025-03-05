@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/05 13:51:59 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/05 13:54:08 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	take_info_file(char **file, t_data *data)
 {
 	int i;
 	int nbr_paths;
-    int j;
+	int j;
 
 	nbr_paths = 0;
 	i = 0;
-    j = 0;
+	j = 0;
 	while (file[i] && nbr_paths != 6)
 	{
 		if (file[i][0] == 'N' && file[i][1] == 'O')
