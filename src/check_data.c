@@ -6,13 +6,12 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
-/*   Updated: 2025/02/26 15:55:24 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/05 13:55:43 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int check_data(t_data *data)
+int	check_data(t_data *data)
 {
-    
 }
