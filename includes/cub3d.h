@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/02/26 15:49:55 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/05 13:34:54 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_mapinfo
 	int			pos_x;
 	int			pos_y;
 	char		**file;
+	char **map;
 
 }				t_mapinfo;
 
@@ -65,6 +66,8 @@ void take_info_file(char **file, t_data *data);
 
 /* DEBUG */
 void			print_file(t_data data);
+void	print_paths(t_data data);
+void	print_map(t_data data);
 
 /* FREE */
 void			free_data(t_data *data);

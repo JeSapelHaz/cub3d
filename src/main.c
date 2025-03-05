@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/04 15:28:21 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/05 13:49:14 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	main(int ac, char **av)
 	parse_data(av[1], &data);
 	take_info_file(data.mapinfo.file, &data);
 	// print_file(data);
+	print_paths(data);
+	print_map(data);
 	free_data(&data);
 	return (0);
 }

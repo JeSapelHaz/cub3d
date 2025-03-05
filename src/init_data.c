@@ -23,6 +23,7 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 	mapinfo->map_height = 0;
 	mapinfo->map_width = 0;
 	mapinfo->file = NULL;
+	mapinfo->map = NULL;
 }
 
 void	init_data(t_data *data)
