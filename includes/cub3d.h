@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/05 16:21:44 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/06 14:27:55 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <unistd.h>
+
+// keys
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_A 97
+# define KEY_D 100
+# define KEY_ESC 65307
+# define EXIT 17
+
 
 typedef struct s_mapinfo
 {

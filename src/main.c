@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/06 14:07:34 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/06 14:28:08 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	controls(int keycode, t_data *data)
 {
-	if (keycode == 53)
+	if (keycode == KEY_ESC)
 	{
 		mlx_clear_window(data->mlx, data->window);
 		mlx_destroy_window(data->mlx, data->window);
