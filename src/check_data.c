@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/06 12:35:36 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/06 13:50:02 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,17 @@ static int	check_map(char **map)
 			if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W'
 				|| map[i][j] == 'S')
 			{
+				printf("%d %d", i, j);
 				j++;
 				nbr_players++;
 				continue ;
 			}
 			if (map[i][j] != ' ' && map[i][j] != '1' && map[i][j] != '0'
-				&& map[i][j] != '\t'&& map[i][j] != '\n' && map[i][j] != '\r'
+				&& map[i][j] != '\t' && map[i][j] != '\n' && map[i][j] != '\r'
 				&& map[i][j] != '\v' && map[i][j] != '\f')
 			{
-				printf(" Caractere <%c> is not allowed in the map\n", map[i][j]);
+				printf(" Caractere <%c> is not allowed in the map\n",
+					map[i][j]);
 				return (1);
 			}
 			j++;
@@ -86,11 +88,42 @@ static int	check_map(char **map)
 	}
 	return (0);
 }
+void	back_track(char **map, int y, int x, int *flag, t_data *data)
+{
+	data->mapinfo.map_height = 14;
+	// printf("%c\n", map[11][26]);
+	if (*flag == 0 && (map[y][x] == ' ' || (y == 0 && map[y][x] == '0')
+		|| (y == data->mapinfo.map_height - 1 && map[y][x] == '0' )|| (x == 0
+			&& map[y][x] == '0')|| (x == (int)ft_strlen(map[y] - 2)
+			&& map[y][x] == '0')))
+		*flag = 1;
+	map[y][x] = '2';
+	if (y < data->mapinfo.map_height - 1 && map[y + 1][x] != '1' && map[y
+		+ 1][x] != '2')
+		back_track(map, y + 1, x, flag, data);
+	if (y > 0 && map[y - 1][x] != '1' && map[y - 1][x] != '2')
+		back_track(map, y - 1, x, flag, data);
+	if (map[y][x + 1] != '\n' && map[y][x + 1] != '\0' && map[y][x + 1] != '1' && map[y][x + 1] != '2')
+		back_track(map, y, x + 1, flag, data);
+	if (x > 0 && map[y][x - 1] != '1' && map[y][x - 1] != '2')
+		back_track(map, y, x - 1, flag, data);
+}
 int	check_data(t_data data)
 {
+	int	flag;
+
+	flag = 0;
 	if (check_paths(data) == 1)
 		return (1);
 	if (check_map(data.mapinfo.map) == 1)
 		return (1);
+	back_track(data.mapinfo.map, 11,26, &flag,
+		&data);
+	if (flag == 1)
+	{
+		printf("ERRORORRR\n");
+	}
+	else
+		printf("E\n");
 	return (0);
 }
