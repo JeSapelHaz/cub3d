@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/06 14:27:55 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/06 14:41:55 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 
 typedef struct s_mapinfo
 {
-	int			map_width;
 	int			map_height;
 	char		*north_path;
 	char		*south_path;
