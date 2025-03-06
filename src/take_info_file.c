@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/06 14:24:44 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/06 14:41:06 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,5 @@ void	take_info_file(char **file, t_data *data)
 		j++;
 	}
 	data->mapinfo.map[j] = NULL;
+	data->mapinfo.map_height = j;
 }

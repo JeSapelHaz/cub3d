@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/06 14:24:29 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/06 14:40:28 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ static int	check_map(char **map)
 }
 void	back_track(char **map, int y, int x, int *flag, t_data *data)
 {
-	data->mapinfo.map_height = 14;
 	if (*flag == 0 && (map[y][x] == ' ' || (y == 0 && map[y][x] != '1')
 			|| (y == data->mapinfo.map_height - 1 && map[y][x] != '1')
 			|| (x == 0 && map[y][x] != '1') || (x == (int)ft_strlen(map[y] - 2)
