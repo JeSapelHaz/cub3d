@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/06 13:50:02 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/06 14:07:24 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static int	check_map(char **map)
 			if (map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'W'
 				|| map[i][j] == 'S')
 			{
-				printf("%d %d", i, j);
 				j++;
 				nbr_players++;
 				continue ;
@@ -91,11 +90,10 @@ static int	check_map(char **map)
 void	back_track(char **map, int y, int x, int *flag, t_data *data)
 {
 	data->mapinfo.map_height = 14;
-	// printf("%c\n", map[11][26]);
-	if (*flag == 0 && (map[y][x] == ' ' || (y == 0 && map[y][x] == '0')
-		|| (y == data->mapinfo.map_height - 1 && map[y][x] == '0' )|| (x == 0
-			&& map[y][x] == '0')|| (x == (int)ft_strlen(map[y] - 2)
-			&& map[y][x] == '0')))
+	if (*flag == 0 && (map[y][x] == ' ' || (y == 0 && map[y][x] != '1')
+		|| (y == data->mapinfo.map_height - 1 && map[y][x] != '1' )|| (x == 0
+			&& map[y][x] != '1')|| (x == (int)ft_strlen(map[y] - 2)
+			&& map[y][x] != '1')))
 		*flag = 1;
 	map[y][x] = '2';
 	if (y < data->mapinfo.map_height - 1 && map[y + 1][x] != '1' && map[y
@@ -122,8 +120,7 @@ int	check_data(t_data data)
 	if (flag == 1)
 	{
 		printf("ERRORORRR\n");
+		return 1;
 	}
-	else
-		printf("E\n");
 	return (0);
 }
