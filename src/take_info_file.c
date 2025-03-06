@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/05 16:13:20 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/06 12:32:22 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int	no_line(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != ' ' && line[i] != '\t')
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\t'&& line[i] != '\n' && line[i] != '\r'
+				&& line[i] != '\v' && line[i] != '\f')
 			return (1);
 		i++;
 	}

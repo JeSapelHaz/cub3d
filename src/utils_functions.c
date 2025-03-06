@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:12:56 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/05 16:13:23 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/06 11:48:39 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strndup(const char *s, size_t n)
 {
-	char			*res;
-	unsigned int	i;
+	char *res;
+	unsigned int i;
 
 	i = 0;
 	res = malloc(sizeof(char) * (n + 1));
