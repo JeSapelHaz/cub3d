@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/07 15:54:30 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/07 16:12:00 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	main(int ac, char **av)
 	init_data(&data);
 	parse_data(av[1], &data);
 	if (take_info_file(data.mapinfo.file, &data))
-		return (1);
+		return (free_data(&data), 1);
 	if (check_data(data))
-		return (1);
+		return (free_data(&data), 1);
 	init_mlx(&data);
 	mlx_key_hook(data.window, controls, &data);
 	mlx_hook(data.window, 17, 0, (void *)exit, 0);
