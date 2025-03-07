@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/07 14:50:56 by hbutt            ###   ########.fr       */
+/*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
+/*   Updated: 2025/03/07 14:50:59 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-
-
-int	main(int ac, char **av)
+int	controls(int keycode, t_data *data)
 {
-	t_data	data;
-
-	if (check_args(ac, av) != 0)
-		return (1);
-	init_data(&data);
-	parse_data(av[1], &data);
-	if (take_info_file(data.mapinfo.file, &data))
-		return (1);
-	if (check_data(data))
-		return (1);
-	init_mlx(&data);
-	mlx_key_hook(data.window, controls, &data);
-	mlx_hook(data.window, 17, 0, (void *)exit, 0);
-	mlx_loop(data.mlx);
-	free_data(&data);
+	if (keycode == KEY_ESCAPE)
+	{
+		mlx_clear_window(data->mlx, data->window);
+		mlx_destroy_window(data->mlx, data->window);
+		exit(0);
+	}
+	return (0);
 }

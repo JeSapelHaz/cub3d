@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/07 13:18:40 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/07 14:49:04 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,31 +74,25 @@ static int	check_map(t_data *data)
 	return (0);
 }
 
-/* Check is the map is valid or not */
-void	back_track(t_data *data, int y, int x, int *flag)
+static int	check_rgb(t_data data)
 {
-	if (*flag == 0 && (data->mapinfo.map[y][x] == ' ' || (y == 0
-			&& data->mapinfo.map[y][x] != '1')
-			|| (y == data->mapinfo.map_height - 1
-				&& data->mapinfo.map[y][x] != '1') || (x == 0
-				&& data->mapinfo.map[y][x] != '1')
-			|| (x == (int)ft_strlen(data->mapinfo.map[y] - 2)
-				&& data->mapinfo.map[y][x] != '1')))
-		*flag = 1;
-	data->mapinfo.map[y][x] = '2';
-	if (y < data->mapinfo.map_height - 1 && data->mapinfo.map[y + 1][x] != '1'
-		&& data->mapinfo.map[y + 1][x] != '2')
-		back_track(data, y + 1, x, flag);
-	if (y > 0 && data->mapinfo.map[y - 1][x] != '1' && data->mapinfo.map[y
-		- 1][x] != '2')
-		back_track(data, y - 1, x, flag);
-	if (data->mapinfo.map[y][x + 1] != '\n' && data->mapinfo.map[y][x
-		+ 1] != '\0' && data->mapinfo.map[y][x + 1] != '1'
-		&& data->mapinfo.map[y][x + 1] != '2')
-		back_track(data, y, x + 1, flag);
-	if (x > 0 && data->mapinfo.map[y][x - 1] != '1' && data->mapinfo.map[y][x
-		- 1] != '2')
-		back_track(data, y, x - 1, flag);
+	char	**rgb;
+
+	rgb = ft_split(data.mapinfo.ceiling, ',');
+	if (ft_atoi(rgb[0]) > 255 || ft_atoi(rgb[0]) < 0)
+		return (printf("ERROR RGB CEILING\n"), 1);
+	if (ft_atoi(rgb[1]) > 255 || ft_atoi(rgb[1]) < 0)
+		return (printf("ERROR RGB CEILING\n"), 1);
+	if (ft_atoi(rgb[2]) > 255 || ft_atoi(rgb[2]) < 0)
+		return (printf("ERROR RGB CEILING\n"), 1);
+	rgb = ft_split(data.mapinfo.floor, ',');
+	if (ft_atoi(rgb[0]) > 255 || ft_atoi(rgb[0]) < 0)
+		return (printf("ERROR RGB FLOOR\n"), 1);
+	if (ft_atoi(rgb[1]) > 255 || ft_atoi(rgb[1]) < 0)
+		return (printf("ERROR RGB FLOOR\n"), 1);
+	if (ft_atoi(rgb[2]) > 255 || ft_atoi(rgb[2]) < 0)
+		return (printf("ERROR RGB FLOOR\n"), 1);
+	return (0);
 }
 
 /* Check if the data is good */
@@ -108,6 +102,8 @@ int	check_data(t_data data)
 
 	flag = 0;
 	if (check_paths(data) == 1)
+		return (1);
+	if (check_rgb(data) == 1)
 		return (1);
 	if (check_map(&data) == 1)
 		return (1);
