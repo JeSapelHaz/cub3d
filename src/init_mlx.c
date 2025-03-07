@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:17:33 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/06 14:44:48 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/07 13:34:39 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	init_mlx(t_data *data)
 	void	*img_wall;
 
 	data->mlx = mlx_init();
-	data->window = mlx_new_window(data->mlx,2000, (data->mapinfo.map_height + 1 )* 64,"cub3d");
+	data->window = mlx_new_window(data->mlx, 2000, (data->mapinfo.map_height
+				+ 1) * 64, "cub3d");
 	if (!data->mlx || !data->window)
 	{
 		perror("Error initializing MLX");

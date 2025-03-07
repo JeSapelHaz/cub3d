@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/06 14:41:55 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/07 13:33:22 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 # define KEY_D 100
 # define KEY_ESC 65307
 # define EXIT 17
-
 
 typedef struct s_mapinfo
 {
@@ -70,7 +69,7 @@ void			init_data(t_data *data);
 
 /* PARSING */
 int				parse_data(char *path, t_data *data);
-void			take_info_file(char **file, t_data *data);
+int				take_info_file(char **file, t_data *data);
 int				check_data(t_data data);
 
 /* INIT MLX */

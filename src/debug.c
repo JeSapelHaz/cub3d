@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:15:47 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/05 16:09:13 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/07 12:08:19 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	print_file(t_data data)
 		i++;
 	}
 }
+
 void	print_paths(t_data data)
 {
 	printf("texture nord : %s\n", data.mapinfo.north_path);
@@ -32,6 +33,7 @@ void	print_paths(t_data data)
 	printf("RGB du ciel : %s\n", data.mapinfo.ceiling);
 	printf("RGB du sol : %s\n", data.mapinfo.floor);
 }
+
 void	print_map(t_data data)
 {
 	int	i;
