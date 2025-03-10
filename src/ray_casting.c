@@ -36,46 +36,37 @@ char map[mapY][mapX] = {
 float degToRad(int a) { return a * PI / 180.0; }
 int FixAng(int a) { if (a > 359) a -= 360; if (a < 0) a += 360; return a; }
 
-float px, py, pdx, pdy, pa;
-
 //---------------------------Draw Rays and Walls--------------------------------
 float distance(float ax, float ay, float bx, float by, float ang) { return cos(degToRad(ang)) * (bx - ax) - sin(degToRad(ang)) * (by - ay); }
 
-void *mlx;
-void *win;
-void *img;
-char *data;
-int bpp;
-int size_line;
-int endian;
 
 // Fonction pour effacer l'image (remplir avec du noir)
-void clearImage()
+void clearImage(t_data *data)
 {
     for (int y = 0; y < 510; y++)
     {
         for (int x = 0; x < 1024; x++)
         {
-            int pixel = (y * size_line) + (x * (bpp / 8));
-            data[pixel] = 0;         // R
-            data[pixel + 1] = 0;     // G
-            data[pixel + 2] = 0;     // B
+            int pixel = (y * data->size_line) + (x * (data->bpp / 8));
+            data->img_addr[pixel] = 0;         // R
+            data->img_addr[pixel + 1] = 0;     // G
+            data->img_addr[pixel + 2] = 0;     // B
         }
     }
 }
 
-void drawPixel(int x, int y, int color)
+void drawPixel(t_data* data, int x, int y, int color)
 {
     if (x >= 0 && x < 1024 && y >= 0 && y < 510)
     {
-        int pixel = (y * size_line) + (x * (bpp / 8));
-        data[pixel] = color & 0xFF;
-        data[pixel + 1] = (color >> 8) & 0xFF;
-        data[pixel + 2] = (color >> 16) & 0xFF;
+        int pixel = (y * data->size_line) + (x * (data->bpp / 8));
+        data->img_addr[pixel] = color & 0xFF;
+        data->img_addr[pixel + 1] = (color >> 8) & 0xFF;
+        data->img_addr[pixel + 2] = (color >> 16) & 0xFF;
     }
 }
 
-void drawLine(int x0, int y0, int x1, int y1, int color)
+void drawLine(t_data* data, int x0, int y0, int x1, int y1, int color)
 {
     int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
     int dy = -abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
@@ -83,7 +74,7 @@ void drawLine(int x0, int y0, int x1, int y1, int color)
 
     while (1)
     {
-        drawPixel(x0, y0, color);
+        drawPixel(data, x0, y0, color);
         if (x0 == x1 && y0 == y1) break;
         e2 = 2 * err;
         if (e2 >= dy) { err += dy; x0 += sx; }
@@ -91,7 +82,7 @@ void drawLine(int x0, int y0, int x1, int y1, int color)
     }
 }
 
-void drawMap2D()
+void drawMap2D(t_data* data)
 {
     int x, y, xo, yo;
     for (y = 0; y < mapY; y++)
@@ -104,64 +95,64 @@ void drawMap2D()
             {
                 for (int j = 0; j < mapS; j++)
                 {
-                    drawPixel(xo + i, yo + j, color);
+                    drawPixel(data, xo + i, yo + j, color);
                 }
             }
         }
     }
 }
 
-void drawPlayer2D()
+void drawPlayer2D(t_data* data, t_player *player)
 {
-    drawPixel(px, py, 0xFFFF00);
-    drawLine(px, py, px + pdx * 20, py + pdy * 20, 0xFFFF00);
+    drawPixel(data, player->pos_x, player->pos_y, 0xFFFF00);
+    drawLine(data, player->pos_x, player->pos_y, player->pos_x + player->dir_x * 20, player->pos_y + player->dir_y * 20, 0xFFFF00);
 }
 
-void drawRays2D()
+void drawRays2D(t_data *data, t_player *player)
 {
     int r, mx, my, dof, side;
     float vx, vy, rx, ry, ra, xo, yo, disV, disH;
 
-    ra = FixAng(pa + 30);
+    ra = FixAng(player->angle + 30);
 
     for (r = 0; r < 60; r++)
     {
         dof = 0; side = 0; disV = 100000;
         float Tan = tan(degToRad(ra));
-        if (cos(degToRad(ra)) > 0.001) { rx = (((int)px >> 6) << 6) + 64; ry = (px - rx) * Tan + py; xo = 64; yo = -xo * Tan; }
-        else if (cos(degToRad(ra)) < -0.001) { rx = (((int)px >> 6) << 6) - 0.0001; ry = (px - rx) * Tan + py; xo = -64; yo = -xo * Tan; }
-        else { rx = px; ry = py; dof = 8; }
+        if (cos(degToRad(ra)) > 0.001) { rx = (((int)player->pos_x >> 6) << 6) + 64; ry = (player->pos_x - rx) * Tan + player->pos_y; xo = 64; yo = -xo * Tan; }
+        else if (cos(degToRad(ra)) < -0.001) { rx = (((int)player->pos_x >> 6) << 6) - 0.0001; ry = (player->pos_x - rx) * Tan + player->pos_y; xo = -64; yo = -xo * Tan; }
+        else { rx = player->pos_x; ry = player->pos_y; dof = 8; }
 
         while (dof < 8)
         {
             mx = (int)(rx) >> 6; my = (int)(ry) >> 6;
-            if (mx >= 0 && mx < mapX && my >= 0 && my < mapY && map[my][mx] == '1') { dof = 8; disV = cos(degToRad(ra)) * (rx - px) - sin(degToRad(ra)) * (ry - py); }
+            if (mx >= 0 && mx < mapX && my >= 0 && my < mapY && map[my][mx] == '1') { dof = 8; disV = cos(degToRad(ra)) * (rx - player->pos_x) - sin(degToRad(ra)) * (ry - player->pos_y); }
             else { rx += xo; ry += yo; dof += 1; }
         }
         vx = rx; vy = ry;
 
         dof = 0; disH = 100000;
         Tan = 1.0 / Tan;
-        if (sin(degToRad(ra)) > 0.001) { ry = (((int)py >> 6) << 6) - 0.0001; rx = (py - ry) * Tan + px; yo = -64; xo = -yo * Tan; }
-        else if (sin(degToRad(ra)) < -0.001) { ry = (((int)py >> 6) << 6) + 64; rx = (py - ry) * Tan + px; yo = 64; xo = -yo * Tan; }
-        else { rx = px; ry = py; dof = 8; }
+        if (sin(degToRad(ra)) > 0.001) { ry = (((int)player->pos_y >> 6) << 6) - 0.0001; rx = (player->pos_y - ry) * Tan + player->pos_x; yo = -64; xo = -yo * Tan; }
+        else if (sin(degToRad(ra)) < -0.001) { ry = (((int)player->pos_y >> 6) << 6) + 64; rx = (player->pos_y - ry) * Tan + player->pos_x; yo = 64; xo = -yo * Tan; }
+        else { rx = player->pos_x; ry = player->pos_y; dof = 8; }
 
         while (dof < 8)
         {
             mx = (int)(rx) >> 6; my = (int)(ry) >> 6;
-            if (mx >= 0 && mx < mapX && my >= 0 && my < mapY && map[my][mx] == '1') { dof = 8; disH = cos(degToRad(ra)) * (rx - px) - sin(degToRad(ra)) * (ry - py); }
+            if (mx >= 0 && mx < mapX && my >= 0 && my < mapY && map[my][mx] == '1') { dof = 8; disH = cos(degToRad(ra)) * (rx - player->pos_x) - sin(degToRad(ra)) * (ry - player->pos_y); }
             else { rx += xo; ry += yo; dof += 1; }
         }
 
         int color = 0x00FF00;
         if (disV < disH) { rx = vx; ry = vy; disH = disV; color = 0x00CC00; }
-        drawLine(px, py, rx, ry, color);
+        drawLine(data, player->pos_x, player->pos_y, rx, ry, color);
 
-        int ca = FixAng(pa - ra); disH = disH * cos(degToRad(ca));
+        int ca = FixAng(player->angle - ra); disH = disH * cos(degToRad(ca));
         int lineH = (mapS * 320) / (disH); if (lineH > 320) { lineH = 320; }
         int lineOff = 160 - (lineH >> 1);
 
-        drawLine(r * 8 + 530, lineOff, r * 8 + 530, lineOff + lineH, color);
+        drawLine(data, r * 8 + 530, lineOff, r * 8 + 530, lineOff + lineH, color);
 
         ra = FixAng(ra - 1);
     }
@@ -169,47 +160,84 @@ void drawRays2D()
 
 int key_press(int keycode, void *param)
 {
-    (void) param;
-    if (keycode == 65361) { pa += 5; pa = FixAng(pa); pdx = cos(degToRad(pa)); pdy = -sin(degToRad(pa)); } // Left arrow
-    if (keycode == 65363) { pa -= 5; pa = FixAng(pa); pdx = cos(degToRad(pa)); pdy = -sin(degToRad(pa)); } // Right arrow
-    if (keycode == 65362) { px += pdx * 5; py += pdy * 5; } // Up arrow
-    if (keycode == 65364) { px -= pdx * 5; py -= pdy * 5; } // Down arrow
+    t_data *data = (t_data *)param;
+    t_player *player = &data->player;
+
+    if (keycode == 65361) { // Left arrow
+        player->angle += 5;
+        player->angle = FixAng(player->angle);
+        player->dir_x = cos(degToRad(player->angle));
+        player->dir_y = -sin(degToRad(player->angle));
+    }
+    if (keycode == 65363) { // Right arrow
+        player->angle -= 5;
+        player->angle = FixAng(player->angle);
+        player->dir_x = cos(degToRad(player->angle));
+        player->dir_y = -sin(degToRad(player->angle));
+    }
+    if (keycode == 65362) { // Up arrow
+        player->pos_x += player->dir_x * 5;
+        player->pos_y += player->dir_y * 5;
+    }
+    if (keycode == 65364) { // Down arrow
+        player->pos_x -= player->dir_x * 5;
+        player->pos_y -= player->dir_y * 5;
+    }
 
     // Effacer l'image avant de redessiner
-    clearImage();
+    clearImage(data);
 
     // Redessiner la carte, le joueur et les rayons
-    drawMap2D();
-    drawPlayer2D();
-    drawRays2D();
+    drawMap2D(data);
+    drawPlayer2D(data, player);
+    drawRays2D(data, player);
 
     // Mettre à jour la fenêtre
-    mlx_put_image_to_window(mlx, win, img, 0, 0);
+    mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
     return (0);
 }
 
-// int main(int argc, char *argv[])
-// {
-//     (void) argc;
-//     (void) argv;
-//     mlx = mlx_init();
-//     win = mlx_new_window(mlx, 1024, 510, "MiniLibX Raycaster");
-//     img = mlx_new_image(mlx, 1024, 510);
-//     data = mlx_get_data_addr(img, &bpp, &size_line, &endian);
+int main (int ac, char* av[])
+{
+    t_data data;
 
-//     px = 150; py = 400; pa = 90;
-//     pdx = cos(degToRad(pa)); pdy = -sin(degToRad(pa));
+    if (check_args(ac, av) != 0)
+		return (1);
+	init_data(&data);
+	parse_data(av[1], &data);
+	if (take_info_file(data.mapinfo.file, &data))
+		return (free_data(&data), 1);
+	if (check_data(data))
+		return (free_data(&data), 1);
+    data.mlx = mlx_init();
 
-//     // Dessiner la carte, le joueur et les rayons
-//     drawMap2D();
-//     drawPlayer2D();
-//     drawRays2D();
-//     mlx_put_image_to_window(mlx, win, img, 0, 0);
 
-//     // Configurer la gestion des touches
-//     mlx_hook(win, 2, 1L << 0, key_press, NULL);
+    data.win = mlx_new_window(data.mlx, 1024, 510, "MiniLibX Raycaster");
+    data.img = mlx_new_image(data.mlx, 1024, 510);
+    data.img_addr = mlx_get_data_addr(data.img, &data.bpp, &data.size_line, &data.endian);
 
-//     // Lancer la boucle principale
-//     mlx_loop(mlx);
-//     return (0);
-// }
+    data.player.pos_x = 150; data.player.pos_y = 400; data.player.angle = 90;
+    data.player.dir_x = cos(degToRad(data.player.angle)); data.player.dir_y = -sin(degToRad(data.player.angle));
+
+    // Dessiner la carte, le joueur et les rayons
+    drawMap2D(&data);
+    drawPlayer2D(&data, &data.player);
+    drawRays2D(&data, &data.player);
+    mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+
+    // Configurer la gestion des touches
+    mlx_hook(data.win, 2, 1L << 0, key_press, &data);
+
+    // Configurer la exit
+	mlx_hook(data.win, 17, 0, (void *)exit, 0);
+
+    // Lancer la boucle principale
+    mlx_loop(data.mlx);
+
+    init_mlx(&data);
+
+	// mlx_key_hook(data.win, controls, &data);
+	mlx_loop(data.mlx);
+	free_data(&data);
+    return (0);
+}

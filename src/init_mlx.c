@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:17:33 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/10 15:39:41 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/10 16:04:11 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	init_mlx(t_data *data)
 	char	*pixel;
 
 	data->mlx = mlx_init();
-	data->window = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT,
+	data->win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT,
 			"cub3d");
-	if (!data->mlx || !data->window)
+	if (!data->mlx || !data->win)
 	{
 		perror("Error initializing MLX");
 		exit(1);
 	}
 	data->img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+	data->img_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 	y = 0;
 	while (y < SCREEN_HEIGHT)
@@ -35,12 +35,12 @@ void	init_mlx(t_data *data)
 		x = 0;
 		while (x < SCREEN_WIDTH)
 		{
-			pixel = data->addr + (y * data->line_length + x
+			pixel = data->img_addr + (y * data->line_length + x
 					* (data->bits_per_pixel / 8));
 			*(unsigned int *)pixel = GRAY;
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window(data->mlx, data->window, data->img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }

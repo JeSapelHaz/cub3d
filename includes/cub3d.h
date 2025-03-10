@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/10 15:41:06 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/10 17:45:51 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ typedef struct s_mapinfo
     char        *ceiling;
     char        **file;
     char        **map;
+    int         size_of_world;
+    int         map_x;
+    int         map_y;
 }               t_mapinfo;
 
 typedef struct s_player
@@ -74,10 +77,10 @@ typedef struct s_player
 typedef struct s_data
 {
     void        *mlx;
-    void        *window;
+    void        *win;
     void        *img;
     char        *img_data;
-    char	*addr;
+    char	*img_addr;
     int		bits_per_pixel;
     int		line_length;
     int         bpp;
