@@ -17,20 +17,20 @@
 #include <string.h>
 
 //-----------------------------MAP----------------------------------------------
-#define mapX 8      // Largeur de la carte
-#define mapY 8      // Hauteur de la carte
-#define mapS 64     // Taille d'un cube de la carte
+// #define mapX 8      // Largeur de la carte
+// #define mapY 8      // Hauteur de la carte
+// #define mapS 64     // Taille d'un cube de la carte
 
-char map[mapY][mapX] = {
-    {'1', '1', '1', '1', '1', '1', '1', '1'},
-    {'1', '0', '1', '0', '0', '0', '0', '1'},
-    {'1', '0', '1', '0', '0', '0', '0', '1'},
-    {'1', '0', '1', '0', '0', '0', '0', '1'},
-    {'1', '0', '0', '0', '0', '0', '0', '1'},
-    {'1', '0', '0', '0', '0', '1', '0', '1'},
-    {'1', '0', '0', '0', '0', '0', '0', '1'},
-    {'1', '1', '1', '1', '1', '1', '1', '1'}
-};
+// char map[mapY][mapX] = {
+//     {'1', '1', '1', '1', '1', '1', '1', '1'},
+//     {'1', '0', '1', '0', '0', '0', '0', '1'},
+//     {'1', '0', '1', '0', '0', '0', '0', '1'},
+//     {'1', '0', '1', '0', '0', '0', '0', '1'},
+//     {'1', '0', '0', '0', '0', '0', '0', '1'},
+//     {'1', '0', '0', '0', '0', '1', '0', '1'},
+//     {'1', '0', '0', '0', '0', '0', '0', '1'},
+//     {'1', '1', '1', '1', '1', '1', '1', '1'}
+// };
 
 //------------------------PLAYER------------------------------------------------
 float degToRad(int a) { return a * PI / 180.0; }
@@ -85,15 +85,15 @@ void drawLine(t_data* data, int x0, int y0, int x1, int y1, int color)
 void drawMap2D(t_data* data)
 {
     int x, y, xo, yo;
-    for (y = 0; y < mapY; y++)
+    for (y = 0; y < data->mapinfo.map_y; y++)
     {
-        for (x = 0; x < mapX; x++)
+        for (x = 0; x < data->mapinfo.map_x; x++)
         {
-            int color = map[y][x] == '1' ? 0xFFFFFF : 0x000000;
-            xo = x * mapS; yo = y * mapS;
-            for (int i = 0; i < mapS; i++)
+            int color = data->mapinfo.map[y][x] == '1' ? 0xFFFFFF : 0x000000;
+            xo = x * data->mapinfo.size_of_world; yo = y * data->mapinfo.size_of_world;
+            for (int i = 0; i < data->mapinfo.size_of_world; i++)
             {
-                for (int j = 0; j < mapS; j++)
+                for (int j = 0; j < data->mapinfo.size_of_world; j++)
                 {
                     drawPixel(data, xo + i, yo + j, color);
                 }
@@ -126,7 +126,7 @@ void drawRays2D(t_data *data, t_player *player)
         while (dof < 8)
         {
             mx = (int)(rx) >> 6; my = (int)(ry) >> 6;
-            if (mx >= 0 && mx < mapX && my >= 0 && my < mapY && map[my][mx] == '1') { dof = 8; disV = cos(degToRad(ra)) * (rx - player->pos_x) - sin(degToRad(ra)) * (ry - player->pos_y); }
+            if (mx >= 0 && mx < data->mapinfo.map_x && my >= 0 && my < data->mapinfo.map_y && data->mapinfo.map[my][mx] == '1') { dof = 8; disV = cos(degToRad(ra)) * (rx - player->pos_x) - sin(degToRad(ra)) * (ry - player->pos_y); }
             else { rx += xo; ry += yo; dof += 1; }
         }
         vx = rx; vy = ry;
@@ -140,7 +140,7 @@ void drawRays2D(t_data *data, t_player *player)
         while (dof < 8)
         {
             mx = (int)(rx) >> 6; my = (int)(ry) >> 6;
-            if (mx >= 0 && mx < mapX && my >= 0 && my < mapY && map[my][mx] == '1') { dof = 8; disH = cos(degToRad(ra)) * (rx - player->pos_x) - sin(degToRad(ra)) * (ry - player->pos_y); }
+            if (mx >= 0 && mx < data->mapinfo.map_y && my >= 0 && my < data->mapinfo.map_y && data->mapinfo.map[my][mx] == '1') { dof = 8; disH = cos(degToRad(ra)) * (rx - player->pos_x) - sin(degToRad(ra)) * (ry - player->pos_y); }
             else { rx += xo; ry += yo; dof += 1; }
         }
 
@@ -149,7 +149,7 @@ void drawRays2D(t_data *data, t_player *player)
         drawLine(data, player->pos_x, player->pos_y, rx, ry, color);
 
         int ca = FixAng(player->angle - ra); disH = disH * cos(degToRad(ca));
-        int lineH = (mapS * 320) / (disH); if (lineH > 320) { lineH = 320; }
+        int lineH = (data->mapinfo.size_of_world * 320) / (disH); if (lineH > 320) { lineH = 320; }
         int lineOff = 160 - (lineH >> 1);
 
         drawLine(data, r * 8 + 530, lineOff, r * 8 + 530, lineOff + lineH, color);
@@ -197,47 +197,86 @@ int key_press(int keycode, void *param)
     return (0);
 }
 
-int main (int ac, char* av[])
+int main(int ac, char* av[])
 {
     t_data data;
 
-    if (check_args(ac, av) != 0)
-		return (1);
-	init_data(&data);
-	parse_data(av[1], &data);
-	if (take_info_file(data.mapinfo.file, &data))
-		return (free_data(&data), 1);
-	if (check_data(data))
-		return (free_data(&data), 1);
-    data.mlx = mlx_init();
+    // Taille des cubes
+    data.mapinfo.size_of_world = 64;
 
+    if (check_args(ac, av) != 0)
+        return (1);
+
+    init_data(&data);
+    parse_data(av[1], &data);
+
+    // Vérifier que la carte est correctement chargée
+    printf("Map loaded:\n");
+    printMap(&data);
+
+    if (take_info_file(data.mapinfo.file, &data))
+        return (free_data(&data), 1);
+
+    if (check_data(data))
+        return (free_data(&data), 1);
+
+    // Initialisation de MLX
+    data.mlx = mlx_init();
+    if (!data.mlx) {
+        fprintf(stderr, "Error: mlx_init failed\n");
+        return (1);
+    }
 
     data.win = mlx_new_window(data.mlx, 1024, 510, "MiniLibX Raycaster");
-    data.img = mlx_new_image(data.mlx, 1024, 510);
-    data.img_addr = mlx_get_data_addr(data.img, &data.bpp, &data.size_line, &data.endian);
+    if (!data.win) {
+        fprintf(stderr, "Error: mlx_new_window failed\n");
+        return (1);
+    }
 
-    data.player.pos_x = 150; data.player.pos_y = 400; data.player.angle = 90;
-    data.player.dir_x = cos(degToRad(data.player.angle)); data.player.dir_y = -sin(degToRad(data.player.angle));
+    data.img = mlx_new_image(data.mlx, 1024, 510);
+    if (!data.img) {
+        fprintf(stderr, "Error: mlx_new_image failed\n");
+        return (1);
+    }
+
+    data.img_addr = mlx_get_data_addr(data.img, &data.bpp, &data.size_line, &data.endian);
+    if (!data.img_addr) {
+        fprintf(stderr, "Error: mlx_get_data_addr failed\n");
+        return (1);
+    }
+
+    // Initialisation du joueur
+    data.player.pos_x = 150;
+    data.player.pos_y = 400;
+    data.player.angle = 90;
+    data.player.dir_x = cos(degToRad(data.player.angle));
+    data.player.dir_y = -sin(degToRad(data.player.angle));
 
     // Dessiner la carte, le joueur et les rayons
+    printf("Drawing map...\n");
     drawMap2D(&data);
+
+    printf("Drawing player...\n");
     drawPlayer2D(&data, &data.player);
+
+    printf("Drawing rays...\n");
     drawRays2D(&data, &data.player);
+
+    // Mettre à jour la fenêtre
+    printf("Updating window...\n");
     mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 
     // Configurer la gestion des touches
     mlx_hook(data.win, 2, 1L << 0, key_press, &data);
 
-    // Configurer la exit
-	mlx_hook(data.win, 17, 0, (void *)exit, 0);
+    // Configurer la fermeture de la fenêtre
+    mlx_hook(data.win, 17, 0, (void *)exit, 0);
 
     // Lancer la boucle principale
+    printf("Entering main loop...\n");
     mlx_loop(data.mlx);
 
-    init_mlx(&data);
-
-	// mlx_key_hook(data.win, controls, &data);
-	mlx_loop(data.mlx);
-	free_data(&data);
+    // Nettoyer les ressources
+    free_data(&data);
     return (0);
 }
