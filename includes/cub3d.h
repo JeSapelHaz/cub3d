@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/07 15:02:22 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/10 11:56:12 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "../minilibx-linux/mlx.h"
+# include "colors.h"
 # include "libft.h"
 # include <errno.h>
 # include <fcntl.h>
@@ -39,13 +40,10 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 # define KEY_ESCAPE 65307
-# define SPEED 10
-# define ANGLE 5
-# define LOG 0
 
 // map
-# define SCREEN_WIDTH 2500
-# define SCREEN_HEIGHT 1500
+# define SCREEN_WIDTH 1500
+# define SCREEN_HEIGHT 1000
 
 typedef struct s_mapinfo
 {
@@ -56,19 +54,28 @@ typedef struct s_mapinfo
 	char		*west_path;
 	char		*floor;
 	char		*ceiling;
-	int			pos_x;
-	int			pos_y;
 	char		**file;
 	char		**map;
-
 }				t_mapinfo;
+
+typedef struct s_player
+{
+	float		pos_x;
+	float		pos_y;
+}				t_player;
 
 typedef struct s_data
 {
 	void		*mlx;
 	void		*window;
-	void		*win_height;
-	void		*win_width;
+	int			win_height;
+	int			win_width;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	t_player	player;
 	t_mapinfo	mapinfo;
 }				t_data;
 
@@ -89,7 +96,7 @@ void			back_track(t_data *data, int y, int x, int *flag);
 void			init_mlx(t_data *data);
 
 /* CONTROLS */
-int	controls(int keycode, t_data *data);
+int				controls(int keycode, t_data *data);
 
 /* DEBUG */
 void			print_file(t_data data);

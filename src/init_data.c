@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:25:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/06 14:41:46 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/10 11:37:14 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,18 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 	mapinfo->map = NULL;
 }
 
+static void init_player(t_player *player)
+{
+	player->pos_x = 0;
+	player->pos_y = 0;
+}
+
 void	init_data(t_data *data)
 {
 	data->mlx = NULL;
 	data->window = NULL;
-	data->win_height = 0;
-	data->win_width = 0;
+	data->win_height = SCREEN_HEIGHT;
+	data->win_width = SCREEN_WIDTH;
 	init_mapinfo(&data->mapinfo);
+	init_player(&data->player);
 }

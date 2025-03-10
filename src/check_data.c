@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/07 16:11:35 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/10 11:35:34 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static int	check_map_chars(t_data *data, int *nbr_players)
 			c = data->mapinfo.map[i][j];
 			if (c == 'N' || c == 'E' || c == 'W' || c == 'S')
 			{
-				data->mapinfo.pos_x = i;
-				data->mapinfo.pos_y = j;
+				data->player.pos_x = i;
+				data->player.pos_y = j;
 				(*nbr_players)++;
 			}
 			else if (c != ' ' && c != '1' && c != '0' && c != '\t' && c != '\n'
@@ -107,7 +107,7 @@ int	check_data(t_data data)
 		return (1);
 	if (check_map(&data) == 1)
 		return (1);
-	back_track(&data, data.mapinfo.pos_x, data.mapinfo.pos_y, &flag);
+	back_track(&data, data.player.pos_x, data.player.pos_y, &flag);
 	if (flag == 1)
 	{
 		printf("ERRORORRR\n");
