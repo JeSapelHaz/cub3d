@@ -6,7 +6,7 @@
 #    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/03/07 14:51:23 by hbutt            ###   ########.fr        #
+#    Updated: 2025/03/10 13:06:48 by hbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
 MLX_PATH	= minilibx-linux/
 MLX_NAME	= libmlx_Linux.a
 MLX			= $(MLX_PATH)$(MLX_NAME)
-MLX_FLAGS	= -L$(MLX_PATH) -lmlx -lXext -lX11
+MLX_FLAGS	= -L$(MLX_PATH) -lmlx -lXext -lX11 -lm
 
 # Sources
 SRC_PATH = ./src/
@@ -50,7 +50,8 @@ SRC		= main.c \
 		utils_functions.c \
 		init_mlx.c \
 		check_map_validity.c \
-		controls.c
+		controls.c \
+		ray_casting.c
 		  
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
