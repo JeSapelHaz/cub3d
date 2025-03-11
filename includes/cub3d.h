@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/10 17:45:51 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/11 16:23:32 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 # define KEY_ESCAPE 65307
+
+// movements player
+# define ROTATE_SPEED 5
+# define MOVEMENT_SPEED 5
+
 
 // map
 # define SCREEN_WIDTH 1024
