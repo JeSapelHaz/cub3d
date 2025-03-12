@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:25:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 12:56:55 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/12 14:37:29 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	init_data(t_data *data)
 {
 	data->mlx = NULL;
 	data->win = NULL;
+	data->img = NULL;
+	data->img_addr = NULL;
 	data->win_height = SCREEN_HEIGHT;
 	data->win_width = SCREEN_WIDTH;
 	init_mapinfo(&data->mapinfo);

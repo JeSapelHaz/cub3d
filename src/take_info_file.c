@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 14:00:56 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/12 15:39:39 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ static void	take_paths(char **file, int i, t_data *data, int *nbr_paths)
 		(*nbr_paths)++;
 	}
 }
-int len_line(char *line)
-{
-	return ft_strlen(line);
-}
+// void len_line(char *line)
+// {
+// 	return ft_strlen(line);
+// }
 
 static int	fill_map(char **file, int i, t_data *data)
 {
@@ -93,7 +93,10 @@ static int	fill_map(char **file, int i, t_data *data)
 	j = 0;
 	while (file[i] && no_line(file[i]) == 1)
 	{
-		data->mapinfo.map[j] = ft_strndup(file[i], ft_strlen(file[i]) -1);
+		if (file[i][ft_strlen(file[i]) - 1] == '\n')
+			data->mapinfo.map[j] = ft_strndup(file[i], ft_strlen(file[i]) -1);
+		else
+			data->mapinfo.map[j] = ft_strdup(file[i]);
 		i++;
 		j++;
 	}

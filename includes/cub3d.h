@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 14:11:49 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/12 15:43:29 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@
 # define KEY_ESCAPE 65307
 
 // map
-# define SCREEN_WIDTH 1024
-# define SCREEN_HEIGHT 510
+# define SCREEN_WIDTH 1920
+# define SCREEN_HEIGHT 1080
 
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 # define FOV 60
 
 typedef struct s_mapinfo
@@ -77,10 +77,7 @@ typedef struct s_data
 	void		*mlx;
 	void		*win;
 	void		*img;
-	char		*img_data;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
+	char		*img_addr;
 	int			bpp;
 	int			size_line;
 	int			endian;
@@ -109,7 +106,10 @@ void			init_mlx(t_data *data);
 /* CONTROLS */
 int				controls(int keycode, t_data *data);
 
-/* RAY */
+/* DRAW */
+void	draw_map(t_data *data);
+void	clear_image(t_data *data);
+void	put_pixel_to_image(t_data *data, float x, float y, int color);
 
 /* DEBUG */
 void			print_file(t_data data);

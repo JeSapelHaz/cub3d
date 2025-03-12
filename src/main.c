@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 14:00:56 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/12 15:39:20 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	main(int ac, char **av)
 	init_mlx(&data);
 	mlx_key_hook(data.win, controls, &data);
 	mlx_hook(data.win, 17, 0, (void *)exit, 0);
+	
+	
 	mlx_loop(data.mlx);
-	free_data(&data);
+	// free_data(&data);
 }
