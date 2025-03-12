@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 12:56:55 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/12 14:13:46 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int	check_data(t_data data)
 		return (1);
 	if (check_map(&data) == 1)
 		return (1);
+	data.mapinfo.copy_map = copy_2d_map(data.mapinfo.map);
 	back_track(&data, data.player.pos_x, data.player.pos_y, &flag);
 	if (flag == 1)
 	{

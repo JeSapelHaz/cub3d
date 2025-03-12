@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 13:07:42 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/12 14:11:49 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 typedef struct s_mapinfo
 {
 	int			map_height;
+	int			map_width;
 	char		*north_path;
 	char		*south_path;
 	char		*east_path;
@@ -59,6 +60,7 @@ typedef struct s_mapinfo
 	char		*ceiling;
 	char		**file;
 	char		**map;
+	char **copy_map;
 }				t_mapinfo;
 
 typedef struct s_player
@@ -99,7 +101,7 @@ int				parse_data(char *path, t_data *data);
 int				take_info_file(char **file, t_data *data);
 int				check_data(t_data data);
 
-void			back_track(t_data *data, int y, int x, int *flag);
+void back_track(t_data *data, int start_y, int start_x, int *flag);
 
 /* INIT MLX */
 void			init_mlx(t_data *data);
@@ -119,5 +121,7 @@ void			free_data(t_data *data);
 
 /* UTILS FUNCTIONS */
 char			*ft_strndup(const char *s, size_t n);
+int				ft_isspace(int c);
+char	**copy_2d_map(char **map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 12:56:54 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/12 14:00:56 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static int	no_line(char *line)
 {
 	int	i;
 
+	if (!line)
+		return (0);
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\t'
-			&& line[i] != '\n' && line[i] != '\r' && line[i] != '\v'
-			&& line[i] != '\f')
+		if (!ft_isspace(line[i]))
 			return (1);
 		i++;
 	}
@@ -69,6 +69,10 @@ static void	take_paths(char **file, int i, t_data *data, int *nbr_paths)
 		(*nbr_paths)++;
 	}
 }
+int len_line(char *line)
+{
+	return ft_strlen(line);
+}
 
 static int	fill_map(char **file, int i, t_data *data)
 {
@@ -89,7 +93,7 @@ static int	fill_map(char **file, int i, t_data *data)
 	j = 0;
 	while (file[i] && no_line(file[i]) == 1)
 	{
-		data->mapinfo.map[j] = ft_strdup(file[i]);
+		data->mapinfo.map[j] = ft_strndup(file[i], ft_strlen(file[i]) -1);
 		i++;
 		j++;
 	}
@@ -100,9 +104,9 @@ static int	fill_map(char **file, int i, t_data *data)
 
 int	take_info_file(char **file, t_data *data)
 {
-	int	i;
-	int	nbr_paths;
-	int	j;
+	int i;
+	int nbr_paths;
+	int j;
 
 	nbr_paths = 0;
 	i = 0;
