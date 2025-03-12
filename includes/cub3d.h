@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 15:43:29 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/12 16:08:49 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void			init_data(t_data *data);
 /* PARSING */
 int				parse_data(char *path, t_data *data);
 int				take_info_file(char **file, t_data *data);
-int				check_data(t_data data);
+int				check_data(t_data *data);
 
 void back_track(t_data *data, int start_y, int start_x, int *flag);
 
@@ -107,9 +107,11 @@ void			init_mlx(t_data *data);
 int				controls(int keycode, t_data *data);
 
 /* DRAW */
-void	draw_map(t_data *data);
 void	clear_image(t_data *data);
+void	draw_map(t_data *data);
 void	put_pixel_to_image(t_data *data, float x, float y, int color);
+void	draw_player(t_data *data);
+
 
 /* DEBUG */
 void			print_file(t_data data);

@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 15:48:34 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/12 16:09:56 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 	parse_data(av[1], &data);
 	if (take_info_file(data.mapinfo.file, &data))
 		return (free_data(&data), 1);
-	if (check_data(data))
+	if (check_data(&data))
 		return (free_data(&data), 1);
 	print_map(data);
 	init_mlx(&data);
@@ -32,7 +32,8 @@ int	main(int ac, char **av)
 	data.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	data.img_addr = mlx_get_data_addr(data.img, &data.bpp,
 			&data.size_line, &data.endian);
-				draw_map(&data);
+	draw_map(&data);
+	draw_player(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_loop(data.mlx);
 	// free_data(&data);

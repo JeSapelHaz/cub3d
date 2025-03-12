@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 15:42:51 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/12 16:16:47 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,17 @@ void	draw_map(t_data *data)
 				}
 			}
 		}
+	}
+}
+
+void	draw_player(t_data *data)
+{
+	int i;
+
+	i = -1;
+	printf("%f %f\n", data->player.pos_x, data->player.pos_y);
+	while (++i < TILE_SIZE * 3)
+	{
+		put_pixel_to_image(data, data->player.pos_x * TILE_SIZE + i  , data->player.pos_y * TILE_SIZE + i, RED);
 	}
 }
