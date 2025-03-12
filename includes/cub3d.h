@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/11 16:23:32 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/12 13:07:42 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,62 +41,52 @@
 # define KEY_RIGHT 65363
 # define KEY_ESCAPE 65307
 
-// movements player
-# define ROTATE_SPEED 5
-# define MOVEMENT_SPEED 5
-
-
 // map
 # define SCREEN_WIDTH 1024
 # define SCREEN_HEIGHT 510
 
-#define TILE_SIZE 64
-#define FOV 60
-
+# define TILE_SIZE 64
+# define FOV 60
 
 typedef struct s_mapinfo
 {
-    int         map_height;
-    char        *north_path;
-    char        *south_path;
-    char        *east_path;
-    char        *west_path;
-    char        *floor;
-    char        *ceiling;
-    char        **file;
-    char        **map;
-    int         size_of_world;
-    int         map_x;
-    int         map_y;
-}               t_mapinfo;
+	int			map_height;
+	char		*north_path;
+	char		*south_path;
+	char		*east_path;
+	char		*west_path;
+	char		*floor;
+	char		*ceiling;
+	char		**file;
+	char		**map;
+}				t_mapinfo;
 
 typedef struct s_player
 {
-    float       pos_x;
-    float       pos_y;
-    float       angle;
-    float       dir_x;
-    float       dir_y;
-}               t_player;
+	float		pos_x;
+	float		pos_y;
+	float		angle;
+	float		dir_x;
+	float		dir_y;
+}				t_player;
 
 typedef struct s_data
 {
-    void        *mlx;
-    void        *win;
-    void        *img;
-    char        *img_data;
-    char	*img_addr;
-    int		bits_per_pixel;
-    int		line_length;
-    int         bpp;
-    int         size_line;
-    int         endian;
-    int         win_height;
-    int         win_width;
-    t_player    player;
-    t_mapinfo   mapinfo;
-}               t_data;
-
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		*img_data;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			bpp;
+	int			size_line;
+	int			endian;
+	int			win_height;
+	int			win_width;
+	t_player	player;
+	t_mapinfo	mapinfo;
+}				t_data;
 
 /* CHECK ARGS */
 int				check_args(int ac, char **av);
@@ -118,7 +108,6 @@ void			init_mlx(t_data *data);
 int				controls(int keycode, t_data *data);
 
 /* RAY */
-
 
 /* DEBUG */
 void			print_file(t_data data);

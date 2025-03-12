@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:17:33 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/10 16:04:11 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/12 13:07:52 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_mlx(t_data *data)
 		exit(1);
 	}
 	data->img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	data->img_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 	y = 0;
 	while (y < SCREEN_HEIGHT)
@@ -35,7 +35,7 @@ void	init_mlx(t_data *data)
 		x = 0;
 		while (x < SCREEN_WIDTH)
 		{
-			pixel = data->img_addr + (y * data->line_length + x
+			pixel = data->addr + (y * data->line_length + x
 					* (data->bits_per_pixel / 8));
 			*(unsigned int *)pixel = GRAY;
 			x++;

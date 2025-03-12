@@ -6,7 +6,7 @@
 #    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/03/10 13:06:48 by hbutt            ###   ########.fr        #
+#    Updated: 2025/03/12 13:07:09 by hbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,6 @@ SRC		= main.c \
 		init_mlx.c \
 		check_map_validity.c \
 		controls.c \
-		ray_casting.c
 		  
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
