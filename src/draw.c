@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 16:13:23 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/13 16:28:05 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,25 +126,38 @@ void	draw_vision(t_data *data)
 {
 	float	px;
 	float	py;
-	float	ray_length;
-	float	angle;
-	float	left_ray_angle;
-	float	right_ray_angle;
+	float	fraction;
+	float	start_x;
+	int		i;
 
+	// float	ray_length;
+	// float	angle;
+	// float	left_ray_angle;
+	// float	right_ray_angle;
 	px = data->player.pos_x * TILE_SIZE;
 	py = data->player.pos_y * TILE_SIZE;
-	ray_length = 150;
-	angle = data->player.angle;
-	// Calcul des deux rayons extrêmes du champ de vision
-	left_ray_angle = angle - (FOV * (PI / 180.0) / 2);
-	right_ray_angle = angle + (FOV * (PI / 180.0) / 2);
-	printf("left <%f> right <%f> \n", left_ray_angle, right_ray_angle);
-	// Rayon gauche du FOV
-	draw_line(data, px, py, px + cos(left_ray_angle) * ray_length, py
-		+ sin(left_ray_angle) * ray_length, RED);
-	// Rayon droit du FOV
-	draw_line(data, px, py, px + cos(right_ray_angle) * ray_length, py
-		+ sin(right_ray_angle) * ray_length, RED);
+	fraction = PI / 3 / SCREEN_WIDTH;
+	start_x = data->player.angle - PI / 6;
+	i = 0;
+	while (i < SCREEN_WIDTH)
+	{
+		draw_line(data, px, py, px + cos(start_x) * 150, py + sin(start_x)
+			* 150, RED);
+		start_x += fraction;
+		i++;
+	}
+	// ray_length = 150;
+	// angle = data->player.angle;
+	// // Calcul des deux rayons extrêmes du champ de vision
+	// left_ray_angle = angle - (FOV * (PI / 180.0) / 2);
+	// right_ray_angle = angle + (FOV * (PI / 180.0) / 2);
+	// printf("left <%f> right <%f> \n", left_ray_angle, right_ray_angle);
+	// // Rayon gauche du FOV
+	// draw_line(data, px, py, px + cos(left_ray_angle) * ray_length, py
+	// 	+ sin(left_ray_angle) * ray_length, RED);
+	// // Rayon droit du FOV
+	// draw_line(data, px, py, px + cos(right_ray_angle) * ray_length, py
+	// 	+ sin(right_ray_angle) * ray_length, RED);
 }
 
 void	draw_player(t_data *data)
