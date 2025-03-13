@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 15:28:08 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/13 17:10:02 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ int	controls(int keycode, t_data *data)
 {
 	data->player.angle -= 0.1;
 	if (data->player.angle < 0)
-		data->player.angle += 2 * M_PI;
+		data->player.angle += 2 * 180;
 	recharge_image(data);
 }
 if (keycode == KEY_RIGHT) // Tourner à droite
 {
 	data->player.angle += 0.1;
-	if (data->player.angle > 2 * M_PI)
-		data->player.angle -= 2 * M_PI;
+	if (data->player.angle > 2 * 180)
+		data->player.angle -= 2 * 180;
 	recharge_image(data);
 }
 	return (0);

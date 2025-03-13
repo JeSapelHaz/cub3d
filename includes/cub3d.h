@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 15:54:41 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/13 17:18:16 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@
 # define SCREEN_HEIGHT 1080
 
 # define TILE_SIZE 32
-# define FOV 45
+# define FOV 90
+# define RAD_DEG 0.0174532925
+
 
 /* CHECK ARGS */
 int		check_args(int ac, char **av);
