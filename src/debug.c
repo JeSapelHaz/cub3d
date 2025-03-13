@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:15:47 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 14:00:55 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/13 15:47:14 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,13 @@ void	print_map(t_data data)
 		printf("%s\n", data.mapinfo.map[i]);
 		i++;
 	}
+}
+
+void print_info_player(t_data *data)
+{
+	printf("angle <%f>\n", data->player.angle);
+	printf("dir x <%f>\n", data->player.dir_x);
+	printf("dir y <%f>\n", data->player.dir_y);
+	printf("fov <%d>\n", FOV);
+
 }
