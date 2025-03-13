@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 15:54:56 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/13 16:13:23 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,17 @@ void	draw_map(t_data *data)
 	}
 }
 
+bool	hit_wall(float px, float py, t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = px / TILE_SIZE;
+	y = py / TILE_SIZE;
+	if (data->mapinfo.map[y][x] == '1')
+		return (true);
+	return (false);
+}
 void	draw_line(t_data *data, float x0, float y0, float x1, float y1,
 		int color)
 {
@@ -102,7 +113,8 @@ void	draw_line(t_data *data, float x0, float y0, float x1, float y1,
 	x = x0;
 	y = y0;
 	i = 0;
-	while (i++ <= steps)
+	while (i++ <= steps && x >= 0 && x < SCREEN_WIDTH && y >= 0
+		&& y < SCREEN_HEIGHT && !hit_wall(x, y, data))
 	{
 		put_pixel_to_image(data, x, y, color);
 		x += x_inc;
@@ -125,7 +137,7 @@ void	draw_vision(t_data *data)
 	angle = data->player.angle;
 	// Calcul des deux rayons extrêmes du champ de vision
 	left_ray_angle = angle - (FOV * (PI / 180.0) / 2);
-right_ray_angle = angle + (FOV * (PI / 180.0) / 2);
+	right_ray_angle = angle + (FOV * (PI / 180.0) / 2);
 	printf("left <%f> right <%f> \n", left_ray_angle, right_ray_angle);
 	// Rayon gauche du FOV
 	draw_line(data, px, py, px + cos(left_ray_angle) * ray_length, py

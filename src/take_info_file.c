@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   take_info_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 15:39:39 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/13 15:56:40 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	take_paths(char **file, int i, t_data *data, int *nbr_paths)
 }
 // void len_line(char *line)
 // {
-// 	return ft_strlen(line);
+// 	return (ft_strlen(line));
 // }
 
 static int	fill_map(char **file, int i, t_data *data)
@@ -94,7 +94,7 @@ static int	fill_map(char **file, int i, t_data *data)
 	while (file[i] && no_line(file[i]) == 1)
 	{
 		if (file[i][ft_strlen(file[i]) - 1] == '\n')
-			data->mapinfo.map[j] = ft_strndup(file[i], ft_strlen(file[i]) -1);
+			data->mapinfo.map[j] = ft_strndup(file[i], ft_strlen(file[i]) - 1);
 		else
 			data->mapinfo.map[j] = ft_strdup(file[i]);
 		i++;
@@ -109,11 +109,11 @@ int	take_info_file(char **file, t_data *data)
 {
 	int i;
 	int nbr_paths;
-	int j;
+	// int j;
 
 	nbr_paths = 0;
 	i = 0;
-	j = 0;
+	// j = 0;
 	while (file[i] && nbr_paths != 6)
 	{
 		take_paths(file, i, data, &nbr_paths);
