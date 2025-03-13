@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 17:20:16 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/13 17:23:57 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,8 @@ void	draw_vision(t_data *data)
 	i = 0;
 	while (i < SCREEN_WIDTH)
 	{
-		draw_line(data, px, py, px + cos(start_x) * 150, py + sin(start_x)
-			* 150, RED);
+		draw_line(data, px, py, px + cos(start_x) * SCREEN_WIDTH, py + sin(start_x)
+			* SCREEN_WIDTH, RED);
 		start_x += fraction;
 		i++;
 	}
