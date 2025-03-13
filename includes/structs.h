@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:19:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 15:20:18 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/13 18:15:29 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@ typedef struct s_player
 	float		dir_y;
 }				t_player;
 
+typedef struct s_keyinfo
+{
+    int press_a;
+    int press_d;
+    int press_w;
+    int press_s;
+    int press_left;
+    int press_right;
+} t_keyinfo;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -50,6 +60,7 @@ typedef struct s_data
 	int			win_width;
 	t_player	player;
 	t_mapinfo	mapinfo;
+    t_keyinfo   keyinfo;
 }				t_data;
 
 #endif

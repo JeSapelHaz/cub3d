@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 17:22:23 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/13 18:19:33 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ void	back_track(t_data *data, int start_y, int start_x, int *flag);
 void	init_mlx(t_data *data);
 
 /* CONTROLS */
-int		controls(int keycode, t_data *data);
+int	actions(t_data *data);
+int	key_press(int key, t_data *data);
+int	key_release(int key, t_data *data);
+
 
 /* DRAW */
 void	clear_image(t_data *data);

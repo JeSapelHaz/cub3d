@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:25:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 17:21:23 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/13 18:22:38 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ static void init_player(t_player *player)
 	player->angle = (float) RAD_DEG * (float)270; // Vers le haut au début
 }
 
+static void init_keys(t_keyinfo *keyinfo)
+{
+	keyinfo->press_a = 0;
+	keyinfo->press_d = 0;
+	keyinfo->press_w = 0;
+	keyinfo->press_s = 0;
+	keyinfo->press_right = 0;
+	keyinfo->press_left = 0;
+}
+
 void	init_data(t_data *data)
 {
 	data->mlx = NULL;
@@ -44,4 +54,5 @@ void	init_data(t_data *data)
 	data->win_width = SCREEN_WIDTH;
 	init_mapinfo(&data->mapinfo);
 	init_player(&data->player);
+	init_keys(&data->keyinfo);
 }
