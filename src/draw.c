@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 16:16:47 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/13 15:10:55 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,23 @@ void	clear_image(t_data *data)
 void	draw_map(t_data *data)
 {
 	int	x_map;
-	int	x_screen;
 	int	y_map;
+	int	x_screen;
 	int	y_screen;
-	int	color;
 	int	i;
 	int	j;
+	int	color;
 
 	y_map = -1;
 	while (++y_map < data->mapinfo.map_height)
 	{
 		x_map = -1;
-		while (++x_map < (int)ft_strlen(data->mapinfo.map[y_map])) // change for data->mapinfo.map_width
+		while (++x_map < (int)ft_strlen(data->mapinfo.map[y_map]))
 		{
 			if (data->mapinfo.map[y_map][x_map] == '1')
-				color = 0xFFFFFF;
+				color = WHITE; 
 			else
-				color = 0x000000;
+			 	color = BLACK;
 			y_screen = y_map * TILE_SIZE;
 			x_screen = x_map * TILE_SIZE;
 			i = -1;
@@ -77,12 +77,7 @@ void	draw_map(t_data *data)
 			{
 				j = -1;
 				while (++j < TILE_SIZE)
-				{
-					if (j % 64 == 0 || i % 64 == 0)
-						put_pixel_to_image(data, x_screen + i, y_screen + j, GREEN);
-					else
-						put_pixel_to_image(data, x_screen + i, y_screen + j, color);
-				}
+					put_pixel_to_image(data, x_screen + i, y_screen + j, color);
 			}
 		}
 	}
@@ -91,11 +86,20 @@ void	draw_map(t_data *data)
 void	draw_player(t_data *data)
 {
 	int i;
+	int j;
+	int player_size = TILE_SIZE / 4; // Taille du carré du joueur
 
+	printf("Position of the player <%f> <%f>\n", data->player.pos_x, data->player.pos_y);
 	i = -1;
-	printf("%f %f\n", data->player.pos_x, data->player.pos_y);
-	while (++i < TILE_SIZE * 3)
+	while (++i < player_size)
 	{
-		put_pixel_to_image(data, data->player.pos_x * TILE_SIZE + i  , data->player.pos_y * TILE_SIZE + i, RED);
+		j = -1;
+		while (++j < player_size)
+		{
+			put_pixel_to_image(data,
+				data->player.pos_x * TILE_SIZE + i,
+				data->player.pos_y * TILE_SIZE + j,
+				RED);
+		}
 	}
 }
