@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 18:24:34 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/16 15:59:19 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,40 +26,52 @@ static void	recharge_image(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	// met à jour l'image dans la fenêtre
 }
+
+static int	in_map(t_data *data, float next_x, float next_y)
+{
+	int	i;
+	int	j;
+
+	i = (int)(next_x);
+	j = (int)(next_y);
+	if (data->mapinfo.copy_map[j][i] == '1')
+		return (0);
+	return (1);
+}
+
 int	actions(t_data *data)
 {
+	float	next_x;
+	float	next_y;
+
+	next_x = data->player.pos_x;
+	next_y = data->player.pos_y;
 	if (data->keyinfo.press_a)
-	{
-		data->player.pos_x -= 0.1;
-		recharge_image(data);
-	}
+		next_x -= 0.1;
 	if (data->keyinfo.press_w)
-	{
-		data->player.pos_y -= 0.1;
-		recharge_image(data);
-	}
+		next_y -= 0.1;
 	if (data->keyinfo.press_s)
-	{
-		data->player.pos_y += 0.1;
-		recharge_image(data);
-	}
+		next_y += 0.1;
 	if (data->keyinfo.press_d)
+		next_x += 0.1;
+	if (in_map(data, next_x, next_y))
 	{
-		data->player.pos_x += 0.1;
+		data->player.pos_x = next_x;
+		data->player.pos_y = next_y;
 		recharge_image(data);
 	}
-	if (data->keyinfo.press_left) // Tourner à gauche
+	if (data->keyinfo.press_left)
 	{
 		data->player.angle -= 0.1;
 		if (data->player.angle < 0)
-			data->player.angle += 2 * 180;
+			data->player.angle += 360;
 		recharge_image(data);
 	}
-	if (data->keyinfo.press_right) // Tourner à droite
+	if (data->keyinfo.press_right)
 	{
 		data->player.angle += 0.1;
-		if (data->player.angle > 2 * 180)
-			data->player.angle -= 2 * 180;
+		if (data->player.angle > 360)
+			data->player.angle -= 360;
 		recharge_image(data);
 	}
 	return (0);
