@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 17:23:57 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/16 15:36:52 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,13 +136,13 @@ void	draw_vision(t_data *data)
 	// float	right_ray_angle;
 	px = data->player.pos_x * TILE_SIZE;
 	py = data->player.pos_y * TILE_SIZE;
-	fraction = (float)FOV * (float)RAD_DEG  / (float)SCREEN_WIDTH;
+	fraction = (float)FOV * (float)RAD_DEG / (float)SCREEN_WIDTH;
 	start_x = data->player.angle;
 	i = 0;
 	while (i < SCREEN_WIDTH)
 	{
-		draw_line(data, px, py, px + cos(start_x) * SCREEN_WIDTH, py + sin(start_x)
-			* SCREEN_WIDTH, RED);
+		draw_line(data, px, py, px + cos(start_x) * SCREEN_WIDTH, py
+			+ sin(start_x) * SCREEN_WIDTH, RED);
 		start_x += fraction;
 		i++;
 	}
@@ -166,18 +166,18 @@ void	draw_player(t_data *data)
 	int	j;
 
 	int player_size = TILE_SIZE / 4; // Taille du carré du joueur
-	printf("Position of the player <%f> <%f>\n", data->player.pos_x,
-		data->player.pos_y);
-	i = -1;
-	while (++i < player_size)
+	// printf("Position of the player <%f> <%f>\n", data->player.pos_x,
+	// 	data->player.pos_y);
+	i = -player_size / 2;
+	while (++i < player_size / 2)
 	{
-		j = -1;
-		while (++j < player_size)
+		j = -player_size / 2;
+		while (++j < player_size / 2)
 		{
 			put_pixel_to_image(data, data->player.pos_x * TILE_SIZE + i,
 				data->player.pos_y * TILE_SIZE + j, RED);
 		}
 	}
 	draw_vision(data);
-	print_info_player(data);
+	// print_info_player(data);
 }

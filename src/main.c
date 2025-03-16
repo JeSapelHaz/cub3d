@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 18:18:36 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/16 15:37:03 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 		return (free_data(&data), 1);
 	if (check_data(&data))
 		return (free_data(&data), 1);
-	print_map(data);
+	// print_map(data);
 	init_mlx(&data);
 	// mlx_key_hook(data.win, controls, &data);
 	mlx_hook(data.win, 17, 0, (void *)exit, 0);
@@ -38,5 +38,5 @@ int	main(int ac, char **av)
 	draw_player(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_loop(data.mlx);
-	// free_data(&data);
+	free_data(&data);
 }
