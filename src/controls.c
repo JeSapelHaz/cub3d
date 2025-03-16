@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/16 15:59:19 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/16 16:58:59 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	recharge_image(t_data *data)
 {
-	printf("Nouvelle position du joueur : %f, %f\n", data->player.pos_x,
-		data->player.pos_y);
+	// printf("Nouvelle position du joueur : %f, %f\n", data->player.pos_x,
+		// data->player.pos_y);
 	clear_image(data);
 	// efface l'image précédente
 	draw_map(data);
@@ -47,13 +47,13 @@ int	actions(t_data *data)
 	next_x = data->player.pos_x;
 	next_y = data->player.pos_y;
 	if (data->keyinfo.press_a)
-		next_x -= 0.1;
+		next_x -= (float)SPEED;
 	if (data->keyinfo.press_w)
-		next_y -= 0.1;
+		next_y -= (float)SPEED;
 	if (data->keyinfo.press_s)
-		next_y += 0.1;
+		next_y += (float)SPEED;
 	if (data->keyinfo.press_d)
-		next_x += 0.1;
+		next_x += (float)SPEED;
 	if (in_map(data, next_x, next_y))
 	{
 		data->player.pos_x = next_x;
@@ -62,14 +62,14 @@ int	actions(t_data *data)
 	}
 	if (data->keyinfo.press_left)
 	{
-		data->player.angle -= 0.1;
+		data->player.angle -= (float)ROTATE_SPEED;
 		if (data->player.angle < 0)
 			data->player.angle += 360;
 		recharge_image(data);
 	}
 	if (data->keyinfo.press_right)
 	{
-		data->player.angle += 0.1;
+		data->player.angle += (float)ROTATE_SPEED;
 		if (data->player.angle > 360)
 			data->player.angle -= 360;
 		recharge_image(data);

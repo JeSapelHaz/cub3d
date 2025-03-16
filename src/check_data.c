@@ -3,7 +3,8 @@
 /*                                                        :::      ::::::::   */
 /*   check_data->c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student->s19->be>               +#+  +:+       +#+        */
+/*   By: hbutt <hbutt@student->s19->be>               +#+  +:+      
+	+#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
 /*   Updated: 2025/03/12 16:07:07 by hbutt            ###   ########->fr       */
@@ -65,7 +66,7 @@ static int	check_map(t_data *data)
 
 	nbr_players = 0;
 	if (check_map_chars(data, &nbr_players))
-		return (1);	
+		return (1);
 	if (nbr_players == 0 || nbr_players > 1)
 	{
 		printf("Its a game for 1 player\n");
@@ -98,7 +99,7 @@ static int	check_rgb(t_data *data)
 /* Check if the data is good */
 int	check_data(t_data *data)
 {
-	int	flag;
+	int flag;
 
 	flag = 0;
 	if (check_paths(data) == 1)

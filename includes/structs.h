@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:19:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 18:15:29 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/16 17:32:53 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_data
 	int			endian;
 	int			win_height;
 	int			win_width;
+	int 		i;
 	t_player	player;
 	t_mapinfo	mapinfo;
     t_keyinfo   keyinfo;

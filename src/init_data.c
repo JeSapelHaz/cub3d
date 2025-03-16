@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:25:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 18:22:38 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/16 16:41:45 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void init_player(t_player *player)
 {
 	player->pos_x = 0;
     player->pos_y = 0;
-    player->dir_x = 0;  // Direction du joueur
+    player->dir_x = 0; 
     player->dir_y = 0;
-	player->angle = (float) RAD_DEG * (float)270; // Vers le haut au début
+	player->angle = (float) RAD_DEG * (float)270; 
 }
 
 static void init_keys(t_keyinfo *keyinfo)

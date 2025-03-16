@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/13 18:19:33 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/16 17:16:27 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@
 
 // math
 # define PI 3.14159265358979323846
+
+//
+#define SPEED 0.05
+#define ROTATE_SPEED 0.05
 
 // keys
 # define KEY_W 119
@@ -93,5 +97,6 @@ void	free_data(t_data *data);
 char	*ft_strndup(const char *s, size_t n);
 int		ft_isspace(int c);
 char	**copy_2d_map(char **map);
+float distance(float x, float y);
 
 #endif

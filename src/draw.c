@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/16 15:36:52 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/16 17:51:49 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	clear_image(t_data *data)
 		while (++x < SCREEN_WIDTH)
 		{
 			pixel = (y * data->size_line) + (x * (data->bpp / 8));
-			data->img_addr[pixel] = 0;     // R
-			data->img_addr[pixel + 1] = 0; // G
-			data->img_addr[pixel + 2] = 0; // B
+			data->img_addr[pixel] = 0;     
+			data->img_addr[pixel + 1] = 0; 
+			data->img_addr[pixel + 2] = 0; 
 		}
 	}
 }
@@ -93,6 +93,47 @@ bool	hit_wall(float px, float py, t_data *data)
 		return (true);
 	return (false);
 }
+
+// void draw_line(t_player *player, t_data *data, float start_x, int i)
+// {
+//     float cos_angle = cos(start_x);
+//     float sin_angle = sin(start_x);
+//     float ray_x = player->pos_x;
+//     float ray_y = player->pos_y;
+
+//     while(!hit_wall(ray_x, ray_y, data))
+//     {
+// 		put_pixel_to_image(data, ray_x, ray_y, 0xFF0000);
+//         ray_x += cos_angle;
+//         ray_y += sin_angle;
+//     }
+
+// 	float dist = distance(ray_x - player->pos_x, ray_y - player->pos_y);
+// 	float height = (TILE_SIZE / dist) * (SCREEN_WIDTH / 2);
+// 	int start_y = (SCREEN_HEIGHT - height) / 2;
+// 	int end = start_y + height;
+// 	while(start_y < end)
+// 	{
+// 		put_pixel_to_image(data, i, start_y, GREEN);
+// 		start_y++;
+// 	}
+// }
+
+
+// void	draw_vision(t_data *data)
+// {
+//     t_player *player = &data->player;
+//     float fraction = PI / 3 / SCREEN_WIDTH;
+//     float start_x = player->angle - PI / 6;
+//     int i = 0;
+//     while(i < SCREEN_WIDTH)
+//     {
+//         draw_line(player, data, start_x, i);
+//         start_x += fraction;
+//         i++;
+//     }
+// }
+
 void	draw_line(t_data *data, float x0, float y0, float x1, float y1,
 		int color)
 {
@@ -120,6 +161,7 @@ void	draw_line(t_data *data, float x0, float y0, float x1, float y1,
 		x += x_inc;
 		y += y_inc;
 	}
+	
 }
 
 void	draw_vision(t_data *data)
@@ -130,10 +172,6 @@ void	draw_vision(t_data *data)
 	float	start_x;
 	int		i;
 
-	// float	ray_length;
-	// float	angle;
-	// float	left_ray_angle;
-	// float	right_ray_angle;
 	px = data->player.pos_x * TILE_SIZE;
 	py = data->player.pos_y * TILE_SIZE;
 	fraction = (float)FOV * (float)RAD_DEG / (float)SCREEN_WIDTH;
@@ -146,28 +184,15 @@ void	draw_vision(t_data *data)
 		start_x += fraction;
 		i++;
 	}
-	// ray_length = 150;
-	// angle = data->player.angle;
-	// // Calcul des deux rayons extrêmes du champ de vision
-	// left_ray_angle = angle - (FOV * (PI / 180.0) / 2);
-	// right_ray_angle = angle + (FOV * (PI / 180.0) / 2);
-	// printf("left <%f> right <%f> \n", left_ray_angle, right_ray_angle);
-	// // Rayon gauche du FOV
-	// draw_line(data, px, py, px + cos(left_ray_angle) * ray_length, py
-	// 	+ sin(left_ray_angle) * ray_length, RED);
-	// // Rayon droit du FOV
-	// draw_line(data, px, py, px + cos(right_ray_angle) * ray_length, py
-	// 	+ sin(right_ray_angle) * ray_length, RED);
 }
 
 void	draw_player(t_data *data)
 {
 	int	i;
 	int	j;
+	int	player_size;
 
-	int player_size = TILE_SIZE / 4; // Taille du carré du joueur
-	// printf("Position of the player <%f> <%f>\n", data->player.pos_x,
-	// 	data->player.pos_y);
+	player_size = TILE_SIZE / 4;
 	i = -player_size / 2;
 	while (++i < player_size / 2)
 	{
@@ -179,5 +204,4 @@ void	draw_player(t_data *data)
 		}
 	}
 	draw_vision(data);
-	// print_info_player(data);
 }

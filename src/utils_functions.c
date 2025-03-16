@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:12:56 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 14:00:56 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/16 17:16:15 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,9 @@ char	**copy_2d_map(char **map)
 	}
 	new_map[height] = NULL;
 	return (new_map);
+}
+
+float distance(float x, float y)
+{
+    return sqrt(x * x + y * y);
 }
