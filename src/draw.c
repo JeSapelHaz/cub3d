@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/20 21:04:45 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/20 21:08:23 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ bool	hit_wall(float px, float py, t_data *data)
 		return (true);
 	return (false);
 }
-// dessine sur l'axe y par rapport
+// draw on the y axis
 void	draw_y(t_player *player, t_data *data, float angle, int x)
 {
 	float	cos_angle;
@@ -141,7 +141,7 @@ void	draw_vision(t_data *data)
 	float	add_angle;
 
 	screen_x = 0;
-	// decalage de l'angle de vision
+	// vision decay
 	ray_angle = data->player.angle - ((float)FOV / 2.0f) * (PI / 180.0f);
 	add_angle = ((float)FOV * (PI / 180.0f)) / (float)SCREEN_WIDTH;
 	while (screen_x < SCREEN_WIDTH)
