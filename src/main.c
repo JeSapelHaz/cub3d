@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/19 20:35:02 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/20 21:19:27 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int ac, char **av)
 {
-	t_data data;
+	t_data	data;
 
 	if (check_args(ac, av) != 0)
 		return (1);
@@ -24,9 +24,7 @@ int	main(int ac, char **av)
 		return (free_data(&data), 1);
 	if (check_data(&data))
 		return (free_data(&data), 1);
-	// print_map(data);
 	init_mlx(&data);
-	// mlx_key_hook(data.win, controls, &data);
 	mlx_hook(data.win, 17, 0, (void *)exit, 0);
 	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
 	mlx_hook(data.win, 3, 1L << 1, key_release, &data);
