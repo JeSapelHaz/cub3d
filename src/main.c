@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/16 16:33:10 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/19 20:35:02 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int ac, char **av)
 {
-	t_data	data;
+	t_data data;
 
 	if (check_args(ac, av) != 0)
 		return (1);
@@ -32,9 +32,9 @@ int	main(int ac, char **av)
 	mlx_hook(data.win, 3, 1L << 1, key_release, &data);
 	mlx_loop_hook(data.mlx, actions, &data);
 	data.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	data.img_addr = mlx_get_data_addr(data.img, &data.bpp,
-			&data.size_line, &data.endian);
-	draw_map(&data);
+	data.img_addr = mlx_get_data_addr(data.img, &data.bpp, &data.size_line,
+			&data.endian);
+	// draw_map(&data);
 	draw_player(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_loop(data.mlx);

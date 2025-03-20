@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:19:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/16 17:32:53 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/19 16:40:08 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
-#define STRUCTS_H
+# define STRUCTS_H
 
 typedef struct s_mapinfo
 {
@@ -25,7 +25,7 @@ typedef struct s_mapinfo
 	char		*ceiling;
 	char		**file;
 	char		**map;
-	char **copy_map;
+	char		**copy_map;
 }				t_mapinfo;
 
 typedef struct s_player
@@ -35,17 +35,18 @@ typedef struct s_player
 	float		angle;
 	float		dir_x;
 	float		dir_y;
+	float		height;
 }				t_player;
 
 typedef struct s_keyinfo
 {
-    int press_a;
-    int press_d;
-    int press_w;
-    int press_s;
-    int press_left;
-    int press_right;
-} t_keyinfo;
+	int			press_a;
+	int			press_d;
+	int			press_w;
+	int			press_s;
+	int			press_left;
+	int			press_right;
+}				t_keyinfo;
 
 typedef struct s_data
 {
@@ -58,10 +59,10 @@ typedef struct s_data
 	int			endian;
 	int			win_height;
 	int			win_width;
-	int 		i;
+	int			i;
 	t_player	player;
 	t_mapinfo	mapinfo;
-    t_keyinfo   keyinfo;
+	t_keyinfo	keyinfo;
 }				t_data;
 
 #endif

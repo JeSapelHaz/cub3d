@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/16 16:58:59 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/19 20:35:27 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static void	recharge_image(t_data *data)
 {
 	// printf("Nouvelle position du joueur : %f, %f\n", data->player.pos_x,
-		// data->player.pos_y);
+	// data->player.pos_y);
 	clear_image(data);
 	// efface l'image précédente
-	draw_map(data);
+	// draw_map(data);
 	// redessine la map
 	draw_player(data);
 	// redessine le joueur

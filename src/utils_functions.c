@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:12:56 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/16 17:16:15 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/19 17:36:22 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,15 @@ int	ft_isspace(int c)
 
 char	**copy_2d_map(char **map)
 {
-	int height = 0;
-	char **new_map;
+	int		height;
+	char	**new_map;
 
+	height = 0;
 	while (map[height])
 		height++;
-
 	new_map = malloc(sizeof(char *) * (height + 1));
 	if (!new_map)
 		return (NULL);
-
 	for (int i = 0; i < height; i++)
 	{
 		new_map[i] = ft_strdup(map[i]);
@@ -66,7 +65,7 @@ char	**copy_2d_map(char **map)
 	return (new_map);
 }
 
-float distance(float x, float y)
+float	distance(float x, float y)
 {
-    return sqrt(x * x + y * y);
+	return (sqrt((x * x) + (y * y)));
 }
