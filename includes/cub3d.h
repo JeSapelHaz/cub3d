@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/16 17:16:27 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/22 17:57:57 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define PI 3.14159265358979323846
 
 //
-#define SPEED 0.05
-#define ROTATE_SPEED 0.05
+# define SPEED 0.20
+# define ROTATE_SPEED 0.1
 
 // keys
 # define KEY_W 119
@@ -54,7 +54,6 @@
 # define FOV 60
 # define RAD_DEG 0.0174532925
 
-
 /* CHECK ARGS */
 int		check_args(int ac, char **av);
 
@@ -72,10 +71,9 @@ void	back_track(t_data *data, int start_y, int start_x, int *flag);
 void	init_mlx(t_data *data);
 
 /* CONTROLS */
-int	actions(t_data *data);
-int	key_press(int key, t_data *data);
-int	key_release(int key, t_data *data);
-
+int		actions(t_data *data);
+int		key_press(int key, t_data *data);
+int		key_release(int key, t_data *data);
 
 /* DRAW */
 void	clear_image(t_data *data);
@@ -88,7 +86,7 @@ void	draw_vision(t_data *data);
 void	print_file(t_data data);
 void	print_paths(t_data data);
 void	print_map(t_data data);
-void 	print_info_player(t_data *data);
+void	print_info_player(t_data *data);
 
 /* FREE */
 void	free_data(t_data *data);
@@ -97,6 +95,6 @@ void	free_data(t_data *data);
 char	*ft_strndup(const char *s, size_t n);
 int		ft_isspace(int c);
 char	**copy_2d_map(char **map);
-float distance(float x, float y);
+float	distance(float x, float y);
 
 #endif
