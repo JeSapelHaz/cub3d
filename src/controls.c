@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/20 22:12:59 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/22 17:06:15 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	in_map(t_data *data, float x, float y)
 
 	i = (int)(x + 0.5);
 	j = (int)(y + 0.5);
-	if (j >= SCREEN_HEIGHT || i >= SCREEN_WIDTH
+	if (j >= SCREEN_HEIGHT || i >= SCREEN_WIDTH || j < 0 || i < 0
 		|| data->mapinfo.map[j][i] == '1')
 		return (0);
 	return (1);
@@ -38,16 +38,24 @@ static void	change_coord(t_player *player, float next_x, float next_y,
 		float next_angle)
 {
 	player->pos_x = next_x;
-	if (player->pos_x < 1)
-		player->pos_x = 1;
 	player->pos_y = next_y;
+	player->angle = next_angle;
 	if (player->pos_y < 1)
 		player->pos_y = 1;
-	player->angle = next_angle;
+	else if ((int)player->pos_y > player->data->mapinfo.map_height - 1)
+		player->pos_y = player->data->mapinfo.map_height - 1;
+	if (player->pos_x < 1)
+		player->pos_x = 1;
+	else if ((int)player->pos_x > (int)ft_strlen(player->data->mapinfo.map[(int)next_y])
+		- 1)
+		player->pos_x = ft_strlen(player->data->mapinfo.map[(int)next_y]);
 	if (player->angle < 0)
 		player->angle += 2 * PI;
 	if (player->angle >= 2 * PI)
 		player->angle -= 2 * PI;
+	printf("x: %f, y: %f, angle: %f\n", player->pos_x, player->pos_y,
+		player->angle);
+	recharge_image(player->data);
 }
 
 int	actions(t_data *data)
@@ -59,24 +67,21 @@ int	actions(t_data *data)
 	next_x = data->player.pos_x;
 	next_y = data->player.pos_y;
 	next_angle = data->player.angle;
-	if (data->keyinfo.press_a && in_map(data, next_x, next_y))
+	if (data->keyinfo.press_a && in_map(data, next_x - SPEED, next_y))
 		next_x -= (float)SPEED;
-	if (data->keyinfo.press_w && in_map(data, next_x, next_y))
-		next_y -= (float)SPEED;
-	if (data->keyinfo.press_s && in_map(data, next_x, next_y))
-		next_y += (float)SPEED;
-	if (data->keyinfo.press_d && in_map(data, next_x, next_y))
+	if (data->keyinfo.press_d && in_map(data, next_x + SPEED, next_y))
 		next_x += (float)SPEED;
+	if (data->keyinfo.press_w && in_map(data, next_x, next_y - SPEED))
+		next_y -= (float)SPEED;
+	if (data->keyinfo.press_s && in_map(data, next_x, next_y + SPEED))
+		next_y += (float)SPEED;
 	if (data->keyinfo.press_left)
 		next_angle -= (float)ROTATE_SPEED;
 	if (data->keyinfo.press_right)
 		next_angle += (float)ROTATE_SPEED;
 	if (next_x != data->player.pos_x || next_y != data->player.pos_y
 		|| next_angle != data->player.angle)
-	{
 		change_coord(&data->player, next_x, next_y, next_angle);
-		recharge_image(data);
-	}
 	return (0);
 }
 

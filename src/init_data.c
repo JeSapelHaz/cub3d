@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:25:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/16 16:41:45 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/03/21 15:56:52 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,17 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 	mapinfo->map = NULL;
 }
 
-static void init_player(t_player *player)
+static void	init_player(t_player *player, t_data *data)
 {
 	player->pos_x = 0;
-    player->pos_y = 0;
-    player->dir_x = 0; 
-    player->dir_y = 0;
-	player->angle = (float) RAD_DEG * (float)270; 
+	player->pos_y = 0;
+	player->dir_x = 0;
+	player->dir_y = 0;
+	player->angle = (float)RAD_DEG * (float)270;
+	player->data = data;
 }
 
-static void init_keys(t_keyinfo *keyinfo)
+static void	init_keys(t_keyinfo *keyinfo)
 {
 	keyinfo->press_a = 0;
 	keyinfo->press_d = 0;
@@ -53,6 +54,6 @@ void	init_data(t_data *data)
 	data->win_height = SCREEN_HEIGHT;
 	data->win_width = SCREEN_WIDTH;
 	init_mapinfo(&data->mapinfo);
-	init_player(&data->player);
+	init_player(&data->player, data);
 	init_keys(&data->keyinfo);
 }

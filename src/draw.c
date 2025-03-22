@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/20 21:08:23 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:27:00 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	draw_y(t_player *player, t_data *data, float angle, int x)
 		ray_y += sin_angle * 0.01;
 	}
 	dist = distance(ray_x - player->pos_x, ray_y - player->pos_y);
-	// dist *= cos(player->angle - angle);
+	dist *= cos(player->angle - angle);
 	line_height = (int)(SCREEN_HEIGHT / dist);
 	wall_start = (SCREEN_HEIGHT / 2) - (line_height / 2);
 	wall_end = (SCREEN_HEIGHT / 2) + (line_height / 2);
