@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/23 17:54:59 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/23 17:55:39 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ int	actions(t_data *data)
 		next_x -= sin_speed;
 		next_y += cos_speed;
 	}
-	if (data->keyinfo.press_w && in_map(data, next_x - cos_speed, next_y
+	if (data->keyinfo.press_w && in_map(data, next_x + cos_speed, next_y
 			+ sin_speed))
 	{
 		next_x += cos_speed;
 		next_y += sin_speed;
 	}
-	if (data->keyinfo.press_s && in_map(data, next_x + cos_speed, next_y
+	if (data->keyinfo.press_s && in_map(data, next_x - cos_speed, next_y
 			- sin_speed))
 	{
 		next_x -= cos_speed;
