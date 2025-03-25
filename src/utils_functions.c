@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:12:56 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/25 18:16:26 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/25 21:32:21 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,6 @@ int	ft_isspace(int c)
 	return (0);
 }
 
-int	convert_color(char *str)
-{
-	int	r;
-	int	g;
-	int	b;
-
-	r = ft_atoi(str);
-	while (ft_isdigit(*str))
-		str++;
-	if (*str == ',')
-		str++;
-	else
-		return (-1);
-	g = ft_atoi(str);
-	while (ft_isdigit(*str))
-		str++;
-	if (*str == ',')
-		str++;
-	else
-		return (-1);
-	b = ft_atoi(str);
-	if (r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0 || *str)
-		return (-1);
-	printf("r = %d, g = %d, b = %d\n", r, g, b);
-	return ((r << 16) + (g << 8) + b);
-}
-
 char	**copy_2d_map(char **map)
 {
 	int		height;
@@ -90,6 +63,34 @@ char	**copy_2d_map(char **map)
 	}
 	new_map[height] = NULL;
 	return (new_map);
+}
+
+int	convert_color(char *str)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = ft_atoi(str);
+	while (ft_isdigit(*str))
+		str++;
+	if (*str == ',')
+		str++;
+	else
+		return (printf("ERROR RGB syntax is RRR,GGG,BBB\n"), -1);
+	g = ft_atoi(str);
+	while (ft_isdigit(*str))
+		str++;
+	if (*str == ',')
+		str++;
+	else
+		return (printf("ERROR RGB syntax is RRR,GGG,BBB\n"), -1);
+	b = ft_atoi(str);
+	while (ft_isdigit(*str))
+		str++;
+	if (r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0 || *str)
+		return (printf("ERROR RGB syntax is RRR,GGG,BBB\n"), -1);
+	return ((r << 16) + (g << 8) + b);
 }
 
 float	distance(float x, float y)

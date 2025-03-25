@@ -91,43 +91,58 @@ static int	check_map(t_data *data)
 
 static int	check_rgb(t_data *data)
 {
-	char	**rgb;
+	int	i;
+	int	nbr_commas;
 
-	rgb = ft_split(data->mapinfo.ceiling, ',');
-	if (ft_atoi(rgb[0]) > 255 || ft_atoi(rgb[0]) < 0)
-		return (printf("ERROR RGB CEILING\n"), 1);
-	if (ft_atoi(rgb[1]) > 255 || ft_atoi(rgb[1]) < 0)
-		return (printf("ERROR RGB CEILING\n"), 1);
-	if (ft_atoi(rgb[2]) > 255 || ft_atoi(rgb[2]) < 0)
-		return (printf("ERROR RGB CEILING\n"), 1);
-	rgb = ft_split(data->mapinfo.floor, ',');
-	if (ft_atoi(rgb[0]) > 255 || ft_atoi(rgb[0]) < 0)
-		return (printf("ERROR RGB FLOOR\n"), 1);
-	if (ft_atoi(rgb[1]) > 255 || ft_atoi(rgb[1]) < 0)
-		return (printf("ERROR RGB FLOOR\n"), 1);
-	if (ft_atoi(rgb[2]) > 255 || ft_atoi(rgb[2]) < 0)
-		return (printf("ERROR RGB FLOOR\n"), 1);
+	i = 0;
+	nbr_commas = 0;
+	while (data->mapinfo.ceiling[i])
+	{
+		if (data->mapinfo.ceiling[i] == ',' && ++nbr_commas)
+			i++;
+		if (data->mapinfo.ceiling[i] < '0' || data->mapinfo.ceiling[i] > '9')
+			return (printf("ERROR RGB syntax is RRR,GGG,BBB\n"), 1);
+		i++;
+	}
+	i = 0;
+	while (data->mapinfo.floor[i])
+	{
+		if (data->mapinfo.floor[i] == ',' && ++nbr_commas)
+			i++;
+		if (data->mapinfo.floor[i] < '0' || data->mapinfo.floor[i] > '9')
+			return (printf("ERROR RGB syntax is RRR,GGG,BBB\n"), 1);
+		i++;
+	}
+	if (nbr_commas != 4)
+		return (printf("ERROR RGB syntax is RRR,GGG,BBB\n"), 1);
 	return (0);
 }
 
 /* Check if the data is good */
 int	check_data(t_data *data)
 {
-	int flag;
+	int	flag;
 
 	flag = 0;
 	if (check_paths(data) == 1)
 		return (1);
-	if (check_rgb(data) == 1)
+	if (check_rgb(data) == 0
+		&& (data->mapinfo.ceiling_color = convert_color(data->mapinfo.ceiling)) !=
+		-1
+		&& (data->mapinfo.floor_color = convert_color(data->mapinfo.floor)) !=
+		-1)
+		;
+	else
+	{
+		printf("ceiling color: %d\n", data->mapinfo.ceiling_color);
+		printf("floor color: %d\n", data->mapinfo.floor_color);
 		return (1);
+	}
 	if (check_map(data) == 1)
 		return (1);
 	data->mapinfo.copy_map = copy_2d_map(data->mapinfo.map);
 	back_track(data, data->player.pos_y, data->player.pos_x, &flag);
 	if (flag == 1)
-	{
-		printf("ERRORORRR\n");
-		return (1);
-	}
+		return (printf("ERRORORRR backtraking\n"), 1);
 	return (0);
 }

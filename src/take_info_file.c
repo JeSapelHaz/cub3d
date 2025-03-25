@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/25 19:27:23 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/25 19:54:55 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,6 @@ static void	take_paths(char **file, int i, t_data *data, int *nbr_paths)
 		(*nbr_paths)++;
 	}
 }
-// void len_line(char *line)
-// {
-// 	return (ft_strlen(line));
-// }
 
 static int	fill_map(char **file, int i, t_data *data)
 {
@@ -109,11 +105,9 @@ int	take_info_file(char **file, t_data *data)
 {
 	int i;
 	int nbr_paths;
-	// int j;
 
 	nbr_paths = 0;
 	i = 0;
-	// j = 0;
 	while (file[i] && nbr_paths != 6)
 	{
 		take_paths(file, i, data, &nbr_paths);
