@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:25:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/25 15:32:25 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/25 19:25:54 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ static void	init_keys(t_keyinfo *keyinfo)
 	keyinfo->press_left = 0;
 }
 
+static void	init_textures(t_texture *texture)
+{
+	texture->ceiling = 0;
+	texture->floor = 0;
+}
+
 void	init_data(t_data *data)
 {
 	data->mlx = NULL;
@@ -56,4 +62,5 @@ void	init_data(t_data *data)
 	init_mapinfo(&data->mapinfo);
 	init_player(&data->player, data);
 	init_keys(&data->keyinfo);
+	init_textures(&data->texture);
 }

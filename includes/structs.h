@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:19:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/25 15:32:19 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/25 19:38:45 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ typedef struct s_mapinfo
 	char				**map;
 	char				**copy_map;
 }						t_mapinfo;
+
+typedef struct s_texture
+{
+	int					ceiling;
+	int					floor;
+}						t_texture;
 
 typedef struct s_player
 {
@@ -65,6 +71,7 @@ typedef struct s_data
 	t_player			player;
 	t_mapinfo			mapinfo;
 	t_keyinfo			keyinfo;
+	t_texture			texture;
 }						t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/25 15:29:27 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:17:15 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	free_data(t_data *data);
 char	*ft_strndup(const char *s, size_t n);
 int		ft_isspace(int c);
 char	**copy_2d_map(char **map);
+int		convert_color(char *str);
 float	distance(float x, float y);
 
 #endif

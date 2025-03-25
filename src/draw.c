@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/23 18:01:32 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/25 19:39:23 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,11 +127,11 @@ void	draw_y(t_player *player, t_data *data, float angle, int x)
 	while (draw_start < SCREEN_HEIGHT)
 	{
 		if (draw_start < wall_start)
-			put_pixel_to_image(data, x, draw_start, BLUE);
+			put_pixel_to_image(data, x, draw_start, GREEN);
 		else if (draw_start < wall_end)
 			put_pixel_to_image(data, x, draw_start, RED);
 		else
-			put_pixel_to_image(data, x, draw_start, YELLOW);
+			put_pixel_to_image(data, x, draw_start, BLUE);
 		draw_start++;
 	}
 }
