@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:25:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/23 17:43:52 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:32:25 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	init_player(t_player *player, t_data *data)
 	player->pos_y = 0;
 	player->dir_x = 0;
 	player->dir_y = 0;
-	player->angle = (float)RAD_DEG * (float)270;
+	player->angle = 0;
 	player->data = data;
 }
 

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   check_data->c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student->s19->be>               +#+  +:+      
+/*   By: hbutt <hbutt@student->s19->be>               +#+  +:+
 	+#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
@@ -12,6 +12,19 @@
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+// set the start player direction
+static void	set_player_dir(t_data *data, char direction)
+{
+	if (direction == 'N')
+		data->player.angle = N;
+	else if (direction == 'E')
+		data->player.angle = E;
+	else if (direction == 'S')
+		data->player.angle = S;
+	else if (direction == 'W')
+		data->player.angle = W;
+}
 
 /* Check if the paths are good*/
 static int	check_paths(t_data *data)
@@ -50,6 +63,7 @@ static int	check_map_chars(t_data *data, int *nbr_players)
 			{
 				data->player.pos_x = (float)j;
 				data->player.pos_y = (float)i;
+				set_player_dir(data, c);
 				(*nbr_players)++;
 			}
 			else if (c != ' ' && c != '1' && c != '0' && c != '\t' && c != '\n'

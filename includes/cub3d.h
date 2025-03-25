@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/22 17:57:57 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:29:27 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,13 @@
 // math
 # define PI 3.14159265358979323846
 
-//
+// player direction
+# define N (3 * PI) / 2
+# define E 2 * PI
+# define S PI / 2
+# define W PI
+
+// movement speed
 # define SPEED 0.20
 # define ROTATE_SPEED 0.1
 

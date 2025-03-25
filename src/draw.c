@@ -6,12 +6,13 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/23 17:43:19 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/23 18:01:32 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+// function to replace a pixel color
 void	put_pixel_to_image(t_data *data, float x, float y, int color)
 {
 	int		pixel_x;
@@ -29,7 +30,7 @@ void	put_pixel_to_image(t_data *data, float x, float y, int color)
 	}
 }
 
-// Fonction pour effacer l'image (remplir avec du noir)
+// function to replace all pixel by black
 void	clear_image(t_data *data)
 {
 	int	pixel;
@@ -83,6 +84,7 @@ void	draw_map(t_data *data)
 	}
 }
 
+// function check if the pixel touch a wall
 bool	hit_wall(float px, float py, t_data *data)
 {
 	int	x;
@@ -134,16 +136,17 @@ void	draw_y(t_player *player, t_data *data, float angle, int x)
 	}
 }
 
+// function to draw vison of player (draw FOV)
 void	draw_vision(t_data *data)
 {
 	int		screen_x;
 	float	ray_angle;
 	float	add_angle;
 
-	screen_x = 0;
 	// vision decay
 	ray_angle = data->player.angle - ((float)FOV / 2.0f) * (PI / 180.0f);
 	add_angle = ((float)FOV * (PI / 180.0f)) / (float)SCREEN_WIDTH;
+	screen_x = 0;
 	while (screen_x < SCREEN_WIDTH)
 	{
 		draw_y(&data->player, data, ray_angle, screen_x);
@@ -151,6 +154,8 @@ void	draw_vision(t_data *data)
 		screen_x++;
 	}
 }
+
+// function of merda
 void	draw_player(t_data *data)
 {
 	t_player	*player;
