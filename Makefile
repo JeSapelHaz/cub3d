@@ -6,7 +6,7 @@
 #    By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/03/25 18:16:48 by hdelbecq         ###   ########.fr        #
+#    Updated: 2025/03/27 12:44:20 by hdelbecq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,8 +51,7 @@ SRC		= main.c \
 		init_mlx.c \
 		check_map_validity.c \
 		controls.c \
-		draw.c \
-		  
+		draw.c	  
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects
