@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/25 21:10:37 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:00:26 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,9 @@ bool	hit_wall(float px, float py, t_data *data)
 
 	x = px + 0.5;
 	y = py + 0.5;
-	if (data->mapinfo.map[y][x] == '1')
+	if (y >= data->mapinfo.map_height || y < 0
+		|| x >= (int)ft_strlen(data->mapinfo.map[y]) || x < 0
+		|| data->mapinfo.map[y][x] == '1')
 		return (true);
 	return (false);
 }
