@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/23 17:55:39 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:31:38 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	recharge_image(t_data *data)
 {
-	clear_image(data);
+	clear_image(data); // clear image necessary ?
 	// draw_map(data);
 	draw_player(data);
 	draw_vision(data);
@@ -56,7 +56,6 @@ static void	change_coord(t_player *player, float next_x, float next_y,
 		player->angle -= 2 * PI;
 	printf("x: %f, y: %f, angle: %f\n", player->pos_x, player->pos_y,
 		player->angle);
-	recharge_image(player->data);
 }
 
 int	actions(t_data *data)
@@ -103,6 +102,7 @@ int	actions(t_data *data)
 	if (next_x != data->player.pos_x || next_y != data->player.pos_y
 		|| next_angle != data->player.angle)
 		change_coord(&data->player, next_x, next_y, next_angle);
+	recharge_image(data);
 	return (0);
 }
 

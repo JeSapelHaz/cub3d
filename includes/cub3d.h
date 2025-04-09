@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/25 18:17:15 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:35:56 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		key_release(int key, t_data *data);
 /* DRAW */
 void	clear_image(t_data *data);
 void	draw_map(t_data *data);
-void	put_pixel_to_image(t_data *data, float x, float y, int color);
+void	put_pixel_to_image(t_data *data, int pixel_x, int pixel_y, int color);
 void	draw_player(t_data *data);
 void	draw_vision(t_data *data);
 

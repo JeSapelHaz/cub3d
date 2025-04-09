@@ -6,26 +6,22 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/27 12:59:04 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:34:49 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 // function to replace a pixel color
-void	put_pixel_to_image(t_data *data, float x, float y, int color)
+void	put_pixel_to_image(t_data *data, int pixel_x, int pixel_y, int color)
 {
-	int		pixel_x;
-	int		pixel_y;
 	char	*pixel;
 
-	pixel_x = (int)(x + 0.5);
-	pixel_y = (int)(y + 0.5);
 	if (pixel_x >= 0 && pixel_x < SCREEN_WIDTH && pixel_y >= 0
 		&& pixel_y < SCREEN_HEIGHT)
 	{
 		pixel = data->img_addr + (pixel_y * data->size_line) + (pixel_x
-				* (data->bpp / 8));
+				* (data->bpp >> 3));
 		*(int *)pixel = color;
 	}
 }
@@ -43,7 +39,7 @@ void	clear_image(t_data *data)
 		x = -1;
 		while (++x < SCREEN_WIDTH)
 		{
-			pixel = (y * data->size_line) + (x * (data->bpp / 8));
+			pixel = (y * data->size_line) + (x * (data->bpp >> 3));
 			data->img_addr[pixel] = 0;
 			data->img_addr[pixel + 1] = 0;
 			data->img_addr[pixel + 2] = 0;
@@ -90,8 +86,8 @@ bool	hit_wall(float px, float py, t_data *data)
 	int	x;
 	int	y;
 
-	x = px + 0.5;
-	y = py + 0.5;
+	x = roundf(px);
+	y = roundf(py);
 	if (y >= data->mapinfo.map_height || y < 0
 		|| x >= (int)ft_strlen(data->mapinfo.map[y]) || x < 0
 		|| data->mapinfo.map[y][x] == '1')
@@ -122,9 +118,9 @@ void	draw_y(t_player *player, t_data *data, float angle, int x)
 	}
 	dist = distance(ray_x - player->pos_x, ray_y - player->pos_y);
 	dist *= cos(player->angle - angle);
-	line_height = (int)(SCREEN_HEIGHT / dist);
-	wall_start = (SCREEN_HEIGHT / 2) - (line_height / 2);
-	wall_end = (SCREEN_HEIGHT / 2) + (line_height / 2);
+	line_height = roundf((float)SCREEN_HEIGHT / dist);
+	wall_start = (SCREEN_HEIGHT >> 1) - (line_height >> 1);
+	wall_end = (SCREEN_HEIGHT >> 1) + (line_height >> 1);
 	draw_start = 0;
 	while (draw_start < SCREEN_HEIGHT)
 	{
@@ -164,6 +160,6 @@ void	draw_player(t_data *data)
 	t_player	*player;
 
 	player = &data->player;
-	player->height = TILE_SIZE / 2;
+	player->height = TILE_SIZE / 2; // useless enlever dans le .h
 	draw_vision(data);
 }
