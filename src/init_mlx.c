@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:17:33 by hbutt             #+#    #+#             */
-/*   Updated: 2025/04/13 14:31:36 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/04/13 15:12:28 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,49 @@
 
 static void	init_texture(t_data *data)
 {
-	int	i;
-
-	i = -1;
-	while (++i < 4)
+	data->mapinfo.texture_north.img = mlx_xpm_file_to_image(data->mlx,
+			data->mapinfo.north_path, &data->mapinfo.texture_north.width,
+			&data->mapinfo.texture_north.height);
+	data->mapinfo.texture_south.img = mlx_xpm_file_to_image(data->mlx,
+			data->mapinfo.south_path, &data->mapinfo.texture_south.width,
+			&data->mapinfo.texture_south.height);
+	data->mapinfo.texture_east.img = mlx_xpm_file_to_image(data->mlx,
+			data->mapinfo.east_path, &data->mapinfo.texture_east.width,
+			&data->mapinfo.texture_east.height);
+	data->mapinfo.texture_west.img = mlx_xpm_file_to_image(data->mlx,
+			data->mapinfo.west_path, &data->mapinfo.texture_west.width,
+			&data->mapinfo.texture_west.height);
+	if (!data->mapinfo.texture_north.img || !data->mapinfo.texture_south.img
+		|| !data->mapinfo.texture_east.img || !data->mapinfo.texture_west.img)
 	{
-		data->mapinfo.texture[i].img = mlx_xpm_file_to_image(data->mlx,
-				data->mapinfo.texture[i].img_addr,
-				&data->mapinfo.texture[i].width,
-				&data->mapinfo.texture[i].height);
-		if (!data->mapinfo.texture[i].img)
-		{
-			free_data(data);
-			ft_putstr_fd("Error: Failed to load texture\n", 2);
-			exit(1);
-		}
-		data->mapinfo.texture[i].img_addr = mlx_get_data_addr(data->mapinfo.texture[i].img,
-				&data->mapinfo.texture[i].bpp,
-				&data->mapinfo.texture[i].size_line,
-				&data->mapinfo.texture[i].endian);
+		free_data(data);
+		ft_putstr_fd("Error\nFailed to load textures\n", 2);
+		exit(1);
+	}
+	data->mapinfo.texture_north.img_addr = mlx_get_data_addr(data->mapinfo.texture_north.img,
+			&data->mapinfo.texture_north.bpp,
+			&data->mapinfo.texture_north.size_line,
+			&data->mapinfo.texture_north.endian);
+	data->mapinfo.texture_south.img_addr = mlx_get_data_addr(data->mapinfo.texture_south.img,
+			&data->mapinfo.texture_south.bpp,
+			&data->mapinfo.texture_south.size_line,
+			&data->mapinfo.texture_south.endian);
+	data->mapinfo.texture_east.img_addr = mlx_get_data_addr(data->mapinfo.texture_east.img,
+			&data->mapinfo.texture_east.bpp,
+			&data->mapinfo.texture_east.size_line,
+			&data->mapinfo.texture_east.endian);
+	data->mapinfo.texture_west.img_addr = mlx_get_data_addr(data->mapinfo.texture_west.img,
+			&data->mapinfo.texture_west.bpp,
+			&data->mapinfo.texture_west.size_line,
+			&data->mapinfo.texture_west.endian);
+	if (!data->mapinfo.texture_north.img_addr
+		|| !data->mapinfo.texture_south.img_addr
+		|| !data->mapinfo.texture_east.img_addr
+		|| !data->mapinfo.texture_west.img_addr)
+	{
+		free_data(data);
+		ft_putstr_fd("Error\nFailed to load textures\n", 2);
+		exit(1);
 	}
 }
 

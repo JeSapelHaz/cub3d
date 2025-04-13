@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:19:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/04/13 14:15:24 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/04/13 15:03:43 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,14 @@ typedef struct s_mapinfo
 	char				*south_path;
 	char				*east_path;
 	char				*west_path;
+	t_texture			texture_north;
+	t_texture			texture_south;
+	t_texture			texture_east;
+	t_texture			texture_west;
 	char				*floor;
 	char				*ceiling;
 	int					ceiling_color;
 	int					floor_color;
-	t_texture			texture[4];
 }						t_mapinfo;
 
 typedef struct s_player

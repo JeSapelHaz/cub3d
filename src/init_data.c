@@ -6,17 +6,25 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:25:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/04/13 14:22:56 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/04/13 15:12:53 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+static void	init_texture(t_mapinfo *mapinfo)
+{
+	mapinfo->texture_north.img = NULL;
+	mapinfo->texture_south.img = NULL;
+	mapinfo->texture_east.img = NULL;
+	mapinfo->texture_west.img = NULL;
+	mapinfo->texture_north.img_addr = NULL;
+	mapinfo->texture_south.img_addr = NULL;
+	mapinfo->texture_east.img_addr = NULL;
+	mapinfo->texture_west.img_addr = NULL;
+}
 static void	init_mapinfo(t_mapinfo *mapinfo)
 {
-	int i;
-
-	i = -1;
 	mapinfo->ceiling = 0;
 	mapinfo->ceiling_color = BLUE;
 	mapinfo->floor = 0;
@@ -30,14 +38,6 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 	mapinfo->map = NULL;
 	mapinfo->copy_map = NULL;
 	mapinfo->map_width = 0;
-	while (++i < 4)
-	{
-		mapinfo->texture[i].img = NULL;
-		mapinfo->texture[i].img_addr = NULL;
-		mapinfo->texture[i].bpp = 0;
-		mapinfo->texture[i].size_line = 0;
-		mapinfo->texture[i].endian = 0;
-	}
 }
 
 static void	init_player(t_player *player, t_data *data)
@@ -71,4 +71,5 @@ void	init_data(t_data *data)
 	init_mapinfo(&data->mapinfo);
 	init_player(&data->player, data);
 	init_keys(&data->keyinfo);
+	init_texture(&data->mapinfo);
 }
