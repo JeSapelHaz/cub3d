@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:25:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/25 21:09:25 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/04/13 14:22:56 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 static void	init_mapinfo(t_mapinfo *mapinfo)
 {
+	int i;
+
+	i = -1;
 	mapinfo->ceiling = 0;
 	mapinfo->ceiling_color = BLUE;
 	mapinfo->floor = 0;
@@ -25,6 +28,16 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 	mapinfo->map_height = 0;
 	mapinfo->file = NULL;
 	mapinfo->map = NULL;
+	mapinfo->copy_map = NULL;
+	mapinfo->map_width = 0;
+	while (++i < 4)
+	{
+		mapinfo->texture[i].img = NULL;
+		mapinfo->texture[i].img_addr = NULL;
+		mapinfo->texture[i].bpp = 0;
+		mapinfo->texture[i].size_line = 0;
+		mapinfo->texture[i].endian = 0;
+	}
 }
 
 static void	init_player(t_player *player, t_data *data)

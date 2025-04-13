@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:19:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/25 20:36:28 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/04/13 14:15:24 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,22 @@
 # define STRUCTS_H
 typedef struct s_data	t_data;
 
+typedef struct s_texture
+{
+	void				*img;
+	char				*img_addr;
+	int					bpp;
+	int					size_line;
+	int					endian;
+	int					width;
+	int					height;
+}						t_texture;
+
 typedef struct s_mapinfo
 {
+	char				**file;
+	char				**map;
+	char				**copy_map;
 	int					map_height;
 	int					map_width;
 	char				*north_path;
@@ -26,19 +40,17 @@ typedef struct s_mapinfo
 	char				*ceiling;
 	int					ceiling_color;
 	int					floor_color;
-	char				**file;
-	char				**map;
-	char				**copy_map;
+	t_texture			texture[4];
 }						t_mapinfo;
 
 typedef struct s_player
 {
-	float				pos_x;
-	float				pos_y;
-	float				angle;
-	float				dir_x;
-	float				dir_y;
-	float				height;
+	double				pos_x;
+	double				pos_y;
+	double				angle;
+	double				dir_x;
+	double				dir_y;
+	double				height;
 	t_data				*data;
 }						t_player;
 

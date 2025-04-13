@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/04/09 16:34:49 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/04/13 13:55:44 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ void	draw_map(t_data *data)
 }
 
 // function check if the pixel touch a wall
-bool	hit_wall(float px, float py, t_data *data)
+bool	hit_wall(double px, double py, t_data *data)
 {
 	int	x;
 	int	y;
 
-	x = roundf(px);
-	y = roundf(py);
+	x = round(px);
+	y = round(py);
 	if (y >= data->mapinfo.map_height || y < 0
 		|| x >= (int)ft_strlen(data->mapinfo.map[y]) || x < 0
 		|| data->mapinfo.map[y][x] == '1')
@@ -95,13 +95,13 @@ bool	hit_wall(float px, float py, t_data *data)
 	return (false);
 }
 // draw on the y axis
-void	draw_y(t_player *player, t_data *data, float angle, int x)
+void	draw_y(t_player *player, t_data *data, double angle, int x)
 {
-	float	cos_angle;
-	float	sin_angle;
-	float	ray_x;
-	float	ray_y;
-	float	dist;
+	double	cos_angle;
+	double	sin_angle;
+	double	ray_x;
+	double	ray_y;
+	double	dist;
 	int		line_height;
 	int		draw_start;
 	int		wall_start;
@@ -118,7 +118,7 @@ void	draw_y(t_player *player, t_data *data, float angle, int x)
 	}
 	dist = distance(ray_x - player->pos_x, ray_y - player->pos_y);
 	dist *= cos(player->angle - angle);
-	line_height = roundf((float)SCREEN_HEIGHT / dist);
+	line_height = round((double)SCREEN_HEIGHT / dist);
 	wall_start = (SCREEN_HEIGHT >> 1) - (line_height >> 1);
 	wall_end = (SCREEN_HEIGHT >> 1) + (line_height >> 1);
 	draw_start = 0;
@@ -139,12 +139,12 @@ void	draw_y(t_player *player, t_data *data, float angle, int x)
 void	draw_vision(t_data *data)
 {
 	int		screen_x;
-	float	ray_angle;
-	float	add_angle;
+	double	ray_angle;
+	double	add_angle;
 
 	// vision decay
-	ray_angle = data->player.angle - ((float)FOV / 2.0f) * (PI / 180.0f);
-	add_angle = ((float)FOV * (PI / 180.0f)) / (float)SCREEN_WIDTH;
+	ray_angle = data->player.angle - ((double)FOV / 2.0f) * (PI / 180.0f);
+	add_angle = ((double)FOV * (PI / 180.0f)) / (double)SCREEN_WIDTH;
 	screen_x = 0;
 	while (screen_x < SCREEN_WIDTH)
 	{

@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/04/09 16:31:38 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/04/13 13:55:44 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	recharge_image(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }
 
-static int	in_map(t_data *data, float x, float y)
+static int	in_map(t_data *data, double x, double y)
 {
 	int	i;
 	int	j;
 
-	i = (int)(x + 0.5);
-	j = (int)(y + 0.5);
+	i = round(x);
+	j = round(y);
 	if (j >= data->mapinfo.map_height || j < 0
 		|| i >= (int)ft_strlen(data->mapinfo.map[j]) || i < 0
 		|| data->mapinfo.map[j][i] == '1')
@@ -35,8 +35,8 @@ static int	in_map(t_data *data, float x, float y)
 	return (1);
 }
 
-static void	change_coord(t_player *player, float next_x, float next_y,
-		float next_angle)
+static void	change_coord(t_player *player, double next_x, double next_y,
+		double next_angle)
 {
 	player->pos_x = next_x;
 	player->pos_y = next_y;
@@ -60,11 +60,11 @@ static void	change_coord(t_player *player, float next_x, float next_y,
 
 int	actions(t_data *data)
 {
-	float	next_x;
-	float	next_y;
-	float	next_angle;
-	float	cos_speed;
-	float	sin_speed;
+	double	next_x;
+	double	next_y;
+	double	next_angle;
+	double	cos_speed;
+	double	sin_speed;
 
 	cos_speed = cos(data->player.angle) * SPEED;
 	sin_speed = sin(data->player.angle) * SPEED;
@@ -96,9 +96,9 @@ int	actions(t_data *data)
 		next_y -= sin_speed;
 	}
 	if (data->keyinfo.press_left)
-		next_angle -= (float)ROTATE_SPEED;
+		next_angle -= (double)ROTATE_SPEED;
 	if (data->keyinfo.press_right)
-		next_angle += (float)ROTATE_SPEED;
+		next_angle += (double)ROTATE_SPEED;
 	if (next_x != data->player.pos_x || next_y != data->player.pos_y
 		|| next_angle != data->player.angle)
 		change_coord(&data->player, next_x, next_y, next_angle);
