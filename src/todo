@@ -2,3 +2,4 @@
 - verifier si la convertion de color est efficace
 - gerer les textures
 - gerer le screen size max
+- changer les paths des texutres en tableau de path pour faciliter la norm
