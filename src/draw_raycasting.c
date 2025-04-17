@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/04/13 14:35:35 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:42:06 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ void	clear_image(t_data *data)
 		while (++x < SCREEN_WIDTH)
 		{
 			pixel = (y * data->size_line) + (x * (data->bpp >> 3));
-			data->img_addr[pixel] = 0;
-			data->img_addr[pixel + 1] = 0;
-			data->img_addr[pixel + 2] = 0;
+			*(int *)(data->img_addr + pixel) = data->mapinfo.floor_color;
 		}
 	}
 }
@@ -61,6 +59,32 @@ bool	hit_wall(double px, double py, t_data *data)
 		return (true);
 	return (false);
 }
+
+// check the direction of the raycasting
+void	raycast_direction(t_player *player, double angle)
+{
+	if (player->angle >= 0 && player->angle < PI / 2)
+	{
+		player->dir_x = cos(angle);
+		player->dir_y = sin(angle);
+	}
+	else if (player->angle >= PI / 2 && player->angle < PI)
+	{
+		player->dir_x = -cos(angle);
+		player->dir_y = sin(angle);
+	}
+	else if (player->angle >= PI && player->angle < 3 * PI / 2)
+	{
+		player->dir_x = -cos(angle);
+		player->dir_y = -sin(angle);
+	}
+	else if (player->angle >= 3 * PI / 2 && player->angle < 2 * PI)
+	{
+		player->dir_x = cos(angle);
+		player->dir_y = -sin(angle);
+	}
+}
+
 // draw on the y axis
 void	draw_y(t_player *player, t_data *data, double angle, int x)
 {
@@ -96,8 +120,6 @@ void	draw_y(t_player *player, t_data *data, double angle, int x)
 				data->mapinfo.ceiling_color);
 		else if (draw_start < wall_end)
 			put_pixel_to_image(data, x, draw_start, RED);
-		else
-			put_pixel_to_image(data, x, draw_start, data->mapinfo.floor_color);
 		draw_start++;
 	}
 }
@@ -110,7 +132,8 @@ void	draw_vision(t_data *data)
 	double	add_angle;
 
 	// vision decay
-	ray_angle = data->player.angle - ((double)FOV / 2.0f) * (PI / 180.0f);
+	ray_angle = data->player.angle - ((double)FOV / (double)2) * ((double)PI
+			/ (double)180);
 	add_angle = ((double)FOV * (PI / 180.0f)) / (double)SCREEN_WIDTH;
 	screen_x = 0;
 	while (screen_x < SCREEN_WIDTH)
@@ -129,4 +152,6 @@ void	draw_player(t_data *data)
 	player = &data->player;
 	player->height = TILE_SIZE / 2; // useless enlever dans le .h
 	draw_vision(data);
+	printf("player dir_x: %f\n", player->dir_x);
+	printf("player dir_y: %f\n", player->dir_y);
 }
