@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:12:56 by hbutt             #+#    #+#             */
-/*   Updated: 2025/04/13 13:55:24 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/07 13:25:11 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	convert_color(char *str)
 	return ((r << 16) + (g << 8) + b);
 }
 
-double	distance(double x, double y)
+float	distance(float x, float y)
 {
 	return (sqrt((x * x) + (y * y)));
 }

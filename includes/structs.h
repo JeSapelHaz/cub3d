@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:19:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/04/13 15:03:43 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/07 13:25:11 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,14 @@ typedef struct s_mapinfo
 
 typedef struct s_player
 {
-	double				pos_x;
-	double				pos_y;
-	double				angle;
-	double				dir_x;
-	double				dir_y;
-	double				height;
+	float				pos_x;
+	float				pos_y;
+	float				angle;
+	float				dir_x;
+	float				dir_y;
+	float				slope_x;
+	float				slope_y;
+	float				height;
 	t_data				*data;
 }						t_player;
 

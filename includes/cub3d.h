@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/04/17 17:36:52 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/07 16:28:43 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 
 // math
 # define PI 3.14159265358979323846
+# define degToRad(angleInDegrees) ((angleInDegrees)*PI / 180.0)
+# define radToDeg(angleInRadians) ((angleInRadians)*180.0 / PI)
 
 // player direction
 # define N (3 * PI) / 2
@@ -81,12 +83,14 @@ int		actions(t_data *data);
 int		key_press(int key, t_data *data);
 int		key_release(int key, t_data *data);
 
+/* DRAW MAP*/
+void	draw_player(t_data *data);
+void	draw_map(t_data *data);
+void	fov(t_data *data);
+
 /* DRAW */
 void	clear_image(t_data *data);
-void	draw_map(t_data *data);
 void	put_pixel_to_image(t_data *data, int pixel_x, int pixel_y, int color);
-void	draw_player(t_data *data);
-void	draw_vision(t_data *data);
 
 /* DEBUG */
 void	print_file(t_data data);
@@ -102,6 +106,9 @@ char	*ft_strndup(const char *s, size_t n);
 int		ft_isspace(int c);
 char	**copy_2d_map(char **map);
 int		convert_color(char *str);
-double	distance(double x, double y);
+float	distance(float x, float y);
+
+/* UTILS MATH */
+float	fix_angle(float angle);
 
 #endif

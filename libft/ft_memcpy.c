@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 15:15:32 by hbutt             #+#    #+#             */
-/*   Updated: 2024/04/17 16:07:01 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/07 13:25:11 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 int	main(void)
 {
-	const double src[5] = {4.2,2.5,2.3,2.4,2.8};
-	double dest[5];
+	const float src[5] = {4.2,2.5,2.3,2.4,2.8};
+	float dest[5];
 
 	ft_memcpy(dest,src,sizeof(src));
 	for (int i = 0; i < 5; i++)
