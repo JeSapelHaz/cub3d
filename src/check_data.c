@@ -61,8 +61,8 @@ static int	check_map_chars(t_data *data, int *nbr_players)
 			c = data->mapinfo.map[i][j];
 			if (c == 'N' || c == 'E' || c == 'W' || c == 'S')
 			{
-				data->player.pos_x = (float)j;
-				data->player.pos_y = (float)i;
+				data->player.pos_x = j;
+				data->player.pos_y = i;
 				set_player_dir(data, c);
 				(*nbr_players)++;
 			}

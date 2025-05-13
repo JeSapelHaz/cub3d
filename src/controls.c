@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/07 17:02:38 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/13 23:57:31 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 static void	recharge_image(t_data *data)
 {
-	clear_image(data);
-	draw_map(data);
-	draw_player(data);
-	fov(data);
+	clear_image(data->img_addr, data->size_line, data->bpp, 0x00000000);
+	// draw_map(data);
+	// draw_player(data);
+	// draw_vision(data);
+	draw_raycasting(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }
 
@@ -26,8 +27,8 @@ static int	in_map(t_data *data, float x, float y)
 	int	i;
 	int	j;
 
-	i = x + 0.5;
-	j = y + 0.5;
+	i = x;
+	j = y;
 	if (j >= data->mapinfo.map_height || j < 0
 		|| i >= (int)ft_strlen(data->mapinfo.map[j]) || i < 0
 		|| data->mapinfo.map[j][i] == '1')
@@ -50,9 +51,9 @@ static void	change_coord(t_player *player, float next_x, float next_y,
 	else if ((int)player->pos_x > (int)ft_strlen(player->data->mapinfo.map[(int)next_y])
 		- 1)
 		player->pos_x = ft_strlen(player->data->mapinfo.map[(int)next_y]);
-	fix_angle(player->angle);
-	printf("x: %f, y: %f, angle: %f\n", player->pos_x, player->pos_y,
-		player->angle);
+	player->angle = fix_angle(player->angle);
+	// printf("x: %f, y: %f, angle: %f\n", player->pos_x, player->pos_y,
+	// 	player->angle);
 }
 
 int	actions(t_data *data)
@@ -65,32 +66,34 @@ int	actions(t_data *data)
 
 	cos_speed = cos(data->player.angle) * SPEED;
 	sin_speed = sin(data->player.angle) * SPEED;
+	printf("cos: %f sin: %f\n", cos_speed, sin_speed);
+	printf("angle: %f\n", data->player.angle);
 	next_x = data->player.pos_x;
 	next_y = data->player.pos_y;
 	next_angle = data->player.angle;
 	if (data->keyinfo.press_a && in_map(data, next_x + sin_speed, next_y
 			- cos_speed))
 	{
-		next_x += sin_speed;
+		next_x -= sin_speed;
 		next_y -= cos_speed;
 	}
 	if (data->keyinfo.press_d && in_map(data, next_x - sin_speed, next_y
 			+ cos_speed))
 	{
-		next_x -= sin_speed;
+		next_x += sin_speed;
 		next_y += cos_speed;
 	}
 	if (data->keyinfo.press_w && in_map(data, next_x + cos_speed, next_y
-			+ sin_speed))
+			- sin_speed))
 	{
 		next_x += cos_speed;
-		next_y += sin_speed;
+		next_y -= sin_speed;
 	}
 	if (data->keyinfo.press_s && in_map(data, next_x - cos_speed, next_y
 			- sin_speed))
 	{
 		next_x -= cos_speed;
-		next_y -= sin_speed;
+		next_y += sin_speed;
 	}
 	if (data->keyinfo.press_left)
 		next_angle -= (float)ROTATE_SPEED;
@@ -98,10 +101,8 @@ int	actions(t_data *data)
 		next_angle += (float)ROTATE_SPEED;
 	if (next_x != data->player.pos_x || next_y != data->player.pos_y
 		|| next_angle != data->player.angle)
-	{
 		change_coord(&data->player, next_x, next_y, next_angle);
-		recharge_image(data);
-	}
+	recharge_image(data);
 	return (0);
 }
 

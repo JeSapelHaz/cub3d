@@ -2,9 +2,9 @@
 
 float	fix_angle(float angle)
 {
-	if (angle < 0)
-		angle += 2 * PI;
-	else if (angle >= 2 * PI)
-		angle -= 2 * PI;
+	if (angle < 0.0f)
+		angle += 2.0f * PI;
+	else if (angle >= 2.0f * PI)
+		angle -= 2.0f * PI;
 	return (angle);
 }

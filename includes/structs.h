@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:19:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/07 13:25:11 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/13 03:42:35 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,24 @@ typedef struct s_keyinfo
 	int					press_right;
 }						t_keyinfo;
 
+typedef struct s_ray
+{
+	float				line_height;
+	float				distance;
+	float				ray_angle;
+	float				ray_angle_step;
+	float				horz_x;
+	float				horz_y;
+	float				vert_x;
+	float				vert_y;
+	float				horz_distance;
+	float				vert_distance;
+	float				xo;
+	float				yo;
+	float				x_step;
+	float				y_step;
+}						t_ray;
+
 typedef struct s_data
 {
 	void				*mlx;
@@ -84,6 +102,7 @@ typedef struct s_data
 	t_player			player;
 	t_mapinfo			mapinfo;
 	t_keyinfo			keyinfo;
+	t_ray				ray;
 }						t_data;
 
 #endif

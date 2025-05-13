@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/07 16:28:43 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/13 23:43:40 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@
 # define PI 3.14159265358979323846
 # define degToRad(angleInDegrees) ((angleInDegrees)*PI / 180.0)
 # define radToDeg(angleInRadians) ((angleInRadians)*180.0 / PI)
+# define pixelToUnits(pixel) ceils(pixel / TILE_SIZE)
+# define unitsToPixel(units) (units * TILE_SIZE)
 
 // player direction
-# define N (3 * PI) / 2
-# define E 2 * PI
-# define S PI / 2
-# define W PI
+# define N PI / 2.0
+# define S (3.0 * PI) / 2.0
+# define W 2.0 * PI
+# define E PI
 
 // movement speed
 # define SPEED 0.20
@@ -58,7 +60,7 @@
 # define SCREEN_WIDTH 1920
 # define SCREEN_HEIGHT 1080
 
-# define TILE_SIZE 32
+# define TILE_SIZE 32.0f
 # define FOV 60
 # define RAD_DEG 0.0174532925
 
@@ -83,13 +85,16 @@ int		actions(t_data *data);
 int		key_press(int key, t_data *data);
 int		key_release(int key, t_data *data);
 
+/* DRAW RAYCASTING*/
+void	draw_raycasting(t_data *data);
+
 /* DRAW MAP*/
 void	draw_player(t_data *data);
 void	draw_map(t_data *data);
 void	fov(t_data *data);
 
 /* DRAW */
-void	clear_image(t_data *data);
+void	clear_image(char *img_addr, int size_line, int bpp, int color);
 void	put_pixel_to_image(t_data *data, int pixel_x, int pixel_y, int color);
 
 /* DEBUG */
