@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/13 23:57:31 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/14 01:16:12 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	in_map(t_data *data, float x, float y)
 	int	i;
 	int	j;
 
-	i = x;
-	j = y;
+	i = (x);
+	j = (y);
 	if (j >= data->mapinfo.map_height || j < 0
 		|| i >= (int)ft_strlen(data->mapinfo.map[j]) || i < 0
 		|| data->mapinfo.map[j][i] == '1')
@@ -50,7 +50,7 @@ static void	change_coord(t_player *player, float next_x, float next_y,
 		player->pos_x = 1;
 	else if ((int)player->pos_x > (int)ft_strlen(player->data->mapinfo.map[(int)next_y])
 		- 1)
-		player->pos_x = ft_strlen(player->data->mapinfo.map[(int)next_y]);
+		player->pos_x = ft_strlen(player->data->mapinfo.map[(int)next_y] - 1);
 	player->angle = fix_angle(player->angle);
 	// printf("x: %f, y: %f, angle: %f\n", player->pos_x, player->pos_y,
 	// 	player->angle);
@@ -66,22 +66,22 @@ int	actions(t_data *data)
 
 	cos_speed = cos(data->player.angle) * SPEED;
 	sin_speed = sin(data->player.angle) * SPEED;
-	printf("cos: %f sin: %f\n", cos_speed, sin_speed);
-	printf("angle: %f\n", data->player.angle);
+	// printf("cos: %f sin: %f\n", cos_speed, sin_speed);
+	// printf("angle: %f\n", data->player.angle);
 	next_x = data->player.pos_x;
 	next_y = data->player.pos_y;
 	next_angle = data->player.angle;
 	if (data->keyinfo.press_a && in_map(data, next_x + sin_speed, next_y
-			- cos_speed))
-	{
-		next_x -= sin_speed;
-		next_y -= cos_speed;
-	}
-	if (data->keyinfo.press_d && in_map(data, next_x - sin_speed, next_y
 			+ cos_speed))
 	{
 		next_x += sin_speed;
 		next_y += cos_speed;
+	}
+	if (data->keyinfo.press_d && in_map(data, next_x - sin_speed, next_y
+			- cos_speed))
+	{
+		next_x -= sin_speed;
+		next_y -= cos_speed;
 	}
 	if (data->keyinfo.press_w && in_map(data, next_x + cos_speed, next_y
 			- sin_speed))
@@ -90,7 +90,7 @@ int	actions(t_data *data)
 		next_y -= sin_speed;
 	}
 	if (data->keyinfo.press_s && in_map(data, next_x - cos_speed, next_y
-			- sin_speed))
+			+ sin_speed))
 	{
 		next_x -= cos_speed;
 		next_y += sin_speed;

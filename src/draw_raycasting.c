@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/13 20:35:22 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/14 01:14:18 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void	draw_column(t_data *data, int x)
 			put_pixel_to_image(data, x, y, BLUE); // wall texture here
 		else
 			put_pixel_to_image(data, x, y, data->mapinfo.floor_color);
-		;
 	}
 }
 
@@ -104,10 +103,11 @@ void	set_horz_variables(t_ray *ray_info)
 		tan = tanf(ray_info->ray_angle + 0.0001f);
 	cotan = 1.0 / tan;
 	sin = sinf(ray_info->ray_angle);
+	if (sin > -0.0001f && sin < 0.0001f)
+		sin = sinf(ray_info->ray_angle + 0.0001f);
 	if (sin >= 0.0001f) // haut
 	{
-		ray_info->horz_y = floorf(ray_info->yo) - 0.001f;
-		printf("horz_y: %f\n", ray_info->horz_y);
+		ray_info->horz_y = floorf(ray_info->yo) - 0.0001f;
 		ray_info->horz_x = (ray_info->yo - ray_info->horz_y) * cotan
 			+ ray_info->xo;
 		ray_info->y_step = -1.0;
@@ -116,7 +116,6 @@ void	set_horz_variables(t_ray *ray_info)
 	else if (sin < -0.0001f) // bas
 	{
 		ray_info->horz_y = ceilf(ray_info->yo);
-		printf("horz_y: %f\n", ray_info->horz_y);
 		ray_info->horz_x = (ray_info->yo - ray_info->horz_y) * cotan
 			+ ray_info->xo;
 		ray_info->y_step = 1.0;
@@ -131,10 +130,11 @@ void	set_vert_variables(t_ray *ray_info)
 
 	tan = tanf(ray_info->ray_angle);
 	cos = cosf(ray_info->ray_angle);
+	if (cos > -0.0001f && cos < 0.0001f)
+		cos = cosf(ray_info->ray_angle + 0.0001f);
 	if (cos >= 0.0001f) // droite
 	{
 		ray_info->vert_x = ceilf(ray_info->xo);
-		printf("vert_x: %f\n", ray_info->vert_x);
 		ray_info->vert_y = (ray_info->xo - ray_info->vert_x) * tan
 			+ ray_info->yo;
 		ray_info->x_step = 1.0;
@@ -142,8 +142,7 @@ void	set_vert_variables(t_ray *ray_info)
 	}
 	else if (cos < -0.0001f) // gauche
 	{
-		ray_info->vert_x = floorf(ray_info->xo) - 0.001f;
-		printf("vert_x: %f\n", ray_info->vert_x);
+		ray_info->vert_x = floorf(ray_info->xo) - 0.0001f;
 		ray_info->vert_y = (ray_info->xo - ray_info->vert_x) * tan
 			+ ray_info->yo;
 		ray_info->x_step = -1.0;
@@ -177,9 +176,9 @@ float	calc_vert_distance(t_data *data)
 	ray_info = &data->ray;
 	set_vert_variables(ray_info);
 	while (((int)ray_info->vert_y < data->mapinfo.map_height)
-		&& ((int)ray_info->vert_y >= 0
+		&& ((int)ray_info->vert_y > 0
 			&& ((int)ray_info->vert_x) < (int)ft_strlen(data->mapinfo.map[(int)ray_info->vert_y]))
-		&& ((int)ray_info->vert_x >= 0
+		&& ((int)ray_info->vert_x > 0
 			&& (data->mapinfo.map[(int)ray_info->vert_y][(int)ray_info->vert_x] != '1')))
 	{
 		ray_info->vert_x += ray_info->x_step;

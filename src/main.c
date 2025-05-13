@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/12 16:41:56 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/14 01:07:35 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	main(int ac, char **av)
 	// draw_map(&data);
 	// draw_player(&data);
 	// fov(&data);
+	data.player.pos_x += 0.5f;
+	data.player.pos_y += 0.5f;
 	clear_image(data.img_addr, data.size_line, data.bpp,
 		data.mapinfo.floor_color);
 	draw_raycasting(&data);
