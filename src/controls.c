@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 16:28:32 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 19:36:42 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static void	recharge_image(t_data *data)
 {
 	clear_image(data->img_addr, data->size_line, data->bpp, 0x00000000);
-	// draw_map(data);
-	// draw_player(data);
-	// draw_vision(data);
-	draw_raycasting(data);
+	draw_map(data);
+	draw_player(data);
+	// fov(data);
+	// draw_raycasting(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }
 

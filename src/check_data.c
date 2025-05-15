@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 17:58:28 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 20:16:21 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	check_paths(t_data *data)
 
 	names[0] = "Problem path north";
 	names[1] = "Problem path south";
-	names[2] = "Problem path west";
-	names[3] = "Problem path east";
+	names[2] = "Problem path east";
+	names[3] = "Problem path west";
 	i = 0;
 	while (i < 4)
 	{

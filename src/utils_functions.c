@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:12:56 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/07 13:25:11 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/15 20:26:52 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,3 +97,20 @@ float	distance(float x, float y)
 {
 	return (sqrt((x * x) + (y * y)));
 }
+int	count_trailing_spaces(const char *str)
+{
+	int	len;
+	int	count;
+
+	if (!str)
+		return (0);
+	len = ft_strlen(str) - 1;
+	count = 0;
+	while (len >= 0 && str[len] == ' ')
+	{
+		count++;
+		len--;
+	}
+	return (count);
+}
+

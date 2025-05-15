@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 17:32:51 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 20:27:00 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int		ft_isspace(int c);
 char	**copy_2d_map(char **map);
 int		convert_color(char *str);
 float	distance(float x, float y);
+int	count_trailing_spaces(const char *str);
 
 /* UTILS MATH */
 float	fix_angle(float angle);
