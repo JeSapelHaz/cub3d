@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:26:49 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/12 13:08:21 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 12:03:57 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_data(t_data *data)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	if (!data || !data->mapinfo.file)
@@ -30,10 +30,11 @@ void	free_data(t_data *data)
 		free(data->mapinfo.map[i]);
 		i++;
 	}
-	free(data->mapinfo.east_path);
-	free(data->mapinfo.north_path);
-	free(data->mapinfo.west_path);
-	free(data->mapinfo.south_path);
+	free(data->mapinfo.textures[EAST].path);
+	free(data->mapinfo.textures[NORTH].path);
+	free(data->mapinfo.textures[WEST].path);
+	free(data->mapinfo.textures[SOUTH].path);
+
 	free(data->mapinfo.file);
 	free(data->mapinfo.map);
 	data->mapinfo.file = NULL;

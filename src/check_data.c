@@ -29,22 +29,29 @@ static void	set_player_dir(t_data *data, char direction)
 /* Check if the paths are good*/
 static int	check_paths(t_data *data)
 {
-	int	fd;
+	int		fd;
+	int		i;
+	char	*names[4];
 
-	fd = open(data->mapinfo.north_path, O_RDONLY);
-	if (fd == -1)
-		return (perror("prob path north"), 1);
-	fd = open(data->mapinfo.south_path, O_RDONLY);
-	if (fd == -1)
-		return (perror("prob path south"), 1);
-	fd = open(data->mapinfo.west_path, O_RDONLY);
-	if (fd == -1)
-		return (perror("prob path west"), 1);
-	fd = open(data->mapinfo.east_path, O_RDONLY);
-	if (fd == -1)
-		return (perror("prob path east"), 1);
-	return (close(fd), 0);
+	names[0] = "north";
+	names[1] = "south";
+	names[2] = "west";
+	names[3] = "east";
+	i = 0;
+	while (i < 4)
+	{
+		fd = open(data->mapinfo.textures[i].path, O_RDONLY);
+		if (fd == -1)
+		{
+			perror(names[i]);
+			return (1);
+		}
+		close(fd);
+		i++;
+	}
+	return (0);
 }
+
 
 static int	check_map_chars(t_data *data, int *nbr_players)
 {
