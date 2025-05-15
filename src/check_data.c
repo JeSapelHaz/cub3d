@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 20:16:21 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 23:19:28 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ static int	check_paths(t_data *data)
 	}
 	return (0);
 }
-
-
 
 static int	check_rgb(t_data *data)
 {

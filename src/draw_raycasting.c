@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 18:02:04 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 23:19:40 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ void	draw_column(t_data *data, int x)
 	wall_start = roundf(((float)SCREEN_HEIGHT / 2.0f) - (wall_height / 2.0f));
 	wall_end = roundf(((float)SCREEN_HEIGHT / 2.0f) + (wall_height / 2.0f));
 	if (wall_start < 0)
-	wall_start = 0;
+		wall_start = 0;
 	if (wall_end > SCREEN_HEIGHT)
-	wall_end = SCREEN_HEIGHT;
+		wall_end = SCREEN_HEIGHT;
 	y = -1;
 	//
 	step = 1.0 * texture->height / wall_height;

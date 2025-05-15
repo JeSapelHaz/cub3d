@@ -6,42 +6,39 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:25:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 11:58:31 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 23:19:48 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void init_texture(t_mapinfo *mapinfo)
+static void	init_texture(t_mapinfo *mapinfo)
 {
-    mapinfo->textures[NORTH].img = NULL;
-    mapinfo->textures[SOUTH].img = NULL;
-    mapinfo->textures[EAST].img = NULL;
-    mapinfo->textures[WEST].img = NULL;
-
-    mapinfo->textures[NORTH].img_addr = NULL;
-    mapinfo->textures[SOUTH].img_addr = NULL;
-    mapinfo->textures[EAST].img_addr = NULL;
-    mapinfo->textures[WEST].img_addr = NULL;
+	mapinfo->textures[NORTH].img = NULL;
+	mapinfo->textures[SOUTH].img = NULL;
+	mapinfo->textures[EAST].img = NULL;
+	mapinfo->textures[WEST].img = NULL;
+	mapinfo->textures[NORTH].img_addr = NULL;
+	mapinfo->textures[SOUTH].img_addr = NULL;
+	mapinfo->textures[EAST].img_addr = NULL;
+	mapinfo->textures[WEST].img_addr = NULL;
 }
 
-static void init_mapinfo(t_mapinfo *mapinfo)
+static void	init_mapinfo(t_mapinfo *mapinfo)
 {
-    mapinfo->ceiling = 0;
-    mapinfo->ceiling_color = BLUE;
-    mapinfo->floor = 0;
-    mapinfo->floor_color = GRAY;
-
-    mapinfo->textures[NORTH].path = 0;
-    mapinfo->textures[SOUTH].path = 0;
-    mapinfo->textures[EAST].path = 0;
-    mapinfo->textures[WEST].path = 0;
-
-    mapinfo->map_height = 0;
-    mapinfo->file = NULL;
-    mapinfo->map = NULL;
-    mapinfo->copy_map = NULL;
-    mapinfo->map_width = 0;
+	mapinfo->ceiling = 0;
+	mapinfo->ceiling_color = BLUE;
+	mapinfo->floor = 0;
+	mapinfo->floor_color = GRAY;
+	mapinfo->textures[NORTH].path = 0;
+	mapinfo->textures[SOUTH].path = 0;
+	mapinfo->textures[EAST].path = 0;
+	mapinfo->textures[WEST].path = 0;
+	mapinfo->map_height = 0;
+	mapinfo->file = NULL;
+	mapinfo->map = NULL;
+	mapinfo->copy_map = NULL;
+	mapinfo->map_width = 0;
 }
 
 static void	init_player(t_player *player, t_data *data)

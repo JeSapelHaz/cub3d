@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:26:49 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 16:31:23 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 23:20:03 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static void	free_file_and_map(t_mapinfo *mapinfo)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	if (mapinfo->file)
 	{
 		while (mapinfo->file[i])
@@ -56,7 +57,7 @@ static void	free_textures_paths(t_mapinfo *mapinfo)
 static void	destroy_images(t_data *data)
 {
 	if (!data->mlx)
-		return;
+		return ;
 	if (data->mapinfo.textures[NORTH].img)
 		mlx_destroy_image(data->mlx, data->mapinfo.textures[NORTH].img);
 	if (data->mapinfo.textures[SOUTH].img)
@@ -83,10 +84,9 @@ static void	destroy_window_and_display(t_data *data)
 void	free_data(t_data *data)
 {
 	if (!data)
-		return;
+		return ;
 	destroy_images(data);
 	destroy_window_and_display(data);
 	free_file_and_map(&data->mapinfo);
 	free_textures_paths(&data->mapinfo);
 }
-

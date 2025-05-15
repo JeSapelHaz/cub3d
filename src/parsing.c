@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:03:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 16:36:16 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 23:19:52 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	fill_file(char *path, t_data *data)
 
 int	parse_data(char *path, t_data *data)
 {
-	int	line_count;
+	int line_count;
 
 	line_count = get_line_count(path);
 	data->mapinfo.file = ft_calloc(line_count + 1, sizeof(char *));

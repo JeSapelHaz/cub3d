@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:12:56 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 20:44:36 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 23:19:57 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,3 @@ int	count_trailing_spaces(const char *str)
 	}
 	return (count);
 }
-
