@@ -6,11 +6,21 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 12:16:09 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 18:54:30 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+static int	skip_spaces(const char *str)
+{
+	int	i;
+
+	i = 2;
+	while (str[i] && str[i] == ' ')
+		i++;
+	return (i);
+}
 
 static int	no_line(char *line)
 {
@@ -44,28 +54,41 @@ static void	take_rgb(char **file, int i, t_data *data, int *nbr_paths)
 
 static void	take_paths(char **file, int i, t_data *data, int *nbr_paths)
 {
+	int		j;
+	char	*trimmed;
+
+	j = 0;
+	trimmed = ft_strtrim(file[i], " ");
+	if (!trimmed)
+		return ;
+	free(file[i]);
+	file[i] = trimmed;
 	if (file[i][0] == 'N' && file[i][1] == 'O')
 	{
-		data->mapinfo.textures[NORTH].path = ft_strndup(&file[i][3],
-				ft_strlen(file[i]) - 4);
+		j = skip_spaces(file[i]);
+		data->mapinfo.textures[NORTH].path = ft_strndup(&file[i][j],
+				ft_strlen(file[i]) - j - 1);
 		(*nbr_paths)++;
 	}
 	if (file[i][0] == 'S' && file[i][1] == 'O')
 	{
-		data->mapinfo.textures[SOUTH].path = ft_strndup(&file[i][3],
-				ft_strlen(file[i]) - 4);
+		j = skip_spaces(file[i]);
+		data->mapinfo.textures[SOUTH].path = ft_strndup(&file[i][j],
+				ft_strlen(file[i]) - j - 1);
 		(*nbr_paths)++;
 	}
 	if (file[i][0] == 'W' && file[i][1] == 'E')
 	{
-		data->mapinfo.textures[WEST].path = ft_strndup(&file[i][3],
-				ft_strlen(file[i]) - 4);
+		j = skip_spaces(file[i]);
+		data->mapinfo.textures[WEST].path = ft_strndup(&file[i][j],
+				ft_strlen(file[i]) - j - 1);
 		(*nbr_paths)++;
 	}
 	if (file[i][0] == 'E' && file[i][1] == 'A')
 	{
-		data->mapinfo.textures[EAST].path = ft_strndup(&file[i][3],
-				ft_strlen(file[i]) - 4);
+		j = skip_spaces(file[i]);
+		data->mapinfo.textures[EAST].path = ft_strndup(&file[i][j],
+				ft_strlen(file[i]) - j - 1);
 		(*nbr_paths)++;
 	}
 }

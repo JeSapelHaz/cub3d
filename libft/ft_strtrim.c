@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:13:29 by hbutt             #+#    #+#             */
-/*   Updated: 2024/04/19 15:28:58 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 18:50:06 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_null(void)
 	return (str);
 }
 
-/* supprime les la derniere et la premiere occurence de chaque carac dans set */
+/* supprime la derniere et la premiere occurence de chaque carac dans set */
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		start;

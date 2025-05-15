@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/13 23:43:40 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/15 17:32:51 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int		parse_data(char *path, t_data *data);
 int		take_info_file(char **file, t_data *data);
 int		check_data(t_data *data);
 
+int		check_map(t_data *data);
 void	back_track(t_data *data, int start_y, int start_x, int *flag);
 
 /* INIT MLX */
