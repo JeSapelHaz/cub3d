@@ -1,2 +1,0 @@
-- gerer les espaces, tabs etc dans le fichier
-- changer le open avec les textures par la fonction mlx qui test deja les texture et renvoie nul si il y a une erreur

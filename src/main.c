@@ -6,13 +6,13 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 16:12:19 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 17:00:39 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int exit_propre(t_data *data)
+static int clean_exit(t_data *data)
 {
 	free_data(data);
 	exit(0);
@@ -34,13 +34,13 @@ int	main(int ac, char **av)
 	data.player.pos_x += 0.5f;
 	data.player.pos_y += 0.5f;
 	clear_image(data.img_addr, data.size_line, data.bpp,
-		data.mapinfo.floor_color);
+	data.mapinfo.floor_color);
 	draw_raycasting(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
-	mlx_hook(data.win, 17, 0, exit_propre, 0);
+	mlx_hook(data.win, 17, 0, clean_exit, &data);
 	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
 	mlx_hook(data.win, 3, 1L << 1, key_release, &data);
 	mlx_loop_hook(data.mlx, actions, &data);
 	mlx_loop(data.mlx);
-	free_data(&data);
+	clean_exit(&data);
 }
