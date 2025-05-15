@@ -3,115 +3,92 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+         #
+#    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/05/07 16:39:15 by hdelbecq         ###   ########.fr        #
+#    Updated: 2025/05/15 11:33:06 by hbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Colors
-RED=\033[0;31m
-GREEN=\033[0;32m
-YELLOW=\033[0;33m
-BLUE=\033[0;34m
-MAGENTA=\033[0;35m
-CYAN=\033[0;36m
-RESET=\033[0m
+# ANSI Colors
+ESC     = \033
+RED     = $(ESC)[0;31m
+GREEN   = $(ESC)[0;32m
+YELLOW  = $(ESC)[0;33m
+BLUE    = $(ESC)[0;34m
+MAGENTA = $(ESC)[0;35m
+CYAN    = $(ESC)[0;36m
+RESET   = $(ESC)[0m
 
-# Program file name
-NAME	= cub3D
-
-# Compiler and compilation flags
-CC		= cc
-CFLAGS	= -Werror -Wextra -Wall -g3 
+NAME        = cub3D
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror -g3
 
 # Libft
-LIBFT_PATH	= libft/
-LIBFT_NAME	= libft.a
-LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
+LIBFT_PATH  = libft/
+LIBFT_NAME  = libft.a
+LIBFT       = $(LIBFT_PATH)$(LIBFT_NAME)
 
 # MinilibX
-MLX_PATH	= minilibx-linux/
-MLX_NAME	= libmlx_Linux.a
-MLX			= $(MLX_PATH)$(MLX_NAME)
-MLX_FLAGS	= -L$(MLX_PATH) -lmlx -lXext -lX11 -lm
+MLX_PATH    = minilibx-linux/
+MLX_NAME    = libmlx_Linux.a
+MLX         = $(MLX_PATH)$(MLX_NAME)
+MLX_FLAGS   = -L$(MLX_PATH) -lmlx -lXext -lX11 -lm
 
 # Sources
 SRC_PATH = ./src/
-SRC		= main.c \
-		check_args.c \
-		parsing.c \
-		utils.c \
-		init_data.c \
-		debug.c \
-		take_info_file.c \
-		check_data.c \
-		utils_functions.c \
-		utils_math.c \
-		init_mlx.c \
-		check_map_validity.c \
-		controls.c \
-		draw_raycasting.c \
-		draw_map.c \
-		draw_textures.c 
-		  
-SRCS	= $(addprefix $(SRC_PATH), $(SRC))
+SRC = main.c check_args.c parsing.c utils.c init_data.c debug.c \
+      take_info_file.c check_data.c utils_functions.c utils_math.c \
+      init_mlx.c check_map_validity.c controls.c draw_raycasting.c \
+      draw_map.c draw_textures.c
+
+SRCS = $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects
-OBJ_PATH	= ./objects/
-OBJ			= $(SRC:.c=.o)
-OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))
+OBJ_PATH = ./objects/
+OBJ = $(SRC:.c=.o)
+OBJS = $(addprefix $(OBJ_PATH), $(OBJ))
 
 # Includes
-INC			= -I ./includes/\
-			  -I ./libft/\
-			  -I $(MLX_PATH)
+INC = -I ./includes/ -I ./libft/ -I $(MLX_PATH)
 
-# Main rule
+# Build rules
+
 all: $(OBJ_PATH) $(LIBFT) $(MLX) $(NAME)
-	@echo "$(GREEN)✔ Build complete!$(RESET)"
+	@echo -e "$(GREEN)✔ Build complete!$(RESET)"
 
-# Objects directory rule
 $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
 
-# Objects rule
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@echo "$(CYAN)Compiling: $<$(RESET)"
+	@echo -e "$(CYAN)Compiling: $<$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
-# Project file rule
 $(NAME): $(OBJS)
-	@echo "$(YELLOW)🔧 Linking $(NAME)...$(RESET)"
+	@echo -e "$(YELLOW)🔧 Linking $(NAME)...$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(INC) $(LIBFT) $(MLX_FLAGS)
-	@echo "$(GREEN)✔ Executable ready!$(RESET)"
+	@echo -e "$(GREEN)✔ Executable ready!$(RESET)"
 
-# Libft rule
 $(LIBFT):
-	@echo "$(MAGENTA)📦 Building libft...$(RESET)"
+	@echo -e "$(MAGENTA)📦 Building libft...$(RESET)"
 	@make -sC $(LIBFT_PATH)
 
-# MinilibX rule
 $(MLX):
-	@echo "$(MAGENTA)📦 Building MinilibX...$(RESET)"
-	@make -sC $(MLX_PATH) 2>/dev/null 1>/dev/null
+	@echo -e "$(MAGENTA)📦 Building MinilibX...$(RESET)"
+	@make -sC $(MLX_PATH) >/dev/null 2>&1
 
-# Clean up build files rule
 clean:
-	@echo "$(RED)🧹 Cleaning object files...$(RESET)"
+	@echo -e "$(RED)🧹 Cleaning object files...$(RESET)"
 	@rm -rf $(OBJ_PATH)
 	@make -sC $(LIBFT_PATH) clean
-	@make -sC $(MLX_PATH) clean 2>/dev/null 1>/dev/null
+	@make -sC $(MLX_PATH) clean >/dev/null 2>&1
 
-# Remove program executable
 fclean: clean
-	@echo "$(RED)🗑️ Removing executable...$(RESET)"
+	@echo -e "$(RED)🗑️  Removing executable...$(RESET)"
 	@rm -f $(NAME)
 	@make -sC $(LIBFT_PATH) fclean
-	@make -sC $(MLX_PATH) clean 2>/dev/null 1>/dev/null
+	@make -sC $(MLX_PATH) clean >/dev/null 2>&1
 
-# Clean + remove executable
 re: fclean all
 
-.PHONY: all re clean fclean
+.PHONY: all clean fclean re
