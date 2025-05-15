@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 20:29:52 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 20:45:14 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	take_paths(char **file, int i, t_data *data, int *nbr_paths)
 		data->mapinfo.textures[WEST].path = ft_strndup(&file[i][j],
 				ft_strlen(file[i]) - j - count_trailing_spaces(file[i]));
 		(*nbr_paths)++;
-		printf("<%s>", data->mapinfo.textures[WEST].path);
+		printf("<%s> %d", data->mapinfo.textures[WEST].path, count_trailing_spaces(file[i]) );
 	}
 	if (file[i][0] == 'E' && file[i][1] == 'A')
 	{

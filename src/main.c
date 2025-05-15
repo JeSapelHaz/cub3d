@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 19:33:30 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 20:45:31 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int ac, char **av)
 	data.player.pos_y += 0.5f;
 	clear_image(data.img_addr, data.size_line, data.bpp,
 	data.mapinfo.floor_color);
-	// draw_raycasting(&data);
+	draw_raycasting(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_hook(data.win, 17, 0, clean_exit, &data);
 	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
