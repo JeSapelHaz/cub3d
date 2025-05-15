@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 13:27:03 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 14:43:03 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ int	main(int ac, char **av)
 	if (check_data(&data))
 		return (free_data(&data), 1);
 	init_mlx(&data);
-	// draw_map(&data);
-	// draw_player(&data);
-	// fov(&data);
 	data.player.pos_x += 0.5f;
 	data.player.pos_y += 0.5f;
 	clear_image(data.img_addr, data.size_line, data.bpp,
