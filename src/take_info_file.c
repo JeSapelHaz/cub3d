@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 12:02:22 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 12:16:09 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,29 @@ static void	take_paths(char **file, int i, t_data *data, int *nbr_paths)
 {
 	if (file[i][0] == 'N' && file[i][1] == 'O')
 	{
-		data->mapinfo.textures[NORTH].path = ft_strndup(&file[i][3], ft_strlen(file[i]) - 4);
+		data->mapinfo.textures[NORTH].path = ft_strndup(&file[i][3],
+				ft_strlen(file[i]) - 4);
 		(*nbr_paths)++;
 	}
 	if (file[i][0] == 'S' && file[i][1] == 'O')
 	{
-		data->mapinfo.textures[SOUTH].path = ft_strndup(&file[i][3], ft_strlen(file[i]) - 4);
+		data->mapinfo.textures[SOUTH].path = ft_strndup(&file[i][3],
+				ft_strlen(file[i]) - 4);
 		(*nbr_paths)++;
 	}
 	if (file[i][0] == 'W' && file[i][1] == 'E')
 	{
-		data->mapinfo.textures[WEST].path = ft_strndup(&file[i][3], ft_strlen(file[i]) - 4);
+		data->mapinfo.textures[WEST].path = ft_strndup(&file[i][3],
+				ft_strlen(file[i]) - 4);
 		(*nbr_paths)++;
 	}
 	if (file[i][0] == 'E' && file[i][1] == 'A')
 	{
-		data->mapinfo.textures[EAST].path = ft_strndup(&file[i][3], ft_strlen(file[i]) - 4);
+		data->mapinfo.textures[EAST].path = ft_strndup(&file[i][3],
+				ft_strlen(file[i]) - 4);
 		(*nbr_paths)++;
 	}
 }
-
 
 static int	fill_map(char **file, int i, t_data *data)
 {
@@ -100,8 +103,8 @@ static int	fill_map(char **file, int i, t_data *data)
 
 int	take_info_file(char **file, t_data *data)
 {
-	int i;
-	int nbr_paths;
+	int	i;
+	int	nbr_paths;
 
 	nbr_paths = 0;
 	i = 0;

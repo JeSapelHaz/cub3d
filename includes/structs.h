@@ -6,16 +6,17 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:19:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 12:06:13 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/15 12:41:34 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
 # define NORTH 0
 # define SOUTH 1
-# define WEST 2
-# define EAST 3
+# define EAST 2
+# define WEST 3
 
 typedef struct s_data	t_data;
 
@@ -31,6 +32,13 @@ typedef struct s_texture
 	int					height;
 }						t_texture;
 
+// enum e_direction {
+//     NORTH = 0,
+//     SOUTH = 1,
+//     EAST = 2,
+//     WEST = 3
+// };
+
 typedef struct s_mapinfo
 {
 	char				**file;
@@ -42,7 +50,7 @@ typedef struct s_mapinfo
 	// char				*south_path;
 	// char				*east_path;
 	// char				*west_path;
-	char **paths_textures; //
+	// char 				**paths_textures; //
 	t_texture			textures[4];
 	// t_texture			texture_north;
 	// t_texture			texture_south;
