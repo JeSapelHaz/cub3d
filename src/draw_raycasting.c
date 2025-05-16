@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 16:02:20 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/16 16:45:27 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	clear_image(char *img_addr, int size_line, int bpp, int color)
 }
 
 // function to init parameters
-
 void	init_parameters(t_data *data)
 {
 	data->ray.ray_angle = data->player.angle - (degToRad(FOV) / 2.0f);
@@ -65,67 +64,60 @@ void	init_parameters(t_data *data)
 }
 
 // function to draw the draw raycasting
-
-void	draw_column(t_data *data, int x)
+void	draw_column(t_data *data, t_draw *draw)
 {
-	int			y;
-	float		wall_height;
-	int			wall_start;
-	int			wall_end;
-	int			tex_start_x;
-	int			tex_y;
-	float		tex_start_y;
-	float		step;
-	t_texture	*texture;
-
 	if (data->ray.horz_distance <= data->ray.vert_distance)
 	{
-		if (sinf(data->ray.ray_angle) > 0)
-			texture = &data->mapinfo.textures[NORTH];
+		if (sinf(data->ray.ray_angle) > 0.0f)
+			draw->texture = data->mapinfo.textures[NORTH];
 		else
-			texture = &data->mapinfo.textures[SOUTH];
-		tex_start_x = (int)(data->ray.horz_x * texture->width) & (texture->width
-				- 1);
+			draw->texture = data->mapinfo.textures[SOUTH];
+		draw->tex_start_x = (int)(data->ray.horz_x
+				* draw->texture.width) & (draw->texture.width - 1);
 	}
 	else
 	{
-		if (cosf(data->ray.ray_angle) > 0)
-			texture = &data->mapinfo.textures[EAST];
+		if (cosf(data->ray.ray_angle) > 0.0f)
+			draw->texture = data->mapinfo.textures[EAST];
 		else
-			texture = &data->mapinfo.textures[WEST];
-		tex_start_x = (int)(data->ray.vert_y * texture->width) & (texture->width
-				- 1);
+			draw->texture = data->mapinfo.textures[WEST];
+		draw->tex_start_x = (int)(data->ray.vert_y
+				* draw->texture.width) & (draw->texture.width - 1);
 	}
-	wall_height = ((float)SCREEN_HEIGHT / data->ray.distance);
-	wall_start = roundf(((float)SCREEN_HEIGHT / 2.0f) - (wall_height / 2.0f));
-	wall_end = roundf(((float)SCREEN_HEIGHT / 2.0f) + (wall_height / 2.0f));
-	if (wall_start < 0)
-		wall_start = 0;
-	if (wall_end > SCREEN_HEIGHT)
-		wall_end = SCREEN_HEIGHT;
-	y = -1;
-	//
-	step = 1.0 * texture->height / wall_height;
-	tex_start_y = (wall_start - SCREEN_HEIGHT / 2.0f + wall_height / 2.0f)
-		* step;
-	//
-	while (++y < SCREEN_HEIGHT)
+	draw->wall_height = ((float)SCREEN_HEIGHT / data->ray.distance);
+	draw->wall_start = roundf(((float)SCREEN_HEIGHT / 2.0f) - (draw->wall_height
+				/ 2.0f));
+	draw->wall_end = roundf(((float)SCREEN_HEIGHT / 2.0f) + (draw->wall_height
+				/ 2.0f));
+	if (draw->wall_start < 0)
+		draw->wall_start = 0;
+	if (draw->wall_end > SCREEN_HEIGHT)
+		draw->wall_end = SCREEN_HEIGHT;
+	draw->y = -1;
+	draw->step = (float)draw->texture.height / (float)draw->wall_height;
+	draw->tex_start_y = (draw->wall_start - SCREEN_HEIGHT / 2.0f
+			+ draw->wall_height / 2.0f) * draw->step;
+	while (++draw->y < SCREEN_HEIGHT)
 	{
-		if (y < wall_start)
-			put_pixel_to_image(data, x, y, data->mapinfo.ceiling_color);
-		else if (y >= wall_start && y < wall_end)
+		if (draw->y < draw->wall_start)
+			put_pixel_to_image(data, draw->x, draw->y,
+				data->mapinfo.ceiling_color);
+		else if (draw->y >= draw->wall_start && draw->y < draw->wall_end)
 		{
-			tex_y = (int)tex_start_y & (texture->height - 1);
-			tex_start_y += step;
-			put_pixel_to_image(data, x, y, *(int *)(texture->img_addr + (tex_y
-						* texture->size_line + tex_start_x
-						* (texture->bpp >> 3))));
+			draw->tex_y = (int)draw->tex_start_y & (draw->texture.height - 1);
+			draw->tex_start_y += draw->step;
+			put_pixel_to_image(data, draw->x, draw->y,
+				*(int *)(draw->texture.img_addr + (draw->tex_y
+						* draw->texture.size_line + draw->tex_start_x
+						* (draw->texture.bpp >> 3))));
 		}
 		else
-			put_pixel_to_image(data, x, y, data->mapinfo.floor_color);
+			put_pixel_to_image(data, draw->x, draw->y,
+				data->mapinfo.floor_color);
 	}
 }
 
+// sin pos => up sin / neg => down
 void	set_horz_variables(t_ray *ray_info)
 {
 	float	cotan;
@@ -135,11 +127,11 @@ void	set_horz_variables(t_ray *ray_info)
 	tan = tanf(ray_info->ray_angle);
 	if (tan > -0.0001f && tan < 0.0001f)
 		tan = tanf(ray_info->ray_angle + 0.0001f);
-	cotan = 1.0 / tan;
 	sin = sinf(ray_info->ray_angle);
 	if (sin > -0.0001f && sin < 0.0001f)
 		sin = sinf(ray_info->ray_angle + 0.0001f);
-	if (sin >= 0.0001f) // haut
+	cotan = 1.0 / tan;
+	if (sin >= 0.0001f)
 	{
 		ray_info->horz_y = floorf(ray_info->yo) - 0.0001f;
 		ray_info->horz_x = (ray_info->yo - ray_info->horz_y) * cotan
@@ -147,7 +139,7 @@ void	set_horz_variables(t_ray *ray_info)
 		ray_info->y_step = -1.0;
 		ray_info->x_step = 1.0 * cotan;
 	}
-	else if (sin < -0.0001f) // bas
+	else if (sin < -0.0001f)
 	{
 		ray_info->horz_y = ceilf(ray_info->yo);
 		ray_info->horz_x = (ray_info->yo - ray_info->horz_y) * cotan
@@ -156,7 +148,7 @@ void	set_horz_variables(t_ray *ray_info)
 		ray_info->x_step = -1.0 * cotan;
 	}
 }
-
+// cos pos => right cos / neg => left
 void	set_vert_variables(t_ray *ray_info)
 {
 	float	tan;
@@ -166,7 +158,7 @@ void	set_vert_variables(t_ray *ray_info)
 	cos = cosf(ray_info->ray_angle);
 	if (cos > -0.0001f && cos < 0.0001f)
 		cos = cosf(ray_info->ray_angle + 0.0001f);
-	if (cos >= 0.0001f) // droite
+	if (cos >= 0.0001f)
 	{
 		ray_info->vert_x = ceilf(ray_info->xo);
 		ray_info->vert_y = (ray_info->xo - ray_info->vert_x) * tan
@@ -174,7 +166,7 @@ void	set_vert_variables(t_ray *ray_info)
 		ray_info->x_step = 1.0;
 		ray_info->y_step = -1.0 * tan;
 	}
-	else if (cos < -0.0001f) // gauche
+	else if (cos < -0.0001f)
 	{
 		ray_info->vert_x = floorf(ray_info->xo) - 0.0001f;
 		ray_info->vert_y = (ray_info->xo - ray_info->vert_x) * tan
@@ -226,12 +218,12 @@ float	calc_vert_distance(t_data *data)
 void	draw_raycasting(t_data *data)
 {
 	t_ray	*ray_info;
-	int		x;
+	t_draw	draw;
 
-	x = -1;
+	draw.x = -1;
 	init_parameters(data);
 	ray_info = &data->ray;
-	while (++x < SCREEN_WIDTH)
+	while (++draw.x < SCREEN_WIDTH)
 	{
 		ray_info->horz_distance = calc_horz_distance(data);
 		ray_info->vert_distance = calc_vert_distance(data);
@@ -243,6 +235,6 @@ void	draw_raycasting(t_data *data)
 				* cosf(fix_angle(ray_info->ray_angle - data->player.angle));
 		ray_info->ray_angle = fix_angle(ray_info->ray_angle
 				+ ray_info->ray_angle_step);
-		draw_column(data, x);
+		draw_column(data, &draw);
 	}
 }

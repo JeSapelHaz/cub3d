@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:19:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 16:09:10 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/16 16:46:08 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,25 @@ typedef struct s_ray
 	float				yo;
 	float				x_step;
 	float				y_step;
+	float				tan;
+	float				cotan;
+	float				sin;
+	float				cos;
 }						t_ray;
+
+typedef struct s_draw
+{
+	int					x;
+	int					y;
+	int					wall_height;
+	int					wall_start;
+	int					wall_end;
+	int					tex_start_x;
+	float				tex_start_y;
+	int					tex_y;
+	float				step;
+	t_texture			texture;
+}						t_draw;
 
 typedef struct s_data
 {
