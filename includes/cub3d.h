@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 16:04:52 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/16 16:11:51 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int		convert_color(char *str);
 float	distance(float x, float y);
 int		count_trailing_spaces(const char *str);
 int		clean_exit(t_data *data);
+void	get_texture_data(t_texture *tex);
 
 /* UTILS MATH */
 float	fix_angle(float angle);
