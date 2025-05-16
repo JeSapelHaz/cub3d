@@ -1,4 +1,49 @@
-NORME : fonctions de 25 lignes, nombre d'args
+NORME : fonctions de 25 lignes, nombre d args
+_________
+file pb : 2 player dans deux map & /n qui traverse la map
+
+NO textures/wolfenstein/bluestone.xpm
+SO textures/wolfenstein/colorstone.xpm         
+WE textures/wolfenstein/mossy.xpm    
+EA textures/wolfenstein/redbrick.xpm
+
+C 255,0,0    
+F 0,255,0
+
+
+
+
+
+ 111
+1E0101
+111
+
+ 111
+1E0101
+111
+________
+
+file pb : caractere inconnu apres les textures
+
+NO textures/wolfenstein/bluestone.xpm
+SO textures/wolfenstein/colorstone.xpm         
+WE textures/wolfenstein/mossy.xpm    
+EA textures/wolfenstein/redbrick.xpm
+
+fezfeezf
+
+C 255,0,0    
+F 0,255,0
+
+
+
+
+
+ 111   11111 
+110101 100N1   
+111    11111
+
+  
 __________
 
 BONUS
