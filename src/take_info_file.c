@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 23:19:55 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 12:44:26 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,27 @@ static int	no_line(char *line)
 
 static void	take_rgb(char **file, int i, t_data *data, int *nbr_paths)
 {
+	int		j;
+	char	*trimmed;
+
+	j = 0;
+	trimmed = ft_strtrim(file[i], " ");
+	if (!trimmed)
+		return ;
+	free(file[i]);
+	file[i] = trimmed;
 	if (file[i][0] == 'C')
 	{
-		data->mapinfo.ceiling = ft_strndup(&file[i][2], ft_strlen(file[i]) - 3);
+		j = skip_spaces(file[i]);
+		data->mapinfo.ceiling = ft_strndup(&file[i][j], ft_strlen(file[i]) - j
+				- count_trailing_spaces(file[i]));
 		(*nbr_paths)++;
 	}
 	if (file[i][0] == 'F')
 	{
-		data->mapinfo.floor = ft_strndup(&file[i][2], ft_strlen(file[i]) - 3);
+		j = skip_spaces(file[i]);
+		data->mapinfo.floor = ft_strndup(&file[i][j], ft_strlen(file[i]) - j
+				- count_trailing_spaces(file[i]));
 		(*nbr_paths)++;
 	}
 }
@@ -85,8 +98,7 @@ static void	take_paths(char **file, int i, t_data *data, int *nbr_paths)
 		data->mapinfo.textures[WEST].path = ft_strndup(&file[i][j],
 				ft_strlen(file[i]) - j - count_trailing_spaces(file[i]));
 		(*nbr_paths)++;
-		printf("<%s> %d", data->mapinfo.textures[WEST].path,
-			count_trailing_spaces(file[i]));
+		printf("<%s>", data->mapinfo.textures[WEST].path);
 	}
 	if (file[i][0] == 'E' && file[i][1] == 'A')
 	{
