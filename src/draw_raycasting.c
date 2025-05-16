@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_raycasting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 23:19:40 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:02:20 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	draw_column(t_data *data, int x)
 	float		wall_height;
 	int			wall_start;
 	int			wall_end;
-	int			tex_x;
+	int			tex_start_x;
 	int			tex_y;
-	float		tex_pos;
+	float		tex_start_y;
 	float		step;
 	t_texture	*texture;
 
@@ -84,7 +84,8 @@ void	draw_column(t_data *data, int x)
 			texture = &data->mapinfo.textures[NORTH];
 		else
 			texture = &data->mapinfo.textures[SOUTH];
-		tex_x = (int)(data->ray.horz_x * texture->width) & (texture->width - 1);
+		tex_start_x = (int)(data->ray.horz_x * texture->width) & (texture->width
+				- 1);
 	}
 	else
 	{
@@ -92,7 +93,8 @@ void	draw_column(t_data *data, int x)
 			texture = &data->mapinfo.textures[EAST];
 		else
 			texture = &data->mapinfo.textures[WEST];
-		tex_x = (int)(data->ray.vert_y * texture->width) & (texture->width - 1);
+		tex_start_x = (int)(data->ray.vert_y * texture->width) & (texture->width
+				- 1);
 	}
 	wall_height = ((float)SCREEN_HEIGHT / data->ray.distance);
 	wall_start = roundf(((float)SCREEN_HEIGHT / 2.0f) - (wall_height / 2.0f));
@@ -104,7 +106,8 @@ void	draw_column(t_data *data, int x)
 	y = -1;
 	//
 	step = 1.0 * texture->height / wall_height;
-	tex_pos = (wall_start - SCREEN_HEIGHT / 2.0f + wall_height / 2.0f) * step;
+	tex_start_y = (wall_start - SCREEN_HEIGHT / 2.0f + wall_height / 2.0f)
+		* step;
 	//
 	while (++y < SCREEN_HEIGHT)
 	{
@@ -112,10 +115,11 @@ void	draw_column(t_data *data, int x)
 			put_pixel_to_image(data, x, y, data->mapinfo.ceiling_color);
 		else if (y >= wall_start && y < wall_end)
 		{
-			tex_y = (int)tex_pos & (texture->height - 1);
-			tex_pos += step;
+			tex_y = (int)tex_start_y & (texture->height - 1);
+			tex_start_y += step;
 			put_pixel_to_image(data, x, y, *(int *)(texture->img_addr + (tex_y
-						* texture->size_line + tex_x * (texture->bpp >> 3))));
+						* texture->size_line + tex_start_x
+						* (texture->bpp >> 3))));
 		}
 		else
 			put_pixel_to_image(data, x, y, data->mapinfo.floor_color);

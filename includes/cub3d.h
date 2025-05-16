@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 15:52:52 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:04:52 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <unistd.h>
+
+// texture path
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
 
 // math
 # define PI 3.14159265358979323846
@@ -114,8 +120,8 @@ int		ft_isspace(int c);
 char	**copy_2d_map(char **map);
 int		convert_color(char *str);
 float	distance(float x, float y);
-int	count_trailing_spaces(const char *str);
-int	clean_exit(t_data *data);
+int		count_trailing_spaces(const char *str);
+int		clean_exit(t_data *data);
 
 /* UTILS MATH */
 float	fix_angle(float angle);

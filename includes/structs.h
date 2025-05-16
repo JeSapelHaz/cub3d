@@ -3,20 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:19:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 12:41:34 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 15:08:52 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
-# define NORTH 0
-# define SOUTH 1
-# define EAST 2
-# define WEST 3
 
 typedef struct s_data	t_data;
 
