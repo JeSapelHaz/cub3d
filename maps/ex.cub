@@ -1,23 +1,9 @@
-
-
 NO                                                                          textures/wolfenstein/bluestone.xpm
-SO      textures/wolfenstein/colorstone.xpm
-
-C 255,0,0
-
-
-
-
-
-
-
-
+SO      textures/wolfenstein/colorstone.xpm             
+C 255,0,0    
 WE                          textures/wolfenstein/mossy.xpm    
-
 F 0,255,0
 EA textures/wolfenstein/redbrick.xpm
-
-
  11111111111
 1E00000000001
  11111111111    
