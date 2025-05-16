@@ -1,4 +1,4 @@
-NORME : attention aux quelques for, fonctions de 25 lignes, nombre d'args
+NORME : fonctions de 25 lignes, nombre d'args
 
 LEAKS : faire des tests avec des errors
 
