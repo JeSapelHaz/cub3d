@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 18:32:18 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/16 23:47:13 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,7 @@ void	select_texture(t_data *data, t_draw *draw);
 void	init_draw(t_data *data, t_draw *draw);
 
 /* DRAW MAP*/
-void	draw_player(t_data *data);
-void	draw_map(t_data *data);
-void	fov(t_data *data);
+void draw_2d(t_data *data);
 
 /* DRAW */
 void	clear_image(char *img_addr, int size_line, int bpp, int color);
@@ -141,9 +139,10 @@ void	set_vert_variables(t_ray *ray_info);
 /* UTILS DRAW */
 void	put_pixel_to_image(t_data *data, int pixel_x, int pixel_y, int color);
 void	clear_image(char *img_addr, int size_line, int bpp, int color);
-void	recharge_image(t_data *data);
+void	load_image(t_data *data);
 
 /* UTILS CONTROLS */
 int		in_map(t_data *data, float x, float y);
+int		is_pressed(t_data *data);
 
 #endif

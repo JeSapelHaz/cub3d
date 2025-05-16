@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:47:19 by hdelbecq          #+#    #+#             */
-/*   Updated: 2025/05/16 18:31:36 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/16 23:52:09 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,13 @@ int	in_map(t_data *data, float x, float y)
 		|| data->mapinfo.map[j][i] == '1')
 		return (0);
 	return (1);
+}
+
+int	is_pressed(t_data *data)
+{
+	if (data->keyinfo.press_a || data->keyinfo.press_w || data->keyinfo.press_s
+		|| data->keyinfo.press_d || data->keyinfo.press_left
+		|| data->keyinfo.press_right)
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:02:44 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 17:15:54 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/16 22:51:10 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	draw_column(t_data *data, t_draw *draw)
 {
 	select_texture(data, draw);
 	init_draw(data, draw);
-	while (++draw->y < SCREEN_HEIGHT)
+	while (++draw->y < draw->wall_end)
 	{
 		if (draw->y < draw->wall_start)
 			put_pixel_to_image(data, draw->x, draw->y,
@@ -31,9 +31,6 @@ void	draw_column(t_data *data, t_draw *draw)
 						* draw->texture.size_line + draw->tex_start_x
 						* (draw->texture.bpp >> 3))));
 		}
-		else
-			put_pixel_to_image(data, draw->x, draw->y,
-				data->mapinfo.floor_color);
 	}
 }
 
