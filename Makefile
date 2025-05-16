@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
+#    By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/05/16 15:23:47 by hbutt            ###   ########.fr        #
+#    Updated: 2025/05/16 17:47:49 by hdelbecq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,13 +42,11 @@ SRC_PATH = ./src/
 SRC		= main.c \
 		check_args.c \
 		parsing.c \
-		utils.c \
 		init_data.c \
+		init_data_2.c \
 		debug.c \
 		take_info_file.c \
 		check_data.c \
-		utils_functions.c \
-		utils_math.c \
 		init_mlx.c \
 		check_map_validity.c \
 		controls.c \
@@ -56,6 +54,11 @@ SRC		= main.c \
 		draw_map.c \
 		draw_textures.c \
 		check_map.c \
+		utils_functions.c \
+		utils_math.c \
+		utils_draw.c \
+		utils_controls.c \
+		utils.c \
 		utils_2.c
 		  
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))

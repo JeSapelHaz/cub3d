@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   take_info_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 14:58:53 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 17:25:36 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,11 +131,8 @@ static int	fill_map(char **file, int i, t_data *data)
 	j = 0;
 	while (file[i] && no_line(file[i]) == 0)
 		i++;
-	while (file[i] && no_line(file[i]) == 1)
-	{
-		i++;
+	while (file[i] && no_line(file[i]) == 1 && ++i)
 		j++;
-	}
 	data->mapinfo.map = malloc(sizeof(char *) * (j + 1));
 	if (!data->mapinfo.map)
 		return (1);
@@ -154,10 +151,11 @@ static int	fill_map(char **file, int i, t_data *data)
 	data->mapinfo.map_height = j;
 	return (0);
 }
+
 int	is_map_char(char c)
 {
-	return (c == '0' || c == '1' || c == 'N' ||
-			c == 'S' || c == 'E' || c == 'W' || c == ' ');
+	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
+		|| c == ' ');
 }
 
 int	is_start_of_map(char *line)
@@ -171,9 +169,8 @@ int	is_start_of_map(char *line)
 	{
 		if (is_map_char(line[i]))
 			has_map_char = 1;
-		else if (line[i] != '\t' && line[i] != '\n' &&
-				line[i] != '\r' && line[i] != '\v' &&
-				line[i] != '\f')
+		else if (line[i] != '\t' && line[i] != '\n' && line[i] != '\r'
+			&& line[i] != '\v' && line[i] != '\f')
 			return (0);
 		i++;
 	}
@@ -190,7 +187,6 @@ int	take_info_file(char **file, t_data *data)
 	while (file[i] && nbr_paths != 6 && !is_start_of_map(file[i]))
 	{
 		take_paths(file, i, data, &nbr_paths);
-		// printf("ok\n");
 		take_rgb(file, i, data, &nbr_paths);
 		i++;
 	}

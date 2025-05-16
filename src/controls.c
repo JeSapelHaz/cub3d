@@ -3,105 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 20:47:24 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 19:40:22 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void	recharge_image(t_data *data)
-{
-	clear_image(data->img_addr, data->size_line, data->bpp, 0x00000000);
-	// draw_map(data);
-	// draw_player(data);
-	// fov(data);
-	draw_raycasting(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-}
-
-static int	in_map(t_data *data, float x, float y)
-{
-	int	i;
-	int	j;
-
-	i = (x);
-	j = (y);
-	if (j >= data->mapinfo.map_height || j < 0
-		|| i >= (int)ft_strlen(data->mapinfo.map[j]) || i < 0
-		|| data->mapinfo.map[j][i] == '1')
-		return (0);
-	return (1);
-}
-
 static void	change_coord(t_player *player, float next_x, float next_y,
 		float next_angle)
 {
+	int	pos_x;
+	int	pos_y;
+
 	player->pos_x = next_x;
 	player->pos_y = next_y;
-	player->angle = next_angle;
-	if (player->pos_y < 1)
-		player->pos_y = 1;
-	else if ((int)player->pos_y > player->data->mapinfo.map_height - 1)
-		player->pos_y = player->data->mapinfo.map_height - 1;
-	if (player->pos_x < 1)
-		player->pos_x = 1;
-	else if ((int)player->pos_x > (int)ft_strlen(player->data->mapinfo.map[(int)next_y])
-		- 1)
-		player->pos_x = ft_strlen(player->data->mapinfo.map[(int)next_y] - 1);
-	player->angle = fix_angle(player->angle);
-	// printf("x: %f, y: %f, angle: %f\n", player->pos_x, player->pos_y,
-	// 	player->angle);
+	player->angle = fix_angle(next_angle);
+	pos_y = ceilf(player->pos_y);
+	pos_x = ceilf(player->pos_x);
+	if (player->data->mapinfo.map[pos_y][(int)player->pos_x] == '1'
+		&& (float)pos_y - player->pos_y < 0.3f)
+		player->pos_y = (float)pos_y - 0.3f;
+	if (player->data->mapinfo.map[(int)player->pos_y][pos_x] == '1'
+		&& (float)pos_x - player->pos_x < 0.3f)
+		player->pos_x = (float)pos_x - 0.3f;
+	pos_y = floorf(player->pos_y) - 1;
+	pos_x = floorf(player->pos_x) - 1;
+	if (player->data->mapinfo.map[pos_y][(int)player->pos_x] == '1'
+		&& player->pos_y - (float)pos_y < 1.3f)
+		player->pos_y = (float)pos_y + 1.3f;
+	if (player->data->mapinfo.map[(int)player->pos_y][pos_x] == '1'
+		&& player->pos_x - (float)pos_x < 1.3f)
+		player->pos_x = (float)pos_x + 1.3f;
+}
+
+void	movement_pressed(t_data *data, t_player *player, float cos_speed,
+		float sin_speed)
+{
+	if (data->keyinfo.press_a)
+	{
+		player->pos_x += sin_speed;
+		player->pos_y += cos_speed;
+	}
+	if (data->keyinfo.press_d)
+	{
+		player->pos_x -= sin_speed;
+		player->pos_y -= cos_speed;
+	}
+	if (data->keyinfo.press_w)
+	{
+		player->pos_x += cos_speed;
+		player->pos_y -= sin_speed;
+	}
+	if (data->keyinfo.press_s)
+	{
+		player->pos_x -= cos_speed;
+		player->pos_y += sin_speed;
+	}
+	if (data->keyinfo.press_left)
+		player->angle -= ROTATE_SPEED;
+	if (data->keyinfo.press_right)
+		player->angle += ROTATE_SPEED;
 }
 
 int	actions(t_data *data)
 {
-	float	next_x;
-	float	next_y;
-	float	next_angle;
-	float	cos_speed;
-	float	sin_speed;
+	float		cos_speed;
+	float		sin_speed;
+	t_player	*player;
 
-	cos_speed = cos(data->player.angle) * SPEED;
-	sin_speed = sin(data->player.angle) * SPEED;
-	// printf("cos: %f sin: %f\n", cos_speed, sin_speed);
-	// printf("angle: %f\n", data->player.angle);
-	next_x = data->player.pos_x;
-	next_y = data->player.pos_y;
-	next_angle = data->player.angle;
-	if (data->keyinfo.press_a && in_map(data, next_x + sin_speed, next_y
-			+ cos_speed))
-	{
-		next_x += sin_speed;
-		next_y += cos_speed;
-	}
-	if (data->keyinfo.press_d && in_map(data, next_x - sin_speed, next_y
-			- cos_speed))
-	{
-		next_x -= sin_speed;
-		next_y -= cos_speed;
-	}
-	if (data->keyinfo.press_w && in_map(data, next_x + cos_speed, next_y
-			- sin_speed))
-	{
-		next_x += cos_speed;
-		next_y -= sin_speed;
-	}
-	if (data->keyinfo.press_s && in_map(data, next_x - cos_speed, next_y
-			+ sin_speed))
-	{
-		next_x -= cos_speed;
-		next_y += sin_speed;
-	}
-	if (data->keyinfo.press_left)
-		next_angle -= (float)ROTATE_SPEED;
-	if (data->keyinfo.press_right)
-		next_angle += (float)ROTATE_SPEED;
-	if (next_x != data->player.pos_x || next_y != data->player.pos_y
-		|| next_angle != data->player.angle)
-		change_coord(&data->player, next_x, next_y, next_angle);
+	player = &data->player;
+	cos_speed = cos(player->angle) * SPEED;
+	sin_speed = sin(player->angle) * SPEED;
+	movement_pressed(data, player, cos_speed, sin_speed);
+	change_coord(&data->player, player->pos_x, player->pos_y, player->angle);
 	recharge_image(data);
 	return (0);
 }
