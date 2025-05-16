@@ -4,7 +4,33 @@ LEAKS : faire des tests avec des errors
 
 LISIBILTE : certains codes ne sont pas tres lisibles
 
-DOCS : faire la doc ou non ?\
+DOCS : faire la doc ou non ?
+
+RETOUR ERROR : faire des retours error propre -----------> FAIT 
+
+SEGFAULT quand par ex 2x NO ----------> FAIT
+
+
+[   
+    
+    NO textures/test/north.xpm
+
+
+    NO textures/test/north.xpm
+
+
+SO textures/test/south.xpm
+                        WE textures/test/west.xpm
+        EA textures/test/east.xpm            
+
+        F 3,20,20
+C 200,200,200
+
+
+]  -> j'imagine parce qu'on essaie de reecrire dessus ? yes c'est bon 
+
+
+
 
 MAP
 SOURIS ?

@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 23:19:28 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 12:59:21 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static int	check_paths(t_data *data)
 	int		i;
 	char	*names[4];
 
-	names[0] = "Problem path north";
-	names[1] = "Problem path south";
-	names[2] = "Problem path east";
-	names[3] = "Problem path west";
+	names[0] = "Problem in the path north";
+	names[1] = "Problem in the path south";
+	names[2] = "Problem in the path east";
+	names[3] = "Problem in the path west";
 	i = 0;
 	while (i < 4)
 	{
@@ -37,7 +37,7 @@ static int	check_paths(t_data *data)
 	}
 	return (0);
 }
-
+/* Check if the rgb is good */
 static int	check_rgb(t_data *data)
 {
 	int	i;
@@ -50,7 +50,7 @@ static int	check_rgb(t_data *data)
 		if (data->mapinfo.ceiling[i] == ',' && ++nbr_commas)
 			i++;
 		if (data->mapinfo.ceiling[i] < '0' || data->mapinfo.ceiling[i] > '9')
-			return (printf("ERROR RGB syntax is RRR,GGG,BBB\n"), 1);
+			return (printf("Error RGB, syntax is RRR,GGG,BBB\n"), 1);
 		i++;
 	}
 	i = 0;
@@ -59,11 +59,11 @@ static int	check_rgb(t_data *data)
 		if (data->mapinfo.floor[i] == ',' && ++nbr_commas)
 			i++;
 		if (data->mapinfo.floor[i] < '0' || data->mapinfo.floor[i] > '9')
-			return (printf("ERROR RGB syntax is RRR,GGG,BBB\n"), 1);
+			return (printf("Error RGB, syntax is RRR,GGG,BBB\n"), 1);
 		i++;
 	}
 	if (nbr_commas != 4)
-		return (printf("ERROR RGB syntax is RRR,GGG,BBB\n"), 1);
+		return (printf("Error RGB, syntax is RRR,GGG,BBB\n"), 1);
 	return (0);
 }
 
@@ -82,16 +82,12 @@ int	check_data(t_data *data)
 		-1)
 		;
 	else
-	{
-		printf("ceiling color: %d\n", data->mapinfo.ceiling_color);
-		printf("floor color: %d\n", data->mapinfo.floor_color);
 		return (1);
-	}
 	if (check_map(data) == 1)
 		return (1);
 	data->mapinfo.copy_map = copy_2d_map(data->mapinfo.map);
 	back_track(data, data->player.pos_y, data->player.pos_x, &flag);
 	if (flag == 1)
-		return (printf("ERRORORRR backtraking\n"), 1);
+		return (printf("Error : the map is not valid\n"), 1);
 	return (0);
 }

@@ -6,17 +6,11 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 23:19:50 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 13:14:47 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-static int	clean_exit(t_data *data)
-{
-	free_data(data);
-	exit(0);
-}
 
 int	main(int ac, char **av)
 {

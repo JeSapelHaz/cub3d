@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:26:49 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 23:20:03 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 13:11:23 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,9 @@ void	free_data(t_data *data)
 	destroy_window_and_display(data);
 	free_file_and_map(&data->mapinfo);
 	free_textures_paths(&data->mapinfo);
+}
+int	clean_exit(t_data *data)
+{
+	free_data(data);
+	exit(0);
 }

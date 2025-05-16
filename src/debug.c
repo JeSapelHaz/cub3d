@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:15:47 by hbutt             #+#    #+#             */
-/*   Updated: 2025/03/25 19:43:08 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:54:46 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,6 @@ void	print_file(t_data data)
 		i++;
 	}
 }
-
-// void	print_paths(t_data data)
-// {
-// 	printf("texture nord : %s\n", data.mapinfo.north_path);
-// 	printf("texture south : %s\n", data.mapinfo.south_path);
-// 	printf("texture west : %s\n", data.mapinfo.west_path);
-// 	printf("texture east : %s\n", data.mapinfo.east_path);
-// 	printf("RGB du ciel : %s\n", data.mapinfo.ceiling);
-// 	printf("RGB du sol : %s\n", data.mapinfo.floor);
-// }
 
 void	print_map(t_data data)
 {

@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 12:44:26 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 13:18:46 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ static void	take_rgb(char **file, int i, t_data *data, int *nbr_paths)
 	file[i] = trimmed;
 	if (file[i][0] == 'C')
 	{
+		if (data->mapinfo.ceiling)
+			return (printf("Error : Ceiling already defined\n"), free_data(data),
+				exit(0));
 		j = skip_spaces(file[i]);
 		data->mapinfo.ceiling = ft_strndup(&file[i][j], ft_strlen(file[i]) - j
 				- count_trailing_spaces(file[i]));
@@ -58,6 +61,9 @@ static void	take_rgb(char **file, int i, t_data *data, int *nbr_paths)
 	}
 	if (file[i][0] == 'F')
 	{
+		if (data->mapinfo.floor)
+			return (printf("Error : Floor already defined\n"), free_data(data),
+				exit(0));
 		j = skip_spaces(file[i]);
 		data->mapinfo.floor = ft_strndup(&file[i][j], ft_strlen(file[i]) - j
 				- count_trailing_spaces(file[i]));
@@ -78,35 +84,43 @@ static void	take_paths(char **file, int i, t_data *data, int *nbr_paths)
 	file[i] = trimmed;
 	if (file[i][0] == 'N' && file[i][1] == 'O')
 	{
+		if (data->mapinfo.textures[NORTH].path)
+			return (printf("Error : NO already defined\n"), free_data(data),
+				exit(0));
 		j = skip_spaces(file[i]);
 		data->mapinfo.textures[NORTH].path = ft_strndup(&file[i][j],
 				ft_strlen(file[i]) - j - count_trailing_spaces(file[i]));
 		(*nbr_paths)++;
-		printf("<%s>", data->mapinfo.textures[NORTH].path);
 	}
 	if (file[i][0] == 'S' && file[i][1] == 'O')
 	{
+		if (data->mapinfo.textures[SOUTH].path)
+			return (printf("Error : SO already defined\n"), free_data(data),
+				exit(0));
 		j = skip_spaces(file[i]);
 		data->mapinfo.textures[SOUTH].path = ft_strndup(&file[i][j],
 				ft_strlen(file[i]) - j - count_trailing_spaces(file[i]));
 		(*nbr_paths)++;
-		printf("<%s>", data->mapinfo.textures[SOUTH].path);
 	}
 	if (file[i][0] == 'W' && file[i][1] == 'E')
 	{
+		if (data->mapinfo.textures[WEST].path)
+			return (printf("Error : WE already defined\n"), free_data(data),
+				exit(0));
 		j = skip_spaces(file[i]);
 		data->mapinfo.textures[WEST].path = ft_strndup(&file[i][j],
 				ft_strlen(file[i]) - j - count_trailing_spaces(file[i]));
 		(*nbr_paths)++;
-		printf("<%s>", data->mapinfo.textures[WEST].path);
 	}
 	if (file[i][0] == 'E' && file[i][1] == 'A')
 	{
+		if (data->mapinfo.textures[EAST].path)
+			return (printf("Error : EA already defined\n"), free_data(data),
+				exit(0));
 		j = skip_spaces(file[i]);
 		data->mapinfo.textures[EAST].path = ft_strndup(&file[i][j],
 				ft_strlen(file[i]) - j - count_trailing_spaces(file[i]));
 		(*nbr_paths)++;
-		printf("<%s>", data->mapinfo.textures[EAST].path);
 	}
 }
 
@@ -155,7 +169,7 @@ int	take_info_file(char **file, t_data *data)
 		i++;
 	}
 	if (nbr_paths != 6)
-		return (printf("error dans les paths mon pote\n"), 1);
+		return (printf("Error in the paths\n"), 1);
 	if (fill_map(file, i, data))
 		return (1);
 	return (0);
