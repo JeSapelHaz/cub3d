@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:23:32 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 15:52:43 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 16:00:42 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ void	free_file_and_map(t_mapinfo *mapinfo)
 	mapinfo->map = NULL;
 	free_split(mapinfo->copy_map);
 	mapinfo->copy_map = NULL;
+}
+
+void	get_texture_data(t_texture *tex)
+{
+	tex->img_addr = mlx_get_data_addr(tex->img,
+			&tex->bpp, &tex->size_line, &tex->endian);
 }
 
 int	clean_exit(t_data *data)
