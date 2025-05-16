@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 15:54:08 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 15:56:05 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,18 @@ static int	check_rgb(t_data *data)
 	return (0);
 }
 
+int	assign_colors(t_data *data)
+{
+	if (check_rgb(data) == 1)
+		return (1);
+	data->mapinfo.ceiling_color = convert_color(data->mapinfo.ceiling);
+	data->mapinfo.floor_color = convert_color(data->mapinfo.floor);
+	if (data->mapinfo.ceiling_color == -1
+		|| data->mapinfo.floor_color == -1)
+		return (1);
+	return (0);
+}
+
 /* Check if the data is good */
 int	check_data(t_data *data)
 {
@@ -76,19 +88,16 @@ int	check_data(t_data *data)
 	flag = 0;
 	if (check_paths(data) == 1)
 		return (1);
-	if (check_rgb(data) == 0
-		&& (data->mapinfo.ceiling_color = convert_color(data->mapinfo.ceiling)) !=
-		-1
-		&& (data->mapinfo.floor_color = convert_color(data->mapinfo.floor)) !=
-		-1)
-		;
-	else
+	if (assign_colors(data) == 1)
 		return (1);
 	if (check_map(data) == 1)
 		return (1);
 	data->mapinfo.copy_map = copy_2d_map(data->mapinfo.map);
 	back_track(data, data->player.pos_y, data->player.pos_x, &flag);
 	if (flag == 1)
-		return (printf("Error : the map is not valid\n"), 1);
+	{
+		printf("Error : the map is not valid\n");
+		return (1);
+	}
 	return (0);
 }
