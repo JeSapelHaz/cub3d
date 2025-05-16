@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:12:56 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 14:08:06 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 15:23:57 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,20 +98,4 @@ int	convert_color(char *str)
 float	distance(float x, float y)
 {
 	return (sqrt((x * x) + (y * y)));
-}
-int	count_trailing_spaces(const char *str)
-{
-	int	len;
-	int	count;
-
-	if (!str)
-		return (0);
-	len = ft_strlen(str) - 1;
-	count = 0;
-	while (len >= 0 && (str[len] == ' ' || str[len] == '\n'))
-	{
-		count++;
-		len--;
-	}
-	return (count);
 }

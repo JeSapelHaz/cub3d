@@ -6,41 +6,12 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:26:49 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 13:11:23 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 15:52:39 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void	free_file_and_map(t_mapinfo *mapinfo)
-{
-	int	i;
-
-	i = 0;
-	if (mapinfo->file)
-	{
-		while (mapinfo->file[i])
-			free(mapinfo->file[i++]);
-		free(mapinfo->file);
-		mapinfo->file = NULL;
-	}
-	i = 0;
-	if (mapinfo->map)
-	{
-		while (mapinfo->map[i])
-			free(mapinfo->map[i++]);
-		free(mapinfo->map);
-		mapinfo->map = NULL;
-	}
-	i = 0;
-	if (mapinfo->copy_map)
-	{
-		while (mapinfo->copy_map[i])
-			free(mapinfo->copy_map[i++]);
-		free(mapinfo->copy_map);
-		mapinfo->copy_map = NULL;
-	}
-}
 static void	free_textures_paths(t_mapinfo *mapinfo)
 {
 	free(mapinfo->textures[NORTH].path);
@@ -54,6 +25,7 @@ static void	free_textures_paths(t_mapinfo *mapinfo)
 	mapinfo->textures[EAST].path = NULL;
 	mapinfo->textures[WEST].path = NULL;
 }
+
 static void	destroy_images(t_data *data)
 {
 	if (!data->mlx)
@@ -69,6 +41,7 @@ static void	destroy_images(t_data *data)
 	if (data->img)
 		mlx_destroy_image(data->mlx, data->img);
 }
+
 static void	destroy_window_and_display(t_data *data)
 {
 	if (data->win)
@@ -89,9 +62,4 @@ void	free_data(t_data *data)
 	destroy_window_and_display(data);
 	free_file_and_map(&data->mapinfo);
 	free_textures_paths(&data->mapinfo);
-}
-int	clean_exit(t_data *data)
-{
-	free_data(data);
-	exit(0);
 }

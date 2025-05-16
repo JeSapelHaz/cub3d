@@ -6,7 +6,7 @@
 #    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/05/15 17:33:34 by hbutt            ###   ########.fr        #
+#    Updated: 2025/05/16 15:23:47 by hbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,8 @@ SRC		= main.c \
 		draw_raycasting.c \
 		draw_map.c \
 		draw_textures.c \
-		check_map.c 
+		check_map.c \
+		utils_2.c
 		  
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 

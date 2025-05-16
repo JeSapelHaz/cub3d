@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 13:10:30 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/16 15:52:52 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	print_info_player(t_data *data);
 
 /* FREE */
 void	free_data(t_data *data);
+void	free_file_and_map(t_mapinfo *mapinfo);
 
 /* UTILS FUNCTIONS */
 char	*ft_strndup(const char *s, size_t n);
