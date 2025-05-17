@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/17 16:34:34 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/18 01:24:16 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,14 @@
 # define KEY_RIGHT 65363
 # define KEY_ESCAPE 65307
 
-// map
+// screen
 # define SCREEN_WIDTH 1920
 # define SCREEN_HEIGHT 1080
+
+// map
 # define TILE_SIZE 32.0f
+# define X_GAP 50
+# define Y_GAP 50
 
 /* CHECK ARGS */
 int		check_args(int ac, char **av);

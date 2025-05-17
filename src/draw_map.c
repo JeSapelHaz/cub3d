@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:35:06 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/18 01:12:29 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/18 01:24:57 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static int	selec_color(t_data *data, int x_map, int y_map)
 		return (-1);
 	if (data->mapinfo.map[y_map][x_map] == '1')
 		color = MAP_WALL;
-	else if (data->mapinfo.map[y_map][x_map] == '0'
-		|| data->mapinfo.map[y_map][x_map] == '2'
+	else if (data->mapinfo.map[y_map][x_map] == '2'
 		|| data->mapinfo.map[y_map][x_map] == 'N'
 		|| data->mapinfo.map[y_map][x_map] == 'S'
 		|| data->mapinfo.map[y_map][x_map] == 'E'
@@ -76,11 +75,11 @@ static void	draw_mini_map(t_data *data, int x[2], int y[2])
 	int	j;
 
 	y[0]--;
-	j = 0;
+	j = Y_GAP;
 	while (++y[0] < y[1])
 	{
 		x_tmp = x[0] - 1;
-		i = 0;
+		i = X_GAP;
 		while (++x_tmp < x[1])
 		{
 			if (draw_player(data, x_tmp, y[0]))
