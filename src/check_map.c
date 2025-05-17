@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 17:31:59 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/15 17:37:19 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/17 16:37:19 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	set_player_dir(t_data *data, char direction)
 {
 	if (direction == 'N')
-		data->player.angle = N;
-	else if (direction == 'E')
-		data->player.angle = E;
+		data->player.angle = PI / 2.0;
 	else if (direction == 'S')
-		data->player.angle = S;
-	else if (direction == 'W')
-		data->player.angle = W;
+		data->player.angle = (3.0 * PI) / 2.0;
+	else if (direction == 'E')
+		data->player.angle = 2.0 * PI;
+	else
+		data->player.angle = PI;
 }
 
 static int	check_map_chars(t_data *data, int *nbr_players)

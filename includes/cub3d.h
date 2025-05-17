@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 23:47:13 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/17 16:34:34 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,12 @@
 
 // math
 # define PI 3.14159265358979323846
-# define degToRad(angleInDegrees) ((angleInDegrees)*PI / 180.0)
-# define radToDeg(angleInRadians) ((angleInRadians)*180.0 / PI)
-# define pixelToUnits(pixel) ceils(pixel / TILE_SIZE)
-# define unitsToPixel(units) (units * TILE_SIZE)
+# define RAD_DEG 0.0174532925
 
-// player direction
-# define S (3.0 * PI) / 2.0
-# define N PI / 2.0
-# define E 2.0 * PI
-# define W PI
-
-// movement speed
+// player info
 # define SPEED 0.20
 # define ROTATE_SPEED 0.1
+# define FOV 60
 
 // keys
 # define KEY_W 119
@@ -65,10 +57,7 @@
 // map
 # define SCREEN_WIDTH 1920
 # define SCREEN_HEIGHT 1080
-
 # define TILE_SIZE 32.0f
-# define FOV 60
-# define RAD_DEG 0.0174532925
 
 /* CHECK ARGS */
 int		check_args(int ac, char **av);
@@ -76,7 +65,6 @@ int		check_args(int ac, char **av);
 /* INIT DATA */
 void	init_data(t_data *data);
 void	init_parameters(t_data *data);
-
 
 /* INIT MLX */
 void	init_mlx(t_data *data);
@@ -88,7 +76,6 @@ int		check_data(t_data *data);
 
 int		check_map(t_data *data);
 void	back_track(t_data *data, int start_y, int start_x, int *flag);
-
 
 /* CONTROLS */
 int		actions(t_data *data);
@@ -103,7 +90,7 @@ void	select_texture(t_data *data, t_draw *draw);
 void	init_draw(t_data *data, t_draw *draw);
 
 /* DRAW MAP*/
-void draw_2d(t_data *data);
+void	draw_2d(t_data *data);
 
 /* DRAW */
 void	clear_image(char *img_addr, int size_line, int bpp, int color);
@@ -131,6 +118,9 @@ void	get_texture_data(t_texture *tex);
 
 /* UTILS MATH */
 float	fix_angle(float angle);
+float	deg_to_rad(float angle);
+
+/* UTILS RAYCASTING*/
 float	calc_horz_distance(t_data *data);
 float	calc_vert_distance(t_data *data);
 void	set_horz_variables(t_ray *ray_info);
