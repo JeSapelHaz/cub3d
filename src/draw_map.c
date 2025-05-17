@@ -6,13 +6,13 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:35:06 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/18 00:19:55 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/18 00:48:15 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	selec_color(t_data *data, int x_map, int y_map)
+static int	selec_color(t_data *data, int x_map, int y_map)
 {
 	int	color;
 
