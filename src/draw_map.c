@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:35:06 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/17 18:33:51 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/18 00:19:55 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	selec_color(t_data *data, int x_map, int y_map)
 	return (color);
 }
 
-static void	mini_map_start(t_player *player, int x[2], int y[2])
+static void	map_start_draw(t_player *player, int x[2], int y[2])
 {
 	x[0] = (int)(player->pos_x * TILE_SIZE) - (TILE_SIZE * 5);
 	y[0] = (int)(player->pos_y * TILE_SIZE) - (TILE_SIZE * 5);
@@ -57,49 +57,51 @@ static void	mini_map_start(t_player *player, int x[2], int y[2])
 		y[1] = (int)(player->pos_y * TILE_SIZE) + (TILE_SIZE * 5);
 }
 
-static void	draw_mini_map(t_data *data)
+static int	draw_player(t_data *data, int x_pixel, int y_pixel)
 {
-	int	x[2];
-	int	y[2];
+	if (x_pixel >= (data->player.pos_x * TILE_SIZE) - (TILE_SIZE / 4)
+		&& x_pixel <= (data->player.pos_x * TILE_SIZE) + (TILE_SIZE / 4)
+		&& y_pixel >= (data->player.pos_y * TILE_SIZE) - (TILE_SIZE / 4)
+		&& y_pixel <= (data->player.pos_y * TILE_SIZE) + (TILE_SIZE / 4))
+		return (1);
+	else
+		return (0);
+}
+
+static void	draw_mini_map(t_data *data, int x[2], int y[2])
+{
 	int	x_tmp;
 	int	color;
+	int	i;
+	int	j;
 
 	color = BLACK;
-	mini_map_start(&data->player, x, y);
 	y[0]--;
+	j = 0;
 	while (++y[0] < y[1])
 	{
 		x_tmp = x[0] - 1;
+		i = 0;
 		while (++x_tmp < x[1])
 		{
-			color = selec_color(data, x_tmp / TILE_SIZE, y[0] / TILE_SIZE);
-			put_pixel_to_image(data, x_tmp, y[0], color);
+			if (!draw_player(data, x_tmp, y[0]))
+			{
+				color = selec_color(data, x_tmp / TILE_SIZE, y[0] / TILE_SIZE);
+				put_pixel_to_image(data, i, j, color);
+			}
+			else
+				put_pixel_to_image(data, i, j, RED);
+			i++;
 		}
-	}
-}
-
-// dessine un carré pour le joueur
-static void	draw_player(t_data *data)
-{
-	int	i;
-	int	j;
-	int	player_size;
-
-	player_size = TILE_SIZE / 4;
-	i = -player_size / 2;
-	while (++i < player_size / 2)
-	{
-		j = -player_size / 2;
-		while (++j < player_size / 2)
-		{
-			put_pixel_to_image(data, data->player.pos_x * TILE_SIZE + i,
-				data->player.pos_y * TILE_SIZE + j, RED);
-		}
+		j++;
 	}
 }
 
 void	draw_2d(t_data *data)
 {
-	draw_mini_map(data);
-	draw_player(data);
+	int	x[2];
+	int	y[2];
+
+	map_start_draw(&data->player, x, y);
+	draw_mini_map(data, x, y);
 }
