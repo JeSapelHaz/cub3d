@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:35:06 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 23:51:39 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:33:51 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ int	selec_color(t_data *data, int x_map, int y_map)
 {
 	int	color;
 
+	if (y_map < 0 || y_map >= data->mapinfo.map_height || x_map < 0
+		|| x_map >= (int)ft_strlen(data->mapinfo.map[y_map]))
+		return (-1);
 	if (data->mapinfo.map[y_map][x_map] == '1')
 		color = WHITE;
 	else if (data->mapinfo.map[y_map][x_map] == '0'
@@ -30,37 +33,53 @@ int	selec_color(t_data *data, int x_map, int y_map)
 	return (color);
 }
 
-// draw mini map
-void	draw_map(t_data *data, int x_map, int y_map)
+static void	mini_map_start(t_player *player, int x[2], int y[2])
 {
-	int	x_screen;
-	int	i;
-	int	j;
-	int	y_screen;
+	x[0] = (int)(player->pos_x * TILE_SIZE) - (TILE_SIZE * 5);
+	y[0] = (int)(player->pos_y * TILE_SIZE) - (TILE_SIZE * 5);
+	if (x[0] < 0.0f)
+	{
+		x[1] = (int)(player->pos_x * TILE_SIZE) + (TILE_SIZE * 5) - x[0];
+		if (x[1] > SCREEN_WIDTH)
+			x[1] = SCREEN_WIDTH;
+		x[0] = 0;
+	}
+	else
+		x[1] = (int)(player->pos_x * TILE_SIZE) + (TILE_SIZE * 5);
+	if (y[0] < 0.0f)
+	{
+		y[1] = (int)(player->pos_y * TILE_SIZE) + (TILE_SIZE * 5) - y[0];
+		if (y[1] > SCREEN_HEIGHT)
+			y[1] = SCREEN_HEIGHT;
+		y[0] = 0;
+	}
+	else
+		y[1] = (int)(player->pos_y * TILE_SIZE) + (TILE_SIZE * 5);
+}
+
+static void	draw_mini_map(t_data *data)
+{
+	int	x[2];
+	int	y[2];
+	int	x_tmp;
 	int	color;
 
-	x_map = -1;
-	while (++y_map < data->mapinfo.map_height)
+	color = BLACK;
+	mini_map_start(&data->player, x, y);
+	y[0]--;
+	while (++y[0] < y[1])
 	{
-		x_map = -1;
-		while (++x_map < (int)ft_strlen(data->mapinfo.map[y_map]))
+		x_tmp = x[0] - 1;
+		while (++x_tmp < x[1])
 		{
-			y_screen = y_map * TILE_SIZE;
-			x_screen = x_map * TILE_SIZE;
-			color = selec_color(data, x_map, y_map);
-			i = -1;
-			while (++i < TILE_SIZE && color != -1)
-			{
-				j = -1;
-				while (++j < TILE_SIZE)
-					put_pixel_to_image(data, x_screen + i, y_screen + j, color);
-			}
+			color = selec_color(data, x_tmp / TILE_SIZE, y[0] / TILE_SIZE);
+			put_pixel_to_image(data, x_tmp, y[0], color);
 		}
 	}
 }
 
 // dessine un carré pour le joueur
-void	draw_player(t_data *data)
+static void	draw_player(t_data *data)
 {
 	int	i;
 	int	j;
@@ -81,11 +100,6 @@ void	draw_player(t_data *data)
 
 void	draw_2d(t_data *data)
 {
-	int	x_map;
-	int	y_map;
-
-	x_map = -1;
-	y_map = -1;
-	draw_map(data, x_map, y_map);
+	draw_mini_map(data);
 	draw_player(data);
 }

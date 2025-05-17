@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 23:51:23 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/17 17:16:10 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	main(int ac, char **av)
 	init_mlx(&data);
 	data.player.pos_x += 0.5f;
 	data.player.pos_y += 0.5f;
-	draw_raycasting(&data);
-	draw_2d(&data);
+	load_image(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_hook(data.win, 17, 0, clean_exit, &data);
 	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
