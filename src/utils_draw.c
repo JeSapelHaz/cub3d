@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:17:06 by hdelbecq          #+#    #+#             */
-/*   Updated: 2025/05/16 23:41:33 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/18 22:46:10 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	clear_image(char *img_addr, int size_line, int bpp, int color)
 // function to replace all pixel by floor color
 void	load_image(t_data *data)
 {
-	clear_image(data->img_addr, data->size_line, \
-		data->bpp, data->mapinfo.floor_color);
+	clear_image(data->img_addr, data->size_line, data->bpp,
+		data->mapinfo.floor_color);
 	draw_raycasting(data);
 	draw_2d(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
