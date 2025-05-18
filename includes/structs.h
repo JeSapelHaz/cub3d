@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:19:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 16:47:21 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/18 02:22:02 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_mapinfo
 	char				*ceiling;
 	int					ceiling_color;
 	int					floor_color;
+	float				player_x;
+	float				player_y;
 }						t_mapinfo;
 
 typedef struct s_player

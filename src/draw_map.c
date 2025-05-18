@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:35:06 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/18 01:24:57 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/18 18:39:16 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@ static int	selec_color(t_data *data, int x_map, int y_map)
 		return (-1);
 	if (data->mapinfo.map[y_map][x_map] == '1')
 		color = MAP_WALL;
-	else if (data->mapinfo.map[y_map][x_map] == '2'
-		|| data->mapinfo.map[y_map][x_map] == 'N'
-		|| data->mapinfo.map[y_map][x_map] == 'S'
-		|| data->mapinfo.map[y_map][x_map] == 'E'
-		|| data->mapinfo.map[y_map][x_map] == 'W')
+	else if (data->mapinfo.copy_map[y_map][x_map] == '2')
 		color = MAP_EMPTY;
 	else
 		return (-1);
@@ -34,26 +30,29 @@ static int	selec_color(t_data *data, int x_map, int y_map)
 
 static void	map_start_draw(t_player *player, int x[2], int y[2])
 {
-	x[0] = (int)(player->pos_x * TILE_SIZE) - (TILE_SIZE * 5);
-	y[0] = (int)(player->pos_y * TILE_SIZE) - (TILE_SIZE * 5);
-	if (x[0] < 0.0f)
+	int	map_size;
+
+	map_size = TILE_SIZE * SIZE_IN_TILE;
+	x[0] = (int)(player->pos_x * TILE_SIZE) - ((float)map_size / 2.0f);
+	x[1] = (int)(player->pos_x * TILE_SIZE) + ((float)map_size / 2.0f);
+	y[0] = (int)(player->pos_y * TILE_SIZE) - ((float)map_size / 2.0f);
+	y[1] = (int)(player->pos_y * TILE_SIZE) + ((float)map_size / 2.0f);
+	if ((float)x[0] / TILE_SIZE < 0.0f)
 	{
-		x[1] = (int)(player->pos_x * TILE_SIZE) + (TILE_SIZE * 5) - x[0];
-		if (x[1] > SCREEN_WIDTH)
-			x[1] = SCREEN_WIDTH;
+		x[1] -= x[0];
 		x[0] = 0;
 	}
-	else
-		x[1] = (int)(player->pos_x * TILE_SIZE) + (TILE_SIZE * 5);
-	if (y[0] < 0.0f)
+	else if (x[1] > \
+	ft_strlen(player->data->mapinfo.map[(int)player->pos_y]) * TILE_SIZE)
+		x[0] -= (x[1] - \
+	((ft_strlen(player->data->mapinfo.map[(int)player->pos_y])) * TILE_SIZE));
+	if ((float)y[0] / TILE_SIZE < 0.3f)
 	{
-		y[1] = (int)(player->pos_y * TILE_SIZE) + (TILE_SIZE * 5) - y[0];
-		if (y[1] > SCREEN_HEIGHT)
-			y[1] = SCREEN_HEIGHT;
+		y[1] -= y[0];
 		y[0] = 0;
 	}
-	else
-		y[1] = (int)(player->pos_y * TILE_SIZE) + (TILE_SIZE * 5);
+	else if (y[1] > (player->data->mapinfo.map_height) * TILE_SIZE)
+		y[0] -= (y[1] - ((player->data->mapinfo.map_height) * TILE_SIZE));
 }
 
 static int	draw_player(t_data *data, int x_pixel, int y_pixel)
@@ -74,8 +73,8 @@ static void	draw_mini_map(t_data *data, int x[2], int y[2])
 	int	i;
 	int	j;
 
-	y[0]--;
 	j = Y_GAP;
+	--y[0];
 	while (++y[0] < y[1])
 	{
 		x_tmp = x[0] - 1;

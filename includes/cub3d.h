@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/18 01:35:27 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/18 18:04:31 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 
 // map
 # define TILE_SIZE 32.0f
+# define SIZE_IN_TILE 10
 # define X_GAP 50
 # define Y_GAP 50
 
@@ -97,6 +98,11 @@ void	back_track(t_data *data, int start_y, int start_x, int *flag);
 int		actions(t_data *data);
 int		key_press(int key, t_data *data);
 int		key_release(int key, t_data *data);
+
+/* CONTROLS_CHECKER */
+int		key_pressed(t_data *data);
+float	fix_angle(float angle);
+void	fix_coord(t_player *player, float *player_x, float *player_y);
 
 /* DRAW RAYCASTING*/
 void	draw_raycasting(t_data *data);

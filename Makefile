@@ -6,7 +6,7 @@
 #    By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/05/17 16:38:20 by hdelbecq         ###   ########.fr        #
+#    Updated: 2025/05/18 02:38:47 by hdelbecq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC		= main.c \
 		init_mlx.c \
 		check_map_validity.c \
 		controls.c \
+		controls_checker.c \
 		draw_raycasting.c \
 		draw_map.c \
 		draw_textures.c \
@@ -57,7 +58,6 @@ SRC		= main.c \
 		utils_functions.c \
 		utils_math.c \
 		utils_draw.c \
-		utils_controls.c \
 		utils_raycasting.c \
 		utils.c \
 		utils_2.c
