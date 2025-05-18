@@ -1,4 +1,8 @@
 NORME : fonctions de 25 lignes, nombre d args
+
+_________
+
+trim the right of the map for delete space in the tab (because strlen of the map is wrong)
 _________
 file pb : 2 player dans deux map & /n qui traverse la map
 
