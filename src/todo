@@ -1,10 +1,12 @@
 NORME : fonctions de 25 lignes, nombre d args
 
 _________
+SEGFAULT quand la ligne du path est vide : NO (vide) ----> good c'est fait aussi
+___________
 
 trim the right of the map for delete space in the tab (because strlen of the map is wrong)
 _________
-file pb : 2 player dans deux map & /n qui traverse la map
+file pb : 2 player dans deux map & /n qui traverse la map --->
 
 NO textures/wolfenstein/bluestone.xpm
 SO textures/wolfenstein/colorstone.xpm         
@@ -27,7 +29,7 @@ F 0,255,0
 111
 ________
 
-file pb : caractere inconnu apres les textures
+file pb : caractere inconnu apres les textures ---> ok good maintenant
 
 NO textures/wolfenstein/bluestone.xpm
 SO textures/wolfenstein/colorstone.xpm         
