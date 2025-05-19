@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/19 14:50:55 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/19 16:55:49 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,11 @@ int	is_start_of_map(char *line)
 	return (has_map_char);
 }
 
+static int only_one_map(file,i ,data)
+{
+	while(is_map_char(file[i]))
+}
+
 int	take_info_file(char **file, t_data *data)
 {
 	int	i;
@@ -209,6 +214,10 @@ int	take_info_file(char **file, t_data *data)
 	}
 	if (nbr_paths != 6)
 		return (printf("Error in the paths\n"), 1);
+	if (only_one_map(file,i ,data))
+	{
+		return (printf("Error : Only one map please\n"),1);
+	}
 	if (fill_map(file, i, data))
 		return (1);
 	return (0);
