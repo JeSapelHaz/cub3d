@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:35:06 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/18 18:39:16 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:44:33 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,6 @@ static void	map_start_draw(t_player *player, int x[2], int y[2])
 	x[1] = (int)(player->pos_x * TILE_SIZE) + ((float)map_size / 2.0f);
 	y[0] = (int)(player->pos_y * TILE_SIZE) - ((float)map_size / 2.0f);
 	y[1] = (int)(player->pos_y * TILE_SIZE) + ((float)map_size / 2.0f);
-	if ((float)x[0] / TILE_SIZE < 0.0f)
-	{
-		x[1] -= x[0];
-		x[0] = 0;
-	}
-	else if (x[1] > \
-	ft_strlen(player->data->mapinfo.map[(int)player->pos_y]) * TILE_SIZE)
-		x[0] -= (x[1] - \
-	((ft_strlen(player->data->mapinfo.map[(int)player->pos_y])) * TILE_SIZE));
-	if ((float)y[0] / TILE_SIZE < 0.3f)
-	{
-		y[1] -= y[0];
-		y[0] = 0;
-	}
-	else if (y[1] > (player->data->mapinfo.map_height) * TILE_SIZE)
-		y[0] -= (y[1] - ((player->data->mapinfo.map_height) * TILE_SIZE));
 }
 
 static int	draw_player(t_data *data, int x_pixel, int y_pixel)

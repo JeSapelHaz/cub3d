@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:47:57 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/18 22:45:45 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/19 16:44:21 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	back_track(t_data *data, int y, int x, int *flag)
 {
 	if (*flag == 0 && (data->mapinfo.copy_map[y][x] == ' ' || (y == 0
-				&& data->mapinfo.copy_map[y][x] != '1')
+			&& data->mapinfo.copy_map[y][x] != '1')
 			|| (y == data->mapinfo.map_height - 1
 				&& data->mapinfo.copy_map[y][x] != '1') || (x == 0
 				&& data->mapinfo.copy_map[y][x] != '1')
@@ -25,7 +25,7 @@ void	back_track(t_data *data, int y, int x, int *flag)
 		*flag = 1;
 	data->mapinfo.copy_map[y][x] = '2';
 	if (y < data->mapinfo.map_height - 1 && data->mapinfo.copy_map[y
-		+ 1][x] != '1' && data->mapinfo.copy_map[y + 1][x] != '2')
+			+ 1][x] != '1' && data->mapinfo.copy_map[y + 1][x] != '2')
 		back_track(data, y + 1, x, flag);
 	if (y > 0 && data->mapinfo.copy_map[y - 1][x] != '1'
 		&& data->mapinfo.copy_map[y - 1][x] != '2')
