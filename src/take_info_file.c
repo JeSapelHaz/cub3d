@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:17:01 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/20 15:51:56 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/20 15:54:15 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,24 +196,25 @@ int	is_start_of_map(char *line)
 static int	only_one_map(char **file, int i)
 {
 	int	found_map = 0;
-	int	found_blank_after_map = 0;
+	int	map_has_ended = 0;
 
 	while (file[i])
 	{
 		if (is_start_of_map(file[i]))
 		{
-			if (found_blank_after_map)
-				return (1);
+			if (map_has_ended)
+				return (1); 
 			found_map = 1;
 		}
 		else if (found_map && no_line(file[i]) == 0)
 		{
-			found_blank_after_map = 1;
+			map_has_ended = 1; 
 		}
 		i++;
 	}
-	return (0); // OK : une seule map continue
+	return (0);
 }
+
 
 int	take_info_file(char **file, t_data *data)
 {
