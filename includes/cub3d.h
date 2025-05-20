@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/20 16:59:31 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/20 18:38:09 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	take_rgb(char **file, int i, t_data *data, int *nbr_paths);
 void	take_paths(char **file, int i, t_data *data, int *nbr_paths);
 
 int		check_map(t_data *data);
-void	back_track(t_data *data, int start_y, int start_x, int *flag);
+void	back_track(t_data *data, int start_y, int start_x);
 
 /* CONTROLS */
 int		actions(t_data *data);

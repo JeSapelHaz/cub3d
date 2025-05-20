@@ -1,23 +1,19 @@
 NO textures/goat/moktar.xpm
+
+
+F 150,90,145 
+C 65,249,255
 SO textures/goat/grognon.xpm
 WE textures/goat/capri.xpm
 EA textures/goat/goat.xpm
-F 150,90,145
-C 65,249,255
+
+
 
      111
     100011
     1100011
     1100011
-      110S011
-      1100011
-      1100011
-      1100011
-    1100011
-    1100011
-      1100011
-    1100011
-    1100011
-    1100011
-    1100011
-    11111
+      110S01
+      10001
+      110010
+      11 11
