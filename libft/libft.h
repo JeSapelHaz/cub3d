@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:01:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/02/25 13:08:04 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/20 17:11:22 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
-char	*get_next_line(int fd);
-int		ft_no_nl_next(char *str);
-char	*ft_strjoin_gnl(char *str1, char *str2);
-char	*ft_free_all(char **str1);
+char				*get_next_line(int fd);
+int					ft_no_nl_next(char *str);
+char				*ft_strjoin_gnl(char *str1, char *str2);
+char				*ft_free_all(char **str1);
 
 /* Partie 3 : bonus */
 

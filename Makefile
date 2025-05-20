@@ -6,7 +6,7 @@
 #    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/05/20 16:58:14 by hbutt            ###   ########.fr        #
+#    Updated: 2025/05/20 17:10:20 by hbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ INC			= -I ./includes/\
 
 # Main rule
 all: $(OBJ_PATH) $(LIBFT) $(MLX) $(NAME)
-	@echo "$(GREEN)✔ Build complete!$(RESET)"
+	@printf "$(GREEN)✔ Build complete!\n"
 
 # Objects directory rule
 $(OBJ_PATH):
@@ -87,35 +87,35 @@ $(OBJ_PATH):
 
 # Objects rule
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@echo "$(CYAN)Compiling: $<$(RESET)"
+	@printf "$(CYAN)Compiling: $<\n"
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 # Project file rule
 $(NAME): $(OBJS)
-	@echo "$(YELLOW)🔧 Linking $(NAME)...$(RESET)"
+	@printf "$(YELLOW)🔧 Linking $(NAME)...\n"
 	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(INC) $(LIBFT) $(MLX_FLAGS)
-	@echo "$(GREEN)✔ Executable ready!$(RESET)"
+	@printf "$(GREEN)✔ Executable ready!\n"
 
 # Libft rule
 $(LIBFT):
-	@echo "$(MAGENTA)📦 Building libft...$(RESET)"
+	@printf "$(MAGENTA)📦 Building libft...\n"
 	@make -sC $(LIBFT_PATH)
 
 # MinilibX rule
 $(MLX):
-	@echo "$(MAGENTA)📦 Building MinilibX...$(RESET)"
+	@printf "$(MAGENTA)📦 Building MinilibX...\n"
 	@make -sC $(MLX_PATH) 2>/dev/null 1>/dev/null
 
 # Clean up build files rule
 clean:
-	@echo "$(RED)🧹 Cleaning object files...$(RESET)"
+	@printf "$(RED)🧹 Cleaning object files...\n"
 	@rm -rf $(OBJ_PATH)
 	@make -sC $(LIBFT_PATH) clean
 	@make -sC $(MLX_PATH) clean 2>/dev/null 1>/dev/null
 
 # Remove program executable
 fclean: clean
-	@echo "$(RED)🗑️ Removing executable...$(RESET)"
+	@printf "$(RED)🗑️ Removing executable...\n"
 	@rm -f $(NAME)
 	@make -sC $(LIBFT_PATH) fclean
 	@make -sC $(MLX_PATH) clean 2>/dev/null 1>/dev/null
