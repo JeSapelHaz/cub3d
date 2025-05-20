@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/18 18:04:31 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:59:31 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "structs.h"
 # include <fcntl.h>
 # include <math.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <unistd.h>
 
@@ -91,6 +92,10 @@ int		parse_data(char *path, t_data *data);
 int		take_info_file(char **file, t_data *data);
 int		check_data(t_data *data);
 
+/* FILE PARSING */
+void	take_rgb(char **file, int i, t_data *data, int *nbr_paths);
+void	take_paths(char **file, int i, t_data *data, int *nbr_paths);
+
 int		check_map(t_data *data);
 void	back_track(t_data *data, int start_y, int start_x, int *flag);
 
@@ -136,5 +141,10 @@ void	load_image(t_data *data);
 /* UTILS CONTROLS */
 int		in_map(t_data *data, float x, float y);
 int		is_pressed(t_data *data);
+
+/* UTILS FILE */
+int		skip_spaces(const char *str);
+int		no_line(char *line);
+void	check_path_validity(char **file, int i, t_data *data);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+         #
+#    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/05/18 02:38:47 by hdelbecq         ###   ########.fr        #
+#    Updated: 2025/05/20 16:58:14 by hbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,10 @@ SRC		= main.c \
 		utils_draw.c \
 		utils_raycasting.c \
 		utils.c \
-		utils_2.c
+		utils_2.c \
+		utils_file.c \
+		take_rgb.c \
+		take_paths.c
 		  
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
