@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:47:57 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/20 19:03:04 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/20 19:16:44 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 static int	access_backtrack(t_data *data, int y, int x)
 {
-	if (y < 0 || y >= data->mapinfo.map_height)
+	if (y < 0 || y >= data->mapinfo.map_height - 1)
 		return (printf("Error : the map is not valid\n"), clean_exit(data));
-	if (y + 1 < 0 || y + 1 > data->mapinfo.map_height
+	if (y + 1 < 0 || y + 1 > data->mapinfo.map_height - 1
 		|| !data->mapinfo.copy_map[y])
 		return (printf("Error : the map is not valid\n"), clean_exit(data));
-	if (y - 1 < 0 || y - 1 > data->mapinfo.map_height
+	if (y - 1 < 0 || y - 1 > data->mapinfo.map_height - 1
 		|| !data->mapinfo.copy_map[y])
 		return (printf("Error : the map is not valid\n"), clean_exit(data));
-	if (x + 1 < 0 || x + 1 > (int)ft_strlen(data->mapinfo.copy_map[y]))
+	if (x + 1 < 0 || x + 1 > (int)ft_strlen(data->mapinfo.copy_map[y]) - 1)
 		return (printf("Error : the map is not valid\n"), clean_exit(data));
-	if (x - 1 < 0 || x - 1 > (int)ft_strlen(data->mapinfo.copy_map[y]))
+	if (x - 1 < 0 || x - 1 > (int)ft_strlen(data->mapinfo.copy_map[y]) - 1)
 		return (printf("Error : the map is not valid\n"), clean_exit(data));
 	if (data->mapinfo.copy_map[y + 1][x] == ' ' || data->mapinfo.copy_map[y
 		- 1][x] == ' ')
