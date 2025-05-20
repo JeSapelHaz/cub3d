@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 16:26:50 by hdelbecq          #+#    #+#             */
-/*   Updated: 2025/05/18 22:46:06 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/20 17:05:32 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,11 @@ float	calc_horz_distance(t_data *data)
 	set_horz_variables(ray_info);
 	while (((int)ray_info->horz_y < data->mapinfo.map_height)
 		&& ((int)ray_info->horz_y >= 0
-			&& ((int)ray_info->horz_x) < (int)ft_strlen(data->mapinfo.map[(int)ray_info->horz_y]))
+			&& ((int)ray_info->horz_x) < \
+			(int)ft_strlen(data->mapinfo.map[(int)ray_info->horz_y]))
 		&& ((int)ray_info->horz_x >= 0
-			&& (data->mapinfo.map[(int)ray_info->horz_y][(int)ray_info->horz_x] != '1')))
+			&& (data->mapinfo.map[(int)ray_info->horz_y][(int)ray_info->horz_x] \
+			!= '1')))
 	{
 		ray_info->horz_x += ray_info->x_step;
 		ray_info->horz_y += ray_info->y_step;
@@ -92,9 +94,11 @@ float	calc_vert_distance(t_data *data)
 	set_vert_variables(ray_info);
 	while (((int)ray_info->vert_y < data->mapinfo.map_height)
 		&& ((int)ray_info->vert_y > 0
-			&& ((int)ray_info->vert_x) < (int)ft_strlen(data->mapinfo.map[(int)ray_info->vert_y]))
+			&& ((int)ray_info->vert_x) < \
+			(int)ft_strlen(data->mapinfo.map[(int)ray_info->vert_y]))
 		&& ((int)ray_info->vert_x > 0
-			&& (data->mapinfo.map[(int)ray_info->vert_y][(int)ray_info->vert_x] != '1')))
+			&& (data->mapinfo.map[(int)ray_info->vert_y][(int)ray_info->vert_x] \
+			!= '1')))
 	{
 		ray_info->vert_x += ray_info->x_step;
 		ray_info->vert_y += ray_info->y_step;
