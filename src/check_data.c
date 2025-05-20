@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/19 14:39:34 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/20 19:05:45 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,6 @@ int	assign_colors(t_data *data)
 /* Check if the data is good */
 int	check_data(t_data *data)
 {
-	int	flag;
-
-	flag = 0;
 	if (check_paths(data) == 1)
 		return (1);
 	if (assign_colors(data) == 1)
@@ -93,11 +90,6 @@ int	check_data(t_data *data)
 	if (check_map(data) == 1)
 		return (1);
 	data->mapinfo.copy_map = copy_2d_map(data->mapinfo.map);
-	back_track(data, data->player.pos_y, data->player.pos_x, &flag);
-	if (flag == 1)
-	{
-		printf("Error : the map is not valid\n");
-		return (1);
-	}
+	back_track(data, data->player.pos_y, data->player.pos_x);
 	return (0);
 }
