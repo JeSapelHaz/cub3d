@@ -6,7 +6,7 @@
 #    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/05/20 17:10:20 by hbutt            ###   ########.fr        #
+#    Updated: 2025/05/21 15:39:13 by hbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ INC			= -I ./includes/\
 			  -I ./libft/\
 			  -I $(MLX_PATH)
 
-# Main rule
+# Main rule 
 all: $(OBJ_PATH) $(LIBFT) $(MLX) $(NAME)
 	@printf "$(GREEN)✔ Build complete!\n"
 
