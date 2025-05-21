@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:03:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 15:53:35 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/21 16:49:09 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static void	fill_file(char *path, t_data *data)
 
 	row = 0;
 	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		clean_exit(data);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
