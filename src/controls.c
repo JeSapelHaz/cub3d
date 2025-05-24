@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/18 03:23:38 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/24 23:03:29 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,56 @@
 void	mov_raycast(t_data *data, t_player *player, float cos_speed,
 		float sin_speed)
 {
+	t_mapinfo map;
+
+	map = data->mapinfo;
 	if (data->keyinfo.press_a)
 	{
-		player->pos_x += sin_speed;
-		player->pos_y += cos_speed;
+		if (map.copy_map[(int)(player->pos_y + cos_speed)][(int)(player->pos_x + sin_speed)] == '2')
+		{
+			player->pos_y += cos_speed;
+			player->pos_x += sin_speed;
+		}
+		else if (map.copy_map[(int)(player->pos_y + cos_speed)][(int)(player->pos_x)] == '2')
+			player->pos_y += cos_speed;
+		else if (map.copy_map[(int)(player->pos_y)][(int)(player->pos_x + sin_speed)] == '2')
+			player->pos_x += sin_speed;
 	}
 	if (data->keyinfo.press_d)
 	{
-		player->pos_x -= sin_speed;
-		player->pos_y -= cos_speed;
+		if (map.copy_map[(int)(player->pos_y - cos_speed)][(int)(player->pos_x - sin_speed)] == '2')
+		{
+			player->pos_y -= cos_speed;
+			player->pos_x -= sin_speed;
+		}
+		else if (map.copy_map[(int)(player->pos_y - cos_speed)][(int)(player->pos_x)] == '2')
+			player->pos_y -= cos_speed;
+		else if (map.copy_map[(int)(player->pos_y)][(int)(player->pos_x - sin_speed)] == '2')
+			player->pos_x -= sin_speed;
 	}
 	if (data->keyinfo.press_w)
 	{
-		player->pos_x += cos_speed;
-		player->pos_y -= sin_speed;
+		if (map.copy_map[(int)(player->pos_y - sin_speed)][(int)(player->pos_x + cos_speed)] == '2')
+		{
+			player->pos_y -= sin_speed;
+			player->pos_x += cos_speed;
+		}
+		else if (map.copy_map[(int)(player->pos_y - sin_speed)][(int)(player->pos_x)] == '2')
+			player->pos_y -= sin_speed;
+		else if (map.copy_map[(int)(player->pos_y)][(int)(player->pos_x + cos_speed)] == '2')
+			player->pos_x += cos_speed;
 	}
 	if (data->keyinfo.press_s)
 	{
-		player->pos_x -= cos_speed;
-		player->pos_y += sin_speed;
+		if (map.copy_map[(int)(player->pos_y + sin_speed)][(int)(player->pos_x - cos_speed)] == '2')
+		{
+			player->pos_y += sin_speed;
+			player->pos_x -= cos_speed;
+		}
+		else if (map.copy_map[(int)(player->pos_y + sin_speed)][(int)(player->pos_x)] == '2')
+			player->pos_y += sin_speed;
+		else if (map.copy_map[(int)(player->pos_y)][(int)(player->pos_x - cos_speed)] == '2')
+			player->pos_x -= cos_speed;
 	}
 	if (data->keyinfo.press_left)
 		player->angle -= ROTATE_SPEED;
@@ -48,13 +79,12 @@ int	actions(t_data *data)
 	t_player	*player;
 
 	if (key_pressed(data))
-	{
+	{	
 		player = &data->player;
 		cos_speed = cos(player->angle) * SPEED;
 		sin_speed = sin(player->angle) * SPEED;
 		mov_raycast(data, player, cos_speed, sin_speed);
 		player->angle = fix_angle(player->angle);
-		fix_coord(player, &player->pos_x, &player->pos_y);
 		load_image(data);
 	}
 	return (0);

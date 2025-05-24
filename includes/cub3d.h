@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/20 18:38:09 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/24 23:05:45 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int		key_release(int key, t_data *data);
 /* CONTROLS_CHECKER */
 int		key_pressed(t_data *data);
 float	fix_angle(float angle);
-void	fix_coord(t_player *player, float *player_x, float *player_y);
 
 /* DRAW RAYCASTING*/
 void	draw_raycasting(t_data *data);

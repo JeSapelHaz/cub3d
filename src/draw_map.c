@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
+/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:35:06 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/20 17:00:20 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/22 16:54:59 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ static void	map_start_draw(t_player *player, int x[2], int y[2])
 
 static int	draw_player(t_data *data, int x_pixel, int y_pixel)
 {
-	if (x_pixel >= (data->player.pos_x * TILE_SIZE) - (TILE_SIZE / 4)
-		&& x_pixel <= (data->player.pos_x * TILE_SIZE) + (TILE_SIZE / 4)
-		&& y_pixel >= (data->player.pos_y * TILE_SIZE) - (TILE_SIZE / 4)
-		&& y_pixel <= (data->player.pos_y * TILE_SIZE) + (TILE_SIZE / 4))
+	if (x_pixel >= (data->player.pos_x * TILE_SIZE) - (TILE_SIZE / 8)
+		&& x_pixel <= (data->player.pos_x * TILE_SIZE) + (TILE_SIZE / 8)
+		&& y_pixel >= (data->player.pos_y * TILE_SIZE) - (TILE_SIZE / 8)
+		&& y_pixel <= (data->player.pos_y * TILE_SIZE) + (TILE_SIZE / 8))
 		return (1);
 	else
 		return (0);
