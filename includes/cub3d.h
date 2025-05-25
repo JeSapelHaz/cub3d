@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:15:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/24 23:05:45 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/25 02:09:16 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,14 @@ int		key_release(int key, t_data *data);
 
 /* CONTROLS_CHECKER */
 int		key_pressed(t_data *data);
-float	fix_angle(float angle);
+void	move_down(t_data *data, t_player *player, float cos_speed,
+			float sin_speed);
+void	move_up(t_data *data, t_player *player, float cos_speed,
+			float sin_speed);
+void	move_right(t_data *data, t_player *player, float cos_speed,
+			float sin_speed);
+void	move_left(t_data *data, t_player *player, float cos_speed,
+			float sin_speed);
 
 /* DRAW RAYCASTING*/
 void	draw_raycasting(t_data *data);
@@ -123,8 +130,8 @@ void	clear_image(char *img_addr, int size_line, int bpp, int color);
 void	put_pixel_to_image(t_data *data, int pixel_x, int pixel_y, int color);
 
 /* UTILS MATH */
-float	fix_angle(float angle);
 float	deg_to_rad(float angle);
+float	fix_angle(float angle);
 
 /* UTILS RAYCASTING*/
 float	calc_horz_distance(t_data *data);
