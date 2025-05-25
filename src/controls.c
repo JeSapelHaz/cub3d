@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:50:36 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/25 02:09:41 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/25 14:59:59 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ int	actions(t_data *data)
 		player = &data->player;
 		cos_speed = cos(player->angle) * SPEED;
 		sin_speed = sin(player->angle) * SPEED;
-		move_u_d(data, player, cos_speed, sin_speed);
-		move_l_r(data, player, cos_speed, sin_speed);
+		move_down(data, player, cos_speed, sin_speed);
+		move_up(data, player, cos_speed, sin_speed);
+		move_right(data, player, cos_speed, sin_speed);
+		move_left(data, player, cos_speed, sin_speed);
 		if (data->keyinfo.press_left)
 			player->angle -= ROTATE_SPEED;
 		if (data->keyinfo.press_right)

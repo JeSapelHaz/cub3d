@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+         #
+#    By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/06 14:17:34 by hbutt             #+#    #+#              #
-#    Updated: 2025/05/21 15:39:13 by hbutt            ###   ########.fr        #
+#    Updated: 2025/05/25 14:58:51 by hdelbecq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ NAME	= cub3D
 
 # Compiler and compilation flags
 CC		= cc
-CFLAGS	= -Werror -Wextra -Wall -g3 
+CFLAGS	= -Werror -Wextra -Wall -g3
 
 # Libft
 LIBFT_PATH	= libft/
