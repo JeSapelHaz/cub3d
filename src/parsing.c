@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:03:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/21 16:49:09 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/26 01:28:48 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	parse_data(char *path, t_data *data)
 	int	line_count;
 
 	line_count = get_line_count(path);
+	// error there is line_count = -1 ?
 	data->mapinfo.file = ft_calloc(line_count + 1, sizeof(char *));
 	if (!data->mapinfo.file)
 		return (1);
