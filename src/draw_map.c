@@ -6,7 +6,7 @@
 /*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:35:06 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/22 16:54:59 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/25 17:20:23 by hdelbecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ static void	map_start_draw(t_player *player, int x[2], int y[2])
 	x[1] = (int)(player->pos_x * TILE_SIZE) + ((float)map_size / 2.0f);
 	y[0] = (int)(player->pos_y * TILE_SIZE) - ((float)map_size / 2.0f);
 	y[1] = (int)(player->pos_y * TILE_SIZE) + ((float)map_size / 2.0f);
+	if (x[0] < 0)
+	 x[0] = 0;
+	if (y[0] < 0)
+	 y[0] = 0;
 }
 
 static int	draw_player(t_data *data, int x_pixel, int y_pixel)
