@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:55:00 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/29 15:56:16 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/29 15:57:49 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static void	handle_floor(char **file, int i, t_data *data, int *nbr_paths)
 		exit(0);
 	}
 	j = skip_spaces(file[i]);
-	
 	if (!file[i][1 + j] || file[i][1 + j] == '\n')
 	{
 		printf("Error : Floor path missing\n");
