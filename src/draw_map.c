@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 19:35:06 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/26 01:20:54 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:06:10 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ static void	map_start_draw(t_player *player, int x[2], int y[2])
 	y[0] = (int)(player->pos_y * TILE_SIZE) - ((float)map_size / 2.0f);
 	y[1] = (int)(player->pos_y * TILE_SIZE) + ((float)map_size / 2.0f);
 	if (x[0] < 0)
-	 x[0] = 0;
+		x[0] = 0;
 	if (y[0] < 0)
-	 y[0] = 0;
+		y[0] = 0;
 }
 
 static int	draw_player(t_data *data, int x_pixel, int y_pixel)

@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 17:31:59 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/29 13:00:18 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/29 13:08:03 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	check_map_chars(t_data *data, int *nbr_players)
 			}
 			else if (c != ' ' && c != '1' && c != '0' && c != '\t' && c != '\n'
 				&& c != '\r' && c != '\v' && c != '\f')
-				return (printf("Error : Caracter <%c> not allowed in the map\n", c), 1);
+				return (printf("Caracter <%c> no allowed in the map\n", c), 1);
 		}
 	}
 	return (0);

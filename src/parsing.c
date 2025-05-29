@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:03:39 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/26 01:28:48 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:10:35 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ int	parse_data(char *path, t_data *data)
 	int	line_count;
 
 	line_count = get_line_count(path);
-	// error there is line_count = -1 ?
+	if (line_count == -1)
+		return (1);
 	data->mapinfo.file = ft_calloc(line_count + 1, sizeof(char *));
 	if (!data->mapinfo.file)
 		return (1);

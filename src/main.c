@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:14:31 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/17 17:16:10 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:07:26 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	main(int ac, char **av)
 	if (check_args(ac, av) != 0)
 		return (1);
 	init_data(&data);
-	parse_data(av[1], &data);
+	if (parse_data(av[1], &data) == 1)
+		return (free_data(&data), 1);
 	if (take_info_file(data.mapinfo.file, &data))
 		return (free_data(&data), 1);
 	if (check_data(&data))
