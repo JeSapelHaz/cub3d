@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:50:51 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/20 19:05:45 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/29 13:00:39 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	check_rgb(t_data *data)
 		if (data->mapinfo.ceiling[i] == ',' && ++nbr_commas)
 			i++;
 		if (data->mapinfo.ceiling[i] < '0' || data->mapinfo.ceiling[i] > '9')
-			return (printf("Error RGB, syntax is RRR,GGG,BBB\n"), 1);
+			return (printf("Error RGB : syntax is RRR,GGG,BBB\n"), 1);
 		i++;
 	}
 	i = 0;
@@ -60,11 +60,11 @@ static int	check_rgb(t_data *data)
 		if (data->mapinfo.floor[i] == ',' && ++nbr_commas)
 			i++;
 		if (data->mapinfo.floor[i] < '0' || data->mapinfo.floor[i] > '9')
-			return (printf("Error RGB, syntax is RRR,GGG,BBB\n"), 1);
+			return (printf("Error RGB : syntax is RRR,GGG,BBB\n"), 1);
 		i++;
 	}
 	if (nbr_commas != 4)
-		return (printf("Error RGB, syntax is RRR,GGG,BBB\n"), 1);
+		return (printf("Error RGB : syntax is RRR,GGG,BBB\n"), 1);
 	return (0);
 }
 

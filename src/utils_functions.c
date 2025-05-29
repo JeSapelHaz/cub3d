@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:12:56 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 15:23:57 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/29 13:01:59 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,19 @@ int	convert_color(char *str)
 	if (*str == ',')
 		str++;
 	else
-		return (printf("Error RGB, syntax is RRR,GGG,BBB\n"), -1);
+		return (printf("Error RGB : syntax is RRR,GGG,BBB\n"), -1);
 	g = ft_atoi(str);
 	while (ft_isdigit(*str))
 		str++;
 	if (*str == ',')
 		str++;
 	else
-		return (printf("Error RGB, syntax is RRR,GGG,BBB\n"), -1);
+		return (printf("Error RGB : syntax is RRR,GGG,BBB\n"), -1);
 	b = ft_atoi(str);
 	while (ft_isdigit(*str))
 		str++;
 	if (r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0 || *str)
-		return (printf("Error RGB, syntax is RRR,GGG,BBB\n"), -1);
+		return (printf("Error RGB : syntax is RRR,GGG,BBB\n"), -1);
 	return ((r << 16) + (g << 8) + b);
 }
 

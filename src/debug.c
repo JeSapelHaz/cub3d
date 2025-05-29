@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:15:47 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 12:54:46 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/29 13:00:52 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_map(t_data data)
 
 	i = 0;
 	if (data.mapinfo.map[i] == NULL)
-		printf("map vide\n");
+		printf("map null\n");
 	while (data.mapinfo.map[i] != NULL)
 	{
 		printf("%s\n", data.mapinfo.map[i]);

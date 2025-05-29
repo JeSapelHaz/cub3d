@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:17:33 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/16 16:02:21 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/29 13:01:10 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	init_texture(t_data *data)
 		|| !data->mapinfo.textures[WEST].img_addr)
 	{
 		free_data(data);
-		ft_putstr_fd("Error\nFailed to load textures\n", 2);
+		ft_putstr_fd("Error : Failed to load textures\n", 2);
 		exit(1);
 	}
 }
@@ -72,7 +72,7 @@ void	init_mlx(t_data *data)
 	if (!data->mlx || !data->win || !data->img || !data->img_addr)
 	{
 		free_data(data);
-		ft_putstr_fd("Error\nFailed to initialize mlx\n", 2);
+		ft_putstr_fd("Error : Failed to initialize mlx\n", 2);
 		exit(1);
 	}
 	init_texture(data);

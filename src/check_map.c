@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdelbecq <hdelbecq@student.s19.be>         +#+  +:+       +#+        */
+/*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 17:31:59 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/17 16:37:19 by hdelbecq         ###   ########.fr       */
+/*   Updated: 2025/05/29 13:00:18 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	check_map_chars(t_data *data, int *nbr_players)
 			}
 			else if (c != ' ' && c != '1' && c != '0' && c != '\t' && c != '\n'
 				&& c != '\r' && c != '\v' && c != '\f')
-				return (printf("Caracter <%c> not allowed in the map\n", c), 1);
+				return (printf("Error : Caracter <%c> not allowed in the map\n", c), 1);
 		}
 	}
 	return (0);
@@ -61,7 +61,7 @@ int	check_map(t_data *data)
 		return (1);
 	if (nbr_players == 0 || nbr_players > 1)
 	{
-		printf("Its a game for 1 player\n");
+		printf("Error : Its a game for 1 player\n");
 		return (1);
 	}
 	return (0);
