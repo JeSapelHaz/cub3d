@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:55:00 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/20 19:02:56 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/29 15:56:16 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ static void	handle_ceiling(char **file, int i, t_data *data, int *nbr_paths)
 	if (data->mapinfo.ceiling)
 	{
 		printf("Error : Ceiling already defined\n");
+		free_data(data);
+		exit(0);
+	}
+	if (!ft_isspace(file[i][1]))
+	{
+		printf("Error : Ceiling RGB\n");
 		free_data(data);
 		exit(0);
 	}
@@ -44,7 +50,14 @@ static void	handle_floor(char **file, int i, t_data *data, int *nbr_paths)
 		free_data(data);
 		exit(0);
 	}
+	if (!ft_isspace(file[i][1]))
+	{
+		printf("Error : Floor RGB\n");
+		free_data(data);
+		exit(0);
+	}
 	j = skip_spaces(file[i]);
+	
 	if (!file[i][1 + j] || file[i][1 + j] == '\n')
 	{
 		printf("Error : Floor path missing\n");

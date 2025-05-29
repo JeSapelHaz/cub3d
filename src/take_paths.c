@@ -6,7 +6,7 @@
 /*   By: hbutt <hbutt@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:55:20 by hbutt             #+#    #+#             */
-/*   Updated: 2025/05/20 16:57:44 by hbutt            ###   ########.fr       */
+/*   Updated: 2025/05/29 15:56:45 by hbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ static void	handle_no_path(char **file, int i, t_data *data, int *nbr_paths)
 	if (data->mapinfo.textures[NORTH].path)
 	{
 		printf("Error : NO already defined\n");
+		free_data(data);
+		exit(0);
+	}
+	if (!ft_isspace(file[i][2]))
+	{
+		printf("Error : NO path\n");
 		free_data(data);
 		exit(0);
 	}
@@ -44,6 +50,12 @@ static void	handle_so_path(char **file, int i, t_data *data, int *nbr_paths)
 		free_data(data);
 		exit(0);
 	}
+	if (!ft_isspace(file[i][2]))
+	{
+		printf("Error : SO path\n");
+		free_data(data);
+		exit(0);
+	}
 	j = skip_spaces(file[i]);
 	if (!file[i][2 + j] || file[i][2 + j] == '\n')
 	{
@@ -66,6 +78,12 @@ static void	handle_we_path(char **file, int i, t_data *data, int *nbr_paths)
 		free_data(data);
 		exit(0);
 	}
+	if (!ft_isspace(file[i][2]))
+	{
+		printf("Error : WE path\n");
+		free_data(data);
+		exit(0);
+	}
 	j = skip_spaces(file[i]);
 	if (!file[i][2 + j] || file[i][2 + j] == '\n')
 	{
@@ -85,6 +103,12 @@ static void	handle_ea_path(char **file, int i, t_data *data, int *nbr_paths)
 	if (data->mapinfo.textures[EAST].path)
 	{
 		printf("Error : EA already defined\n");
+		free_data(data);
+		exit(0);
+	}
+	if (!ft_isspace(file[i][2]))
+	{
+		printf("Error : EA path\n");
 		free_data(data);
 		exit(0);
 	}
